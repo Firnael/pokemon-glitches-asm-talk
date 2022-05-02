@@ -1,0 +1,83 @@
+
+/* Logo */
+.max-logo {
+  background: no-repeat url("../../assets/max_logo.png");
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+/* Rounded img */
+.rounded {
+  border-radius: 1rem;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+/* Text */
+
+.muted {
+  color: #666;
+}
+
+.bright {
+  color: rgb(255, 196, 0);
+}
+
+.small {
+  font-size: 80%;
+}
+
+.smaller {
+  font-size: 60%;
+}
+
+.vertical-middle {
+  vertical-align: middle;
+}
+
+/* Columns */
+
+.container {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+
+/* Lists */
+
+li.no-dot {
+  list-style-type: none;
+}
+
+ul.decimal li {
+  list-style-type: decimal;
+}
+
+/* Specifics */
+
+.mew {
+  position: absolute;
+  top: -100px;
+  right: 100px;
+  height: 200px;
+  transform: translatey(0px);
+	animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
