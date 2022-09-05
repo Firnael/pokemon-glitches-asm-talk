@@ -4,6 +4,13 @@ import 'reveal.js/dist/reveal.css'
 //  beige, black, blood, league, moon, night, serif, simple, ...
 import 'reveal.js/dist/theme/blood.css'
 import Reveal from 'reveal.js'
+import RevealNotes from 'reveal.js/plugin/notes/notes'
 
 const deck = new Reveal()
-deck.initialize({ hash: true, slideNumber: false })
+deck.initialize({
+    hash: true,
+    slideNumber: false,
+    plugins: [
+        RevealNotes
+    ]
+})
