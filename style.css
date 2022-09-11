@@ -9,7 +9,11 @@
   height: 100px;
 }
 
-/* Rounded img */
+/* Images */
+.highlight {
+  filter: drop-shadow(.1rem .1rem .5rem #fff)
+}
+
 .rounded {
   border-radius: 1rem;
 }
