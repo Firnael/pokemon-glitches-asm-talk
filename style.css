@@ -1,7 +1,7 @@
 
 /* Logo */
 .max-logo {
-  background: no-repeat url("../../assets/max_logo.png");
+  background: no-repeat url("/public/max_logo.png");
   position: absolute;
   top: 10px;
   right: 10px;
@@ -9,18 +9,34 @@
   height: 100px;
 }
 
+/* Backgrounds */
+.slide-background.blurred {
+  opacity: 0.4 !important;
+  filter: blur(10px);
+}
+
 /* Images */
 .highlight {
   filter: drop-shadow(.1rem .1rem .5rem #fff)
+}
+.highlight-gold {
+  filter: drop-shadow(.1rem .1rem .5rem rgb(229, 160, 12))
+}
+.shadow {
+  filter: drop-shadow(.1rem .1rem .5rem rgb(20, 20, 20))
 }
 
 .rounded {
   border-radius: 1rem;
 }
-
 .round {
   border-radius: 50%;
 }
+
+.right {
+  float: right;
+}
+
 
 /* Text */
 
