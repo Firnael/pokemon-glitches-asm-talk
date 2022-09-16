@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Retourner le cerveau de sa Gameboy pour attraper Mew dans Pokémon (sans tricher)</title>
+  <title>Retourner le cerveau 🧠 de sa Gameboy pour attraper Mew dans Pokémon (sans tricher)</title>
 </head>
 
 <body>
@@ -15,12 +15,14 @@
 
       <!-- Start -->
       <section data-background-image="/gameboy_wallpaper.png">
-        <span style="position: absolute; right: 700px;">
-          <h3>Retourner <br/>le cerveau de sa Gameboy pour</h3>
+        <span style="position: absolute; top: 100px; right: 700px;">
+          <h3 class="highlight-title">Retourner <br />le cerveau de sa Gameboy</h3>
+          <h2 class="highlight-title">🧠</h2>
         </span>
         <span style="position: absolute; left: 700px;">
-          <h3>attraper Mew dans Pokémon</h3>
-          <h4>(sans tricher)</h4>
+          <h3 class="highlight-title">attraper Mew dans Pokémon</h3>
+          <p class="grey">(sans tricher)</p>
+          <img class="mew-2 highlight-gold" src="/mew-pixel.png" />
         </span>
         <aside class="notes">
           Ce talk est une lettre d’amour à un jeu qui a bercé ma jeunesse et qui encore aujourd’hui me fascine :
@@ -28,17 +30,23 @@
         </aside>
       </section>
 
-      <!-- Sommaire-->
+
       <section>
-        <h4>🔖 Sommaire🔖 </h4>
-        <ul>
-          <li>Préambule - Nintendo 🎴</li>
-          <li>Partie 1 - Gunpei Yokoi 🕺</li>
-          <li>Partie 2 - La Gameboy 📱</li>
-          <li>Partie 3 - Pocket Monster 🐞</li>
-          <li>Partie 4 - Une époque où la vie était plus simple 🍂</li>
-          <li>Partie 5 - Attraper Mew</li>
-        </ul>
+        <!-- Vidéo d'intro -->
+        <section data-background-video="/intro.mp4"></section>
+
+        <!-- Sommaire-->
+        <section data-background-image="/summary-wallpaper.jpeg" class="dimmed">
+          <h4>🔖 Sommaire🔖 </h4>
+          <ol class="summary">
+            <li><strong>N</strong>intendo 🎴</li>
+            <li><strong>G</strong>unpei <strong>Y</strong>okoï 🕺</li>
+            <li><strong>L</strong>a <strong>G</strong>ameboy 📱</li>
+            <li><strong>P</strong>ocket <strong>M</strong>onsters 🐞</li>
+            <li><strong>U</strong>ne époque où la vie<br/> était plus simple 🍂</li>
+            <li><strong>A</strong>ttraper <strong>M</strong>ew 🪤</li>
+          </ol>
+        </section>
       </section>
 
       <!-- L'histoire de Nintendo -->
@@ -49,8 +57,8 @@
       </section>
       <section data-background-image="/nintendo-wallpaper.jpeg" class="blurred">
         <section>
-          <img class="rounded" src="/premiers-locaux-nintendo.jpeg" height="500px" />
-          <p class="small muted">Les premiers locaux de Nintendo à Kyoto</p>
+          <img src="/premiers-locaux-nintendo.jpeg" height="500px" />
+          <p><strong>1889</strong><br />Les premiers locaux de Nintendo à Kyoto</p>
           <aside class="notes">
             Nintendo, littéralement "laisse la chance dans les mains du destin"
             ou "le temple des hanafudas" selon comment on le traduit
@@ -60,8 +68,8 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/fusajiro-yamauchi.png" />
-              <p class="muted">Fusajirō Yamauchi</p>
+              <img src="/fusajiro-yamauchi.png" />
+              <p>Fusajirō Yamauchi</p>
             </div>
             <div class="col fragment">
               <br />
@@ -111,7 +119,7 @@
           <img class="rounded" src="/hiroshi-yamauchi-young.jpeg" height="500px" />
           <p class="small muted">
             <strong>1955</strong>
-            <br/>
+            <br />
             Rare photo d'<span class="bright">Hiroshi Yamauchi</span> jeune (ici 28 ans)
           </p>
           <aside class="notes">
@@ -167,15 +175,15 @@
         <section>
           <div class="container">
             <div class="col">
-              <span class="small muted">1963</span>
-              <br/>
-              <img class="rounded" src="/nintendo-taxi.jpeg" height="300px" />
-              <img class="fragment rounded" src="/nintendo-love-hotels.jpeg" />
+              <strong>1963-1968</strong>
+              <br />
+              <img src="/nintendo-taxi.jpeg" height="300px" />
+              <img class="fragment" src="/nintendo-love-hotels.jpeg" />
             </div>
             <div class="col">
-              <img class="fragment rounded" src="/nintendo-instant-rice.jpeg" />
-              <br/>
-              <img class="fragment rounded" src="/nintendo-porn-cards.jpeg" />
+              <img class="fragment" src="/nintendo-instant-rice.jpeg" />
+              <br />
+              <img class="fragment" src="/nintendo-porn-cards.jpeg" />
             </div>
           </div>
           <aside class="notes">
@@ -187,8 +195,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/no-stonks.jpeg" height="500px" />
-          <p class="small muted">Le coup dur</p>
+          <img class="rounded" src="/no-stonks.jpeg" />
           <aside class="notes">
             Malheureusement, tous ces investissements se montreront très infructueux.
             Les mecs payaient pas leurs chauffeurs, l'idée du riz instantané était pourri car déjà fait et
@@ -199,12 +206,12 @@
           <div class="container">
             <div class="col">
               <img class="rounded" src="/tokyo-jo-1964.jpg" height="500px" />
-              <p class="small muted">1964</p>
+              <p><strong>1964</strong></p>
             </div>
             <div class="col fragment">
-              <img class="rounded" src="/really-no-stonks.png"/>
-              <br/>
-              <img class="rounded" src="/mickael-oops.webp"/>
+              <img class="rounded" src="/really-no-stonks.png" />
+              <br />
+              <img class="rounded fragment" src="/mickael-oops.webp" />
             </div>
           </div>
           <aside class="notes">
@@ -214,7 +221,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/dans-la-sauce.jpg" />
+          <img class="rounded" src="/dans-la-sauce.jpg" height="600px" />
           <p class="small muted">On peut le dire</p>
           <aside class="notes">
             On peut le dire : Nintendo est dans la sauce
@@ -240,8 +247,8 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/new-law.jpeg"/>
-          <p class="small muted">1965 : Bim, nouvelle loi</p>
+          <img class="rounded" src="/new-law.jpeg" />
+          <p> <strong>1965</strong><br />Bim, nouvelle loi</p>
           <aside class="notes">
             1965 : une nouvelle loi est adoptée au Japon, qui oblige toute société ayant des installations
             de plus de 30 kVa à engager un électricien
@@ -250,8 +257,8 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/gunpei-young.jpg" height="500px"/>
-              <p class="small muted">Gunpei le GOAT <br/> en train de chill fort</p>
+              <img class="rounded" src="/gunpei-young.jpg" height="500px" />
+              <p class="small muted">Gunpei le GOAT <br /> en train de chill fort</p>
             </div>
             <div class="col fragment">
               <img class="rounded" src="/convoyer-belt.png" height="500px" />
@@ -268,12 +275,12 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/pablo-bored.webp" height="500px"/>
+              <img class="rounded" src="/pablo-bored.webp" height="500px" />
               <p class="small muted">C'était sûr en fait</p>
             </div>
             <div class="col fragment">
-              <br/>
-              <br/>
+              <br />
+              <br />
               <img class="rounded" src="/ultrahand-prototype.webp" />
               <p class="small muted">Le jouet en question</p>
             </div>
@@ -285,7 +292,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/hiroshi-yamauchi-old.jpeg" height="550px"/>
+          <img class="rounded" src="/hiroshi-yamauchi-old.jpeg" height="550px" />
           <p class="small muted">"Coucou c'est moi, vous faites quoi :) ?"</p>
           <aside class="notes">
             En 1966, le CEO Hiroshi Yamauchi passe dans l’usine où travaille Gunpei et remarque le jouet,
@@ -293,7 +300,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/dans-le-bouillon.jpg" height="550px"/>
+          <img class="rounded" src="/dans-le-bouillon.jpg" height="550px" />
           <p class="small muted">"Je vais prendre le bouillon"</p>
           <aside class="notes">
             Gunpei pense que c’est terminé.com mais en fait pas du tout, lorsqu’il arrive dans le bureau de son boss
@@ -305,12 +312,12 @@
           <div class="container">
             <div class="col">
               <h4>L'ULTRAHAND</h4>
-              <img class="rounded" src="/ultrahand.jpg" height="250px"/>
-              <br/>
-              <img class="rounded" src="/ultrahand-box.jpg" height="280px"/>
+              <img class="rounded" src="/ultrahand.jpg" height="250px" />
+              <br />
+              <img class="rounded" src="/ultrahand-box.jpg" height="280px" />
             </div>
             <div class="col">
-              <br/>
+              <br />
               <img class="rounded" src="/ultrahand-commercial.jpeg" height="600px" />
             </div>
           </div>
@@ -321,7 +328,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gunpei-yokoi-toy.png" height="550px"/>
+          <img class="rounded" src="/gunpei-yokoi-toy.png" height="550px" />
           <p class="small muted">Gunpei Yokoi le king avec une de ses création : Le Tenbirion Barrel</p>
           <aside class="notes">
             Gunpei prend une sacrée promotion, il prend la tête d’un nouveau département “Games” (R&D1) chez Nintendo
@@ -329,10 +336,11 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/toy-ultra-machine.jpeg" height="550px"/>
+          <img class="rounded" src="/toy-ultra-machine.jpeg" height="550px" />
           <p class="small muted">1967 - L'ULTRAMACHINE</p>
           <aside class="notes">
-            Parmi ceux-ci on peut notamment citer l'ULTRAMACHINE (alors oui le mot ultra était très à la mode dans les année
+            Parmi ceux-ci on peut notamment citer l'ULTRAMACHINE (alors oui le mot ultra était très à la mode dans les
+            année
             70 au Japon grâce à ULTRAMAN le superhéro), un jouet qui permet de jouer tout seul au baseball, le sport
             le plus populaire au Japon
             Bon là c'est le poster US
@@ -341,25 +349,25 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/love-tester-ad.jpeg" height="550px"/>
+              <img class="rounded" src="/love-tester-ad.jpeg" height="550px" />
             </div>
             <div class="col">
-              <img class="rounded" src="/love-tester.jpeg"/>
+              <img class="rounded" src="/love-tester.jpeg" />
               <p class="muted">1969 - Le Love Tester</p>
             </div>
           </div>
           <aside class="notes">
-            Le fameux LOVETESTER pour tester la connexion entre deux personnes 
+            Le fameux LOVETESTER pour tester la connexion entre deux personnes
           </aside>
         </section>
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/ele-conga.jpeg"/>
+              <img class="rounded" src="/ele-conga.jpeg" />
               <p class="muted">1970 - L'Ele-Conga</p>
             </div>
             <div class="col">
-              <img class="rounded" src="/ele-conga-flyer.webp"/>
+              <img class="rounded" src="/ele-conga-flyer.webp" />
             </div>
           </div>
           <aside class="notes">
@@ -369,32 +377,34 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/ultra-scope.jpeg" height="550px"/>
+              <img class="rounded" src="/ultra-scope.jpeg" height="550px" />
               <p class="small muted">1971 - L'ULTRASCOPE</p>
             </div>
             <div class="col fragment">
-              <img class="rounded" src="/ultra-scope-kid.jpeg"/>
+              <img class="rounded" src="/ultra-scope-kid.jpeg" />
               <p class="small muted">En tout cas ce gamin ne regarde pas derrière n'importe quel mur vu sa tête</p>
             </div>
           </div>
           <aside class="notes">
-            Mais également l'ULTRASCOPE (rofl), une paire de jumelle couplée à un jeu de miroir pour voir par dessus les murs
+            Mais également l'ULTRASCOPE (rofl), une paire de jumelle couplée à un jeu de miroir pour voir par dessus les
+            murs
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/lefty-rx.jpeg" height="550px"/>
+          <img class="rounded" src="/lefty-rx.jpeg" height="550px" />
           <p class="small muted">1972 - Lefty-RX</p>
           <aside class="notes">
             Egalement un jeu de petites voitures télécommandés
             Alors à l'époque, aussi bien l'émetteur que le récepteur radio pour ce type de jouet coûtait une blinde,
             quasiment un mois de salaire, car on avait besoin d'au moins 3 fréquences différentes pour les 3 commandes :
             accélerer, tourner à droite et tourner à gauche
-            Pour réduire les coups et le vendre au alentours de 10 000 yens, Gunpei imagine un jouet qui avance tout seul,
+            Pour réduire les coups et le vendre au alentours de 10 000 yens, Gunpei imagine un jouet qui avance tout
+            seul,
             et qui ne peut tourner que dans une direction : la gauche (d'où le Lefty, it's not a bug, it's a feature)
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/toy-chiritory.jpeg" height="550px"/>
+          <img class="rounded" src="/toy-chiritory.jpeg" height="550px" />
           <p class="small muted">1979 - Le chiritory</p>
           <aside class="notes">
             Plus tard, il inventera Le "chiritory", un aspirateur télécommandé, basé sur le Lefty RX
@@ -405,24 +415,27 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/kosenju-sp-box.jpeg" height="300px"/>
-              <img class="rounded" src="/kozenju-sp-rifle.jpg" height="300px"/>
+              <img class="rounded" src="/kosenju-sp-box.jpeg" height="300px" />
+              <img class="rounded" src="/kozenju-sp-rifle.jpg" height="300px" />
             </div>
             <div class="col">
-              <img class="rounded" src="/kosenju-sp-duckhunt.webp"/>
-              <p class="muted">1970-1972 - La gamme <br/> Kōsenjū SP<br/> (la naissance de Duck Hunt)</p>
+              <img class="rounded" src="/kosenju-sp-duckhunt.webp" />
+              <p class="muted">1970-1972 - La gamme <br /> Kōsenjū SP<br /> (la naissance de Duck Hunt)</p>
             </div>
           </div>
           <aside class="notes">
             Il imagine également toute une gamme de jouet avec des pistolets optiques "Kosenju SP", une technologie
-            des années 30, qui utilise l'optoelectronique (composants photoniques produisant et réagissant à la lumière).
+            des années 30, qui utilise l'optoelectronique (composants photoniques produisant et réagissant à la
+            lumière).
             Les pistolets envoient des petits flashs de lumière, et des cibles équipées de cellules photo-sensibles
             qui réagissent à ces flashs.
             Plus tard, c'est le jeu Duck hunt qui naitra en 76 des cendres du Laser Clay.
             C'est ainsi que nait d'ailleurs le premier jeu "Duck Hunt", un projecteur affiche sur un mur des canards
             qu'il faut shooter.
-            Le concept est très simple : lorsque le joueur tire, le projecteur n'affiche pendant une fraction de seconde que
-            de la lumière là où se trouvent les canards. Si la cellule photo-sensible du fusil détecte cette lumière, c'est 
+            Le concept est très simple : lorsque le joueur tire, le projecteur n'affiche pendant une fraction de seconde
+            que
+            de la lumière là où se trouvent les canards. Si la cellule photo-sensible du fusil détecte cette lumière,
+            c'est
             qu'il est bien orienté, alors le tir a "touché" sa cible.
             Et c'est ce jouet en particulier qui nous intéresse...
           </aside>
@@ -430,7 +443,7 @@
 
         <!-- Sous-section : Ralph Baer -->
         <section>
-          <img class="rounded" src="/tv-unit-1.jpeg" height="550px"/>
+          <img class="rounded" src="/tv-unit-1.jpeg" height="550px" />
           <p class="small muted">1966 - La TV-Unit #1</p>
           <aside class="notes">
             En parallèle de tout ça, et je sais qu'on dirait que je pars en steak mais n'ayez crainte
@@ -441,24 +454,26 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/ralph-baer-the-boss.webp"/>
+          <img class="rounded" src="/ralph-baer-the-boss.webp" />
           <p class="small muted">Ralph Baer, le daron du game, littéralement</p>
           <aside class="notes">
-            Cet homme c'est Ralph Baer. En glandant au bureau, il vient d'inventer le jeu vidéo dans le plus grand des calmes.
+            Cet homme c'est Ralph Baer. En glandant au bureau, il vient d'inventer le jeu vidéo dans le plus grand des
+            calmes.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/ralph-baer.jpg"/>
+          <img class="rounded" src="/ralph-baer.jpg" />
           <p class="small muted">"Je ferais peut-être mieux de bosser"</p>
           <aside class="notes">
             Au début, il n'était possible que de déplacer un carré blanc à l'écran.
             Puis en ajoutant un deuxième boitier de contrôle, il invente "Chase Game",
             un genre de jeu du chat où il faut toucher l'autre pour gagner.
-            Ce prototype suffit à son manager pour approuver la création d'une équipe dédiée au développement de cette machine.
+            Ce prototype suffit à son manager pour approuver la création d'une équipe dédiée au développement de cette
+            machine.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/brown-box-light-gun.jpg"/>
+          <img class="rounded" src="/brown-box-light-gun.jpg" />
           <p class="small muted">Le tout premier Light Gun</p>
           <aside class="notes">
             Baer a l'idée de transformer les vieux jeux d'arcade de tir (à pistolet optique qui datent des années 30)
@@ -469,51 +484,57 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/ralph-baer-gaming.jpg"/>
+          <img class="rounded" src="/ralph-baer-gaming.jpg" />
           <p class="small muted">Ralph Baer Gaming</p>
           <aside class="notes">
-            Puis un jour un de ses collègues Bill Rusch lui dit "imagine, en fait y'a un 3ème carré, et il faut le renvoyer
+            Puis un jour un de ses collègues Bill Rusch lui dit "imagine, en fait y'a un 3ème carré, et il faut le
+            renvoyer
             à l'autre sinon on a perdu, comme du tennis haha, nan mais en vrai c'est chaud, mais IMAGINE QUAND MEME"
             Alors il invente ce qui deviendra quelques années plus tard : PONG
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/brown-box.jpg" height="550px"/>
+          <img class="rounded" src="/brown-box.jpg" height="550px" />
           <p class="small muted">1971 - La Brown Box</p>
           <aside class="notes">
-            Après 7 ou 8 prototypes de TV Unit, Baer décide qu'il est temps de vendre la console, et conçoit une apparence
+            Après 7 ou 8 prototypes de TV Unit, Baer décide qu'il est temps de vendre la console, et conçoit une
+            apparence
             "bois" avec des stickers, il la baptise alors la 'Brown Box'
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/magnavox-odyssey.jpeg" height="550px"/>
+          <img class="rounded" src="/magnavox-odyssey.jpeg" height="550px" />
           <p class="small muted">1972 - La Magnavox Odyssey</p>
           <aside class="notes">
-            Je vous passe les détails, mais en gros avec l'aide du directeur des brevets de Sanders, il contacte toutes les 
+            Je vous passe les détails, mais en gros avec l'aide du directeur des brevets de Sanders, il contacte toutes
+            les
             société fabriquant des téléviseurs aux US, et en 1971 après des galères et des coups fourrés, l'entreprise
-            Magnavox signe un contrat d'exclusivité avec Sanders et produit la 1ère console de salon au monde : l'Odyssey
+            Magnavox signe un contrat d'exclusivité avec Sanders et produit la 1ère console de salon au monde :
+            l'Odyssey
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/odyssey-shooting-gallery.png"/>
+          <img class="rounded" src="/odyssey-shooting-gallery.png" />
           <p class="small muted">L'Odyssey Shooting Gallery</p>
           <aside class="notes">
             Un accessoire phare de l'Odyssey est son fusil optique : l'Odyssey Shooting Gallery avec ses jeux de tir.
-            La fabrication des fusils est confié à un sous-traitant japonais plutôt chaud pour ce genre de jouet : Nintendo
+            La fabrication des fusils est confié à un sous-traitant japonais plutôt chaud pour ce genre de jouet :
+            Nintendo
           </aside>
         </section>
 
         <!-- On reprend avec Gunpei -->
         <section>
-          <img class="rounded" src="/hiroshi-yamauchi-fufufu.jpeg" height="550px"/>
+          <img class="rounded" src="/hiroshi-yamauchi-fufufu.jpeg" height="550px" />
           <p class="small muted">"C'est moi ou ça sent le pognon 😏 ?"</p>
           <aside class="notes">
             C'est ainsi que Nintendo travaille pour la première fois dans le jeu vidéo.
-            Hiroshi Yamauchi voit les ventes de l'Odyssey outre-Pacifique et se dit "ça sent le bon gros filon ça mon coco"
+            Hiroshi Yamauchi voit les ventes de l'Odyssey outre-Pacifique et se dit "ça sent le bon gros filon ça mon
+            coco"
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/clay-shooting-competition.jpg"/>
+          <img class="rounded" src="/clay-shooting-competition.jpg" />
           <aside class="notes">
             A la même époque, il constate que les salles de bowlings
             sont abandonnées par les japonais (le bowling était à la mode dans les années 60, mais rapidement
@@ -525,30 +546,30 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/laser-clay-shooting-system-1.jpg"/>
+              <img class="rounded" src="/laser-clay-shooting-system-1.jpg" />
             </div>
             <div class="col">
-              <img class="rounded" src="/laser-clay-shooting-system-2.jpg"/>
+              <img class="rounded" src="/laser-clay-shooting-system-2.jpg" />
             </div>
           </div>
           <p class="small muted">1973 - Le Laser Clay Shooting System</p>
           <aside class="notes">
             Le concept est prototypé par Gunpei, et sort en 1973 sous le nom "Laser Clay Shooting System"
-            Le système est bien reçu par le public, et au vu de ce succès, 
+            Le système est bien reçu par le public, et au vu de ce succès,
             Yamauchi décide de go all-in et passe les commandes pour équiper des 10ène de salles
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/choc-petrolier.jpg"/>
+          <img class="rounded" src="/choc-petrolier.jpg" />
           <p class="small muted">1973 : 1er choc pétrolier, ambiance : pas ouf</p>
           <aside class="notes">
             Mais en octobre de cette année là, l'Arabie Saoudite est soulée par la guerre du Kippour et décide
-            de mettre en place un embargo sur le pétrole contre les pays ayant soutenu Israel durant le conflit. 
+            de mettre en place un embargo sur le pétrole contre les pays ayant soutenu Israel durant le conflit.
             Le Japon se trouve dans cette liste, et subit une sacré récession
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/ultra-mega-no-stonks.jpg"/>
+          <img class="rounded" src="/ultra-mega-no-stonks.jpg" />
           <p class="small muted">-5 milliards de ¥, ULTRA coup dur</p>
           <aside class="notes">
             Les japonais délaissèrent ces salles, et les commandes étant déjà passée, cela
@@ -557,24 +578,24 @@
         </section>
         <!-- Les début du jeu video chez Nintendo -->
         <section>
-          <img class="rounded" src="/wild-gunman.webp" height="550px"/>
+          <img class="rounded" src="/wild-gunman.webp" height="550px" />
           <p class="small muted">1974 - Recyclage de la techno en bornes d'arcade</p>
           <aside class="notes">
             Afin de redresser la barre, Yamauchi demande à Gunpei et son équipe de concevoir des jeux pour bornes
             d'arcade (sur lesquelles ils avaint déjà un peu d'expérience, ayant créé quelques jeux dans le début
-            des années 70), c'est ainsi que la techno des "beam gun" est recyclée, comme dans la borne d'arcade 
+            des années 70), c'est ainsi que la techno des "beam gun" est recyclée, comme dans la borne d'arcade
             "Wild Gunman" qu'on peut voir d'ailleurs dans Retour vers le futur 2, celle où Marty éclate tout.
           </aside>
         </section>
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/color-tv-game-6.jpeg"/>
-              <img class="rounded" src="/color-tv-game-15.jpeg"/>
+              <img class="rounded" src="/color-tv-game-6.jpeg" />
+              <img class="rounded" src="/color-tv-game-15.jpeg" />
             </div>
             <div class="col">
-              <img class="rounded" src="/color-tv-racing-112.jpeg"/>
-              <p class="small muted">1977-1979<br/>Les Color TV Game Consoles</p>
+              <img class="rounded" src="/color-tv-racing-112.jpeg" />
+              <p class="small muted">1977-1979<br />Les Color TV Game Consoles</p>
             </div>
           </div>
           <aside class="notes">
@@ -584,7 +605,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/shigeru-miyamoto-young-2.jpg" height="550px"/>
+          <img class="rounded" src="/shigeru-miyamoto-young-2.jpg" height="550px" />
           <p class="small muted">Le légendaire Shigeru Miyamoto</p>
           <aside class="notes">
             Il cherche un designer pour travailler sur le design de ces consoles, et un pote à lui lui demande de bien
@@ -593,16 +614,16 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/yokoi-and-miyamoto.webp" height="550px"/>
+          <img class="rounded" src="/yokoi-and-miyamoto.webp" height="550px" />
           <p class="small muted">Yokoi et Miyamoto</p>
           <aside class="notes">
             Miyamoto en vient rapidement à travailler avec Yokoi, et celui-ci devient son sensei.
             Les résultats des Color TV sont corrects mais la société peine à tirer son épingle du jeu (huhu)
-            Yamauchi étudie le marché américain et demande à ses équipes de produire des jeux pour bornes d'arcades 
+            Yamauchi étudie le marché américain et demande à ses équipes de produire des jeux pour bornes d'arcades
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/radar-scope.jpeg" height="550px"/>
+          <img class="rounded" src="/radar-scope.jpeg" height="550px" />
           <p class="small muted">1979 - Radar Scope</p>
           <aside class="notes">
             C'est ainsi que le jeu Radar Scope voit le jour, mais est malheureux un gros échec commercial.
@@ -611,18 +632,19 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/donkey-kong-jumpman-croquis.webp"/>
+          <img class="rounded" src="/donkey-kong-jumpman-croquis.webp" />
           <p class="small muted">Un croquis de "Jump Man" de Miyamoto</p>
           <aside class="notes">
             Miyamoto, alors très influencé par les animations et films américains comme King Kong,
             pense à un jeu mettant en scène Popeye qui doit délivrer Olive des mains de Brutus.
             Sauf qu'ils ont pas les droits pour utiliser Popeye, du coup influencé par King Kong il créer Donkey Kong.
-            A la place de Popeye, il imagine un petit personnage qui doit sauter par dessus les barils que lui envoie DK.
+            A la place de Popeye, il imagine un petit personnage qui doit sauter par dessus les barils que lui envoie
+            DK.
             Il nomme ce personnage "Jumpman"
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/donkey-kong-jumpman.webp" height="550px"/>
+          <img class="rounded" src="/donkey-kong-jumpman.webp" height="550px" />
           <p class="small muted">1980 - Le jeu d'arcade Donkey Kong</p>
           <aside class="notes">
             C'est la 1ère apparition de Mario dans un jeu vidéo.
@@ -631,7 +653,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/train-interior.jpg" height="550px"/>
+          <img class="rounded" src="/train-interior.jpg" height="550px" />
           <p class="small muted">Un train japonais dans les années 70</p>
           <aside class="notes">
             Mais le véritable tour de force survint presque par hasard.
@@ -639,7 +661,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/man-with-calculator.webp" height="550px"/>
+          <img class="rounded" src="/man-with-calculator.webp" height="550px" />
           <p class="small muted">"Je m'ennuie tellement que je joue avec ma calculette, aidez moi"</p>
           <aside class="notes">
             Il remarque un adulte qui tapote discrètement sur une calculatrice LCD pour passer le temps.
@@ -649,16 +671,16 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/yamauchi-tartine.jpg" height="550px"/>
+          <img class="rounded" src="/yamauchi-tartine.jpg" height="550px" />
           <p class="small muted">"Ouai super mec mais sinon tu veux une tartine ? Pour étaler ta vie"</p>
           <aside class="notes">
-            Quelques jours plus tard, il pitch l'idée sans vraiment y croire à Yamauchi, qu'il était en train de 
+            Quelques jours plus tard, il pitch l'idée sans vraiment y croire à Yamauchi, qu'il était en train de
             conduire à un business meeting à Osaka, son chauffeur étant malade.
             Celui-ci s'en bas visiblement les steaks forts.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/sharp-offices.jpg" height="550px"/>
+          <img class="rounded" src="/sharp-offices.jpg" height="550px" />
           <p class="small muted">Le siège de Sharp, les écrans LCD n'ont aucun secret pour eux</p>
           <aside class="notes">
             Malgrè le fait que son boss n'ai pas réagi durant le trajet, il s'avera que le meeting en question
@@ -668,7 +690,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/game-and-watch-ball.jpg" height="550px"/>
+          <img class="rounded" src="/game-and-watch-ball.jpg" height="550px" />
           <p class="small muted">1980 - Le 1er Game & Watch : Ball</p>
           <aside class="notes">
             C’est ainsi que naît le 28 avril 1980 le premier “Game & Watch” Ball
@@ -676,18 +698,19 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/game-and-watch-poster.jpg" height="600px"/>
+          <img class="rounded" src="/game-and-watch-poster.jpg" height="600px" />
           <aside class="notes">
             Ce sont des immenses succès commerciaux, mais surtout auprès des enfants !
             Nintendo continue donc à sortir de nouveaux modèles, que Yokoi imagine pour la plupart
             Les Game & Watch se vendent bien au Japon, mais sont aussi exportés dans le reste du monde
-            Les bénéfices des Game & Watch sortent l'entreprise des problèmes financiers : le chiffre d'affaires de Nintendo
+            Les bénéfices des Game & Watch sortent l'entreprise des problèmes financiers : le chiffre d'affaires de
+            Nintendo
             quadruple en un an (de 15 à 60B de yens)
           </aside>
         </section>
         <section>
-          <img class="highlight" src="/game-and-watch-removebg.png"/>
-          <br/>
+          <img class="highlight" src="/game-and-watch-removebg.png" />
+          <br />
           <span class="small muted">1982 - Le Game & Watch Donkey Kong</span>
           <aside class="notes">
             C'est d'ailleurs dans le cadre de la série "Multi-screen" que sort le Game & Watch Donkey Kong
@@ -695,20 +718,23 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/hiroshi-yamauchi-smile.jpg"/>
+          <img class="rounded" src="/hiroshi-yamauchi-smile.jpg" />
           <span class="small muted">"Hehehehehe"</span>
           <aside class="notes">
             Au début des année 80, l'offre explose et la demande pour les consoles de salon s'effondre
-            Le jeu vidéo est à son âge d'or, spécialement dans les salles d'arcade, mais un trop grand nombre de systèmes
-            de jeux différents existent, tel que l'Atari 2600 (ou VCS), la ColecoVision, la Vectrex, l'Intellevision, la Home Vision,
+            Le jeu vidéo est à son âge d'or, spécialement dans les salles d'arcade, mais un trop grand nombre de
+            systèmes
+            de jeux différents existent, tel que l'Atari 2600 (ou VCS), la ColecoVision, la Vectrex, l'Intellevision, la
+            Home Vision,
             et bien d'autres, ainsi qu'un trop grand nombre de jeux à la qualité médiocre.
-            Cela pousse de nombreux concurrents de Nintendo à mettre la clé sous la porte, ou a arrêter de commercialiser des consoles.
+            Cela pousse de nombreux concurrents de Nintendo à mettre la clé sous la porte, ou a arrêter de
+            commercialiser des consoles.
             Contrairement à eux, Nintendo se porte bien grâce à ces derniers succès, et a un projet dans les cartons
           </aside>
         </section>
         <section>
-          <img class="highlight" src="/famicom.png"/>
-          <br/>
+          <img class="highlight" src="/famicom.png" />
+          <br />
           <span class="small muted">1983 - La Family Computer, ou Famicom</span>
           <aside class="notes">
             Gunpei est en charge notamment du design des manettes, et reprend ce qu'il a inventé
@@ -718,7 +744,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/super-mario-bros.jpeg"/>
+          <img class="rounded" src="/super-mario-bros.jpeg" />
           <p class="small muted">1985 - Super Marios Bros.</p>
           <aside class="notes">
             ...et plus spécialement grâce à la sortie d'un hit incontesté et incontestable encore de nos jours :
@@ -728,12 +754,12 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/metroid-nes.jpg"/>
-              <p class="small muted">1986<br/>Metroid</p>
+              <img class="rounded" src="/metroid-nes.jpg" />
+              <p class="small muted">1986<br />Metroid</p>
             </div>
             <div class="col">
-              <img class="rounded" src="/zelda-nes.webp" height="500px"/>
-              <p class="small muted">1987<br/>The Legend of Zelda</p>
+              <img class="rounded" src="/zelda-nes.webp" height="500px" />
+              <p class="small muted">1987<br />The Legend of Zelda</p>
             </div>
           </div>
           <aside class="notes">
@@ -741,9 +767,10 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/ultra-mega-ultimate-powered-fucking-stonks.jpg" height="600px"/>
+          <img class="rounded" src="/ultra-mega-ultimate-powered-fucking-stonks.jpg" height="600px" />
           <aside class="notes">
-            SMB sera vendu à + de 40 millions d'exemplaires à travers le monde, propulsant la console dans la stratosphère
+            SMB sera vendu à + de 40 millions d'exemplaires à travers le monde, propulsant la console dans la
+            stratosphère
             On estime qu'à la fin des années 80, au Japon et aux US, un foyer sur 3 était équipé d'une Famicom (ou NES)
             Nintendo devint l'entreprise la plus rentable du Japon devant Toyota.
             À cette époque Nintendo contrôle près de 90 % du marché des consoles de salon.
@@ -760,7 +787,7 @@
       </section>
       <section data-background-image="/gameboy_pokemon.jpeg" class="blurred">
         <section>
-          <img class="rounded" src="/gunpei-yokoi-smile.jpeg" width="1000px" height="400px"/>
+          <img class="rounded" src="/gunpei-yokoi-smile.jpeg" width="1000px" height="400px" />
           <p class="small muted">"Bon on fait quoi maintenant :) ?"</p>
           <aside class="notes">
             En 88, cela fait bientôt 8 ans que Gunpei conçoit des Game & Watch, et commence à avoir fait le tour.
@@ -769,7 +796,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/yamauchi-think.jpeg"/>
+          <img class="rounded" src="/yamauchi-think.jpeg" />
           <p class="small muted">"Allé vazy t'as carte blanche bg"</p>
           <aside class="notes">
             Il va voir Yamauchi et lui dit "je peux faire une NES portable, avec un écran et des cartouches"
@@ -778,7 +805,7 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/fake-gunpei-mocking.jpeg" height="550px"/>
+          <img class="rounded" src="/fake-gunpei-mocking.jpeg" height="550px" />
           <p class="small muted">people-mocking-asian-guy.jpeg</p>
           <aside class="notes">
             Pendant + de 2 ans, réunions après réunions, Yokoi se retrouve de plus en plus seul dans son camp.
@@ -790,18 +817,18 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gameboy-blueprint.jpeg" height="600px"/>
+          <img class="rounded" src="/gameboy-blueprint.jpeg" height="600px" />
           <aside class="notes">
             Il travaille avec son équipe sur la technologie de l'écran à cristaux liquides, qu'il faut souder
             sur le circuit imprimé pour gagner beaucoup de place, ils démontent plein de télévisions pour essayer
             d'en trouver une qui pourrait faire le taf.
-            Il travaille également sur la disposition des boutons, qui contrairement au G&W, ne change pas en 
+            Il travaille également sur la disposition des boutons, qui contrairement au G&W, ne change pas en
             fonction du jeu. Il décide d'utiliser le layout de la manette de NES, vu que la moitié du monde
             y est maintenant habitué.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gameboy-cable.png"/>
+          <img class="rounded" src="/gameboy-cable.png" />
           <aside class="notes">
             Une autre idée brillante qui va sortir de cette équipe, et l'utilisation d'un câble permettant les consoles
             de se connecter entre-elles, pour que les joueurs jouent ensembles.
@@ -810,14 +837,14 @@
         <section>
           <div class="container">
             <div class="col">
-              <img src="/shigesato-itoi.jpeg" height="350px"/>
-              <br/>
-              <img class="fragment" src="/mother-game.jpeg" height="250px"/>
+              <img src="/shigesato-itoi.jpeg" height="350px" />
+              <br />
+              <img class="fragment" src="/mother-game.jpeg" height="250px" />
             </div>
             <div class="col">
-              <img class="fragment" src="/ness.png" height="250px"/>
+              <img class="fragment highlight" src="/ness.png" height="250px" />
               <div class="fragment">
-                <img class="highlight" src="/walkman.png"/>
+                <img class="highlight" src="/walkman.png" />
                 <p class="small muted">Walkman / Gameboy</p>
               </div>
             </div>
@@ -834,10 +861,10 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/gunpei-yokoi-yamete.png"/>
+              <img class="rounded" src="/gunpei-yokoi-yamete.png" />
             </div>
             <div class="col">
-              <img class="rounded fragment" src="/gameboy-screen-broken.jpeg"/>
+              <img class="rounded fragment" src="/gameboy-screen-broken.jpeg" />
             </div>
           </div>
           <aside class="notes">
@@ -855,10 +882,10 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/gameboy-contrast-wheel.png"/>
+              <img class="rounded" src="/gameboy-contrast-wheel.png" />
             </div>
             <div class="col fragment">
-              <img class="rounded" src="/gunpei-yokoi-depressed.jpeg"/>
+              <img class="rounded" src="/gunpei-yokoi-depressed.jpeg" />
               <p class="small muted">:(</p>
             </div>
           </div>
@@ -873,10 +900,10 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/gameboy-dot-matrix.png"/>
+              <img class="rounded" src="/gameboy-dot-matrix.png" />
             </div>
             <div class="col fragment">
-              <img class="rounded" src="/gunpei-yokoi-happy.jpeg"/>
+              <img class="rounded" src="/gunpei-yokoi-happy.jpeg" />
               <p class="small muted">"Je suis RE-FAIT :D !"</p>
             </div>
           </div>
@@ -890,34 +917,35 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/atari-lynx.png"/>
-          <p class="small muted">La Lynx d'Atari, sortira en septembre 1989</p>
+          <img class="highlight" src="/atari-lynx.png" />
+          <p>La Lynx d'Atari, sortira en septembre 1989</p>
           <aside class="notes">
             Au même moment, Atari bosse sur la Lynx, une console portable couleur qui prend du retard.
             Un retard qui s'avèrera salvateur pour Nintendo, qui serait vraiment passé pour des glands à sortir
-            une console portable monochrome après qu'une telle console soit apparu sur le marché, créant un nouveau standard.
+            une console portable monochrome après qu'une telle console soit apparu sur le marché, créant un nouveau
+            standard.
           </aside>
         </section>
         <section>
           <img class="rounded" src="/gameboy-box.jpeg" height="550px" />
-          <p class="small">
-            21 avril 1989 : La <span class="bright">Gameboy</span> sort
-            <br/>
-            <strong class="smaller muted bold">ゲームボーイ</strong>
+          <p>
+            <strong>21 avril 1989</strong>
+            <br />La <span class="bright">Gameboy</span> sort
           </p>
           <aside class="notes">
             - 21 avril 1989 🇯🇵
             - octobre 1989 🇺🇸
             - 28 septembre 1990 🇪🇺
-            A sa sortie, la presse spécialisée l'enfonce sur son retard technique, et les spécialistes prédisent un échec
+            A sa sortie, la presse spécialisée l'enfonce sur son retard technique, et les spécialistes prédisent un
+            échec
             cuisant pour la console. Chez Nintendo, ça claque des genoux. La boite a investi des millions et des
             millions de yens, et personne n'y croit vraiment, il n'y a que Yokoi qui est serein.
             Cependant en seulement 2 semaines, la console se vent à 300k exemplaire, établissant un record pour
-            une vente de console au Japon, et se retrouve en rupture de stock. 
+            une vente de console au Japon, et se retrouve en rupture de stock.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gameboy-mother-playing.webp" height="600px"/>
+          <img class="rounded" src="/gameboy-mother-playing.webp" height="600px" />
           <aside class="notes">
             Elle sort quelques mois plus tard aux US, et rebelotte :
             la presse crache dessus, mais le public est conquit, et la console est en rupture day one.
@@ -925,11 +953,12 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gameboy-gamegear-lynx.jpeg" height="600px"/>
+          <img class="rounded" src="/gameboy-gamegear-lynx.jpeg" height="600px" />
           <aside class="notes">
-            Son succès au démarrage peut s'expliquer par plusieurs facteurs : son prix, très en dessous de la concu, son 
+            Son succès au démarrage peut s'expliquer par plusieurs facteurs : son prix, très en dessous de la concu, son
             ergonomie, qui permet aux petites mains comme aux grandes de jouer facilement, et surtout son autonomie.
-            là où la game gear de Sega qui sortira en 1990 tient 6h, et la Lynx 6h (pour 6x piles AA omg), et la PC Engine GT 
+            là où la game gear de Sega qui sortira en 1990 tient 6h, et la Lynx 6h (pour 6x piles AA omg), et la PC
+            Engine GT
             3H MDR (couleur rétro-éclairé), qui proposent que des portages de jeux de console de salon.
             La Gameboy elle, tient entre 15 et 30h avec seulement 4x AA.
           </aside>
@@ -937,42 +966,43 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/super-mario-land-box.jpeg" height="550px"/>
+              <img class="rounded" src="/super-mario-land-box.jpeg" height="550px" />
             </div>
             <div class="col">
-              <img class="rounded" src="/tetris-game.webp"/>
+              <img class="rounded" src="/tetris-game.webp" />
               <p class="small muted">Tetris, de Alekseï Pajitnov</p>
             </div>
           </div>
           <aside class="notes">
-            Mais c'est surtout sa line-up de jeux qui la rend incroyable, entre Tetris et Mario Land, qui portent à eux seuls
-            la console à bout de bras. Mario parce que en 89, il y a une véritable Mario Mania qui se répand, après les 
-            excellents Mario Bros 2 et surtout 3 sur SNES., et Tetris parce que tout le monde aime le jeu, et qu'il 
+            Mais c'est surtout sa line-up de jeux qui la rend incroyable, entre Tetris et Mario Land, qui portent à eux
+            seuls
+            la console à bout de bras. Mario parce que en 89, il y a une véritable Mario Mania qui se répand, après les
+            excellents Mario Bros 2 et surtout 3 sur SNES., et Tetris parce que tout le monde aime le jeu, et qu'il
             justifie à lui seul le cable link.
           </aside>
         </section>
         <section>
           <div class="container">
             <div class="col">
-              <img class="rounded" src="/gameboy-ad-ferret.jpeg" height="600px"/>
+              <img class="rounded" src="/gameboy-ad-ferret.jpeg" height="600px" />
             </div>
             <div class="col fragment">
-              <img class="rounded" src="/gameboy-ad-girl.webp"/>
+              <img class="rounded" src="/gameboy-ad-girl.webp" />
             </div>
           </div>
           <aside class="notes">
             La console se vend aussi bien en Europe qu'aux US, qu'au Japon, avec parfois une campagne marketing
-            un peu spéciale... 
+            un peu spéciale...
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gameboy-gulf-war.jpeg" height="600px"/>
+          <img class="rounded" src="/gameboy-gulf-war.jpeg" height="600px" />
           <aside class="notes">
             Elle s'emmene partout, dans l'espace, et même à la guerre du Golf.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/virtua-fighter-2-saturn.png" height="550px"/>
+          <img class="rounded" src="/virtua-fighter-2-saturn.png" height="550px" />
           <p class="small muted">1994 - Virtua Fighter 2, sur SEGA Saturn</p>
           <aside class="notes">
             On est en 1994, la Gameboy se vend toujours, mais est en perte de vitesse.
@@ -983,16 +1013,16 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/gameboy-sales-1989-1996.png" height="550px"/>
+          <img class="rounded" src="/gameboy-sales-1989-1996.png" height="550px" />
           <p class="small muted">Vente de Gameboy par années & régions</p>
           <aside class="notes">
-            Les studios de développement se consacrent aux nouvelles consoles et abandonnent petit à petit la 
+            Les studios de développement se consacrent aux nouvelles consoles et abandonnent petit à petit la
             création de nouveaux jeux sur la Gameboy. Deplus, les JV prennent un gros bad-buzz avec le scandale Mortal
             Combat aux US, et la presse traditionnelle va se jeter dessus.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/virtual-boy.jpeg" height="550px"/>
+          <img class="rounded" src="/virtual-boy.jpeg" height="550px" />
           <p class="small muted">Août 1995 - Le Virtual Boy</p>
           <aside class="notes">
             Virtual Boy : un prototype de console avec casque stéréoscopique de Yokoi.
@@ -1000,14 +1030,14 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/virtual-boy-screenshot.gif" height="600px"/>
+          <img class="rounded" src="/virtual-boy-screenshot.gif" height="600px" />
           <aside class="notes">
             rushé par Nintendo car les ressources sont sur la N64
             ça flop fort : campagne market débile, les journalistes sont malades, le nom va pas, etc.
           </aside>
         </section>
         <section>
-          <img class="highlight" src="/gameboy_pocket_blue.png" height="550px"/>
+          <img class="highlight" src="/gameboy_pocket_blue.png" height="550px" />
           <p class="small muted">Ma toute première Gameboy</p>
           <aside class="notes">
             Yokoi commence à en avoir plein le cul, il veut partir.
@@ -1016,19 +1046,21 @@
           </aside>
         </section>
         <section>
-          <img class="highlight" src="/gunpei-yokoi-game-boy.jpeg" height="550px"/>
+          <img class="highlight" src="/gunpei-yokoi-game-boy.jpeg" height="550px" />
           <p class="small muted">15 août 1996 - Gunpei Yokoi quitte Nintendo</p>
           <aside class="notes">
             C'est son chant du cygne, et il se casse.
             Juste avant de partir, il leur laisse un petit cadeau : pendant la conception de la GB Pocket, plusieurs
             personnes dans son équipe veulent retirer le port du cable link pour faciliter la production, et justifient
-            ce choix par "c'est plus utilisé". Après des débats houleux, Yokoi accepte de le retirer, puis se ravise à la 
-            toute fin et le remet : il a une intuition, le port est important. Il design un nouveau port plus petit, et la 
+            ce choix par "c'est plus utilisé". Après des débats houleux, Yokoi accepte de le retirer, puis se ravise à
+            la
+            toute fin et le remet : il a une intuition, le port est important. Il design un nouveau port plus petit, et
+            la
             console sera fabriquer avec. Cette intuition va littéralement sauver la console
           </aside>
         </section>
         <section>
-          <img class="highlight" src="/gameboy-pocket-ad.png" height="600px"/>
+          <img class="highlight" src="/gameboy-pocket-ad.png" height="600px" />
           <aside class="notes">
             La Pocket relance les ventes, mais qui chutent peu après. La Gameboy a maintenant 7 ans dans les pattes.
             EN 1996, c'est une antiquité, les gens s'en désintéressent, il est peut-être temps de tourner la page ?
@@ -1045,54 +1077,65 @@
       </section>
       <section data-background-image="/red-trainer-2.png" class="blurred">
         <section>
-          <img class="rounded" src="/akitsu-shima.jpeg"/>
+          <img class="rounded" src="/akitsu-shima.jpeg" />
           <aside class="notes">
             Le Japon a un rapport particulier avec la nature, le respect pour celle-ci est au coeur de la religion
             shinto, et de la culture japonaises...
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/libellule.jpeg"/>
+          <img class="rounded" src="/libellule.jpeg" />
           <aside class="notes">
             ...et particulièrement des insectes.
             Le nom mythologique de l'archipel est d'ailleurs "Akitsu Shima", l'île aux libellules.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/bug-trainer.jpg" height="600px"/>
-          <img class="rounded" style="float: right;" src="/satoshi-tajiri-smile.jpeg" height="600px"/>
+          <img class="rounded" src="/bug-trainer.jpg" height="600px" />
+          <img class="rounded" style="float: right;" src="/satoshi-tajiri-smile.jpeg" height="600px" />
           <aside class="notes">
-            Lorsqu'il était petit, le jeune Satoshi Tajiri passait son temps à les collectionner comme beaucoup d'enfants
+            Lorsqu'il était petit, le jeune Satoshi Tajiri passait son temps à les collectionner comme beaucoup
+            d'enfants
             japonais. Cependant pour lui c'était une véritable passion à tel point que ses amis l'appelait Dr Bug
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/arcade-center.jpeg" height="600px"/>
+          <img class="rounded" src="/tetard-spirale.jpeg" height="600px" />
           <aside class="notes">
-            En grandissant dans les années 70, Satoshi vécu de plein fouet l'expansion des villes sur la campagne 
+            Il passe son temps dans la nature environnante de sa ville natale en banlieu de Tokyo, Mashida,
+            et harpente foret, monts et rivières.
+            Il s'émerveille des bizarreries des la nature, comme la spirale qu'il trouve sous le ventre d'un tétard,
+            dont
+            la peau est translucide, et qui laisse apparaitre ses organes
+          </aside>
+        </section>
+        <section>
+          <img class="rounded" src="/arcade-room.jpeg" height="600px" />
+          <aside class="notes">
+            En grandissant dans les années 70, Satoshi vécu de plein fouet l'expansion des villes sur la campagne
             japonaise, et par la même occasion l'explosion des salles d'arcade.
             et se prit d'une nouvelle passion : les jeux vidéo, notamment grâce à Space Invader, en 78.
-            Il écumait les salles et passait des heures sur ses jeux préférés jusqu'à négliger ses études en ingénierie 
+            Il écumait les salles et passait des heures sur ses jeux préférés jusqu'à négliger ses études en ingénierie
             electrique, qui l'ennuyaient.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/taji-corp.jpeg" height="600px"/>
+          <img class="rounded" src="/taji-corp.jpeg" height="600px" />
           <aside class="notes">
             Son père, désolé, lui avait trouvé un bon travail à la Tokyo Electric Power Company qu'il refusa.
             Il était surtout passionné des astuces et des rumeurs qui circulaient sur ces jeux, une des raisons pour
-            laquelle il créa en 83 un magasine entièrement fait main. 
+            laquelle il créa en 83 un magasine entièrement fait main.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/game-freak-magazines.webp" height="600px"/>
+          <img class="rounded" src="/game-freak-magazines.webp" height="600px" />
           <aside class="notes">
             Il baptisa son magazine "Game Freak", "fou de jeu", et acquis une certaine popularité très rapidement,
             la presse spécialisée dans le jeu vidéo n'existant tout simplement pas.
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/satoshi-journalist.png" height="600px"/>
+          <img class="rounded" src="/satoshi-journalist.png" height="600px" />
           <aside class="notes">
             Dans les années 80, il ne collection plus les insectes, mais les cartes mères de bornes d'arcade.
             Il devient journaliste spécialisé et se prête volontier au jeu du testeur.
@@ -1100,60 +1143,61 @@
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/quinty-game.jpeg" height="550px"/>
+          <img class="rounded" src="/quinty-game.jpeg" height="550px" />
           <p>1989 - <span class="bright">Quinty</span></p>
           <aside class="notes">
-            En 87, il arrête la publication de son magazine pour se tourner vers le développement de jeux vidéo, 
+            En 87, il arrête la publication de son magazine pour se tourner vers le développement de jeux vidéo,
             Il créer l'entreprise Game Freak en hommage à son magazine, et développe Quinty sur Famicom, qui sort en 89.
             Le jeu est un succès, il s'exporte hors du Japon et rapporte la coquette somme de 300k au jeune studio
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/yoshi-game.webp" height="550px"/>
+          <img class="rounded" src="/yoshi-game.webp" height="550px" />
           <aside class="notes">
             Le studio est alors reconnu sur le marché, et reçoit des commandes par les plus grosses entreprises :
             Nintendo et SEGA, pour qui Game Freak développera quelque jeux (exemple : Yoshi)
           </aside>
         </section>
         <section>
-          <img class="rounded" src="/dragon-quest-2.jpeg" height="600px"/>
+          <img class="rounded" src="/dragon-quest-2.jpeg" height="600px" />
           <aside class="notes">
             Dragon quest 2 : l'histoire du trade du chapeau
             Ken Sugimori, l'illustrateur, en a eu 2.
           </aside>
         </section>
         <section>
-          <img class="highlight" src="/gameboy-cable-proto.png" height="550px"/>
+          <img class="highlight" src="/gameboy-cable-proto.png" height="550px" />
           <aside class="notes">
-            En 89, il reçoit les prototypes de la gameboy et son cable link. 
-            Une idée commence à germer dans sa tête. Il imagine un jeu où le principe serait de capturer et 
+            En 89, il reçoit les prototypes de la gameboy et son cable link.
+            Une idée commence à germer dans sa tête. Il imagine un jeu où le principe serait de capturer et
             de collectionner des petites bêtes, comme lui dans son enfance, et de les échanger avec ses amis grâce
             au cable link
           </aside>
         </section>
         <section>
-          <img class="shadow" src="/capsule-monsters-1.jpeg"/>
-          <img class="shadow right" src="/capsule-monsters-2.jpeg" height="600px"/>
+          <img class="shadow" src="/capsule-monsters-1.jpeg" />
+          <img class="shadow right" src="/capsule-monsters-2.jpeg" height="600px" />
           <aside class="notes">
             Dès 90, le studio alors composé de Satoshi Tajiri, Ken Sugimori, et Junichi Masuda, le compositeur,
-            se met à travailler sur un nouveau jeu, qu'ils nomment "Capsule Monsters" 
+            se met à travailler sur un nouveau jeu, qu'ils nomment "Capsule Monsters"
           </aside>
         </section>
         <section>
-          <img class="shadow" src="/capsule-monsters-3.png" height="600px"/>
-          <img class="shadow right" src="/capsule-monsters-4.png" height="600px"/>
+          <img class="shadow" src="/capsule-monsters-3.png" height="600px" />
+          <img class="shadow right" src="/capsule-monsters-4.png" height="600px" />
           <aside class="notes">
-            Le projet est pitché à Nintendo, qui n'accroche pas au nom.
-            Celui-ci sera alors changé pour Pocket Monsters
+            Le projet est pitché à Nintendo, qui essaye de trademark le nom, mais il est trop proche de "capsule kaiju",
+            un des concept d'Ultraman, qui permet au héros d'invoquer des monstres à partir de capsules.
+            Celui-ci sera alors changé pour Pocket Monsters.
           </aside>
         </section>
         <section>
-          <img class="shadow" src="/pocket-monsters-concept-art-1.png" height="300px"/>
-          <br/>
-          <img class="shadow" src="/pocket-monsters-concept-art-2.webp" height="300px"/>
-          <img class="shadow" src="/pocket-monsters-concept-art-3.png" height="300px"/>
+          <img class="shadow" src="/pocket-monsters-concept-art-1.png" height="300px" />
+          <br />
+          <img class="shadow" src="/pocket-monsters-concept-art-2.webp" height="300px" />
+          <img class="shadow" src="/pocket-monsters-concept-art-3.png" height="300px" />
           <aside class="notes">
-            Le projet s'avèrera bien plus compliqué que prévu initialement et prendra presque 7 ans. 
+            Le projet s'avèrera bien plus compliqué que prévu initialement et prendra presque 7 ans.
             Vers la fin du projet, game Freak n'a plus de sous pour payer ses employés, et sont forcés de partir.
           </aside>
         </section>
@@ -1165,12 +1209,13 @@
           <h5>Partie 4</h5>
           <h3>Un époque où la vie était plus simple</h3>
         </section>
+        <section data-background-video="/partie-4/huhuhuhu.mp4"></section>
       </section>
 
       <!-- Fin -->
       <section>
         <h1>Fin</h1>
-        <img src="mew.png" class="mew" />
+        <img src="mew.png" class="mew highlight-gold" />
         <h4 class="muted">Merci de votre attention</h4>
         ❤️
       </section>
