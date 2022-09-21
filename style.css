@@ -14,10 +14,6 @@
   opacity: 0.4 !important;
   filter: blur(10px);
 }
-.slide-background.blurred .noblur {
-  opacity: 1 !important;
-  filter: blur(0px);
-}
 
 /* Images */
 img {
@@ -61,7 +57,7 @@ p {
 }
 
 .bright {
-  color: rgb(255, 196, 0);
+  color: rgb(255, 196, 0) !important;
 }
 
 .smaller {
