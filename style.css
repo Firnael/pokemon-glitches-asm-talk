@@ -22,6 +22,9 @@ img {
   margin: 0px !important;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
+.noshadow {
+  box-shadow: none;
+}
 .squared {
   border-radius: 0rem;
 }
@@ -44,6 +47,14 @@ img {
   box-shadow: none;
 }
 
+/* Code */
+
+pre.thin {
+  width: 40% !important;
+}
+pre.long {
+  height: 550px;
+}
 
 /* Text */
 
@@ -92,6 +103,13 @@ ol.summary {
 
 /* Specifics */
 
+.fade-in {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  animation: fadeIn 10s ease-in;
+}
+
 .mew {
   position: absolute;
   top: -100px;
@@ -119,5 +137,14 @@ ol.summary {
 	}
 	100% {
 		transform: translatey(0px);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }

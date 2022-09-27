@@ -1210,9 +1210,12 @@
         </section>
         <section>
           <aside class="notes">
-            - Nishino, le game planner adorait pikachu (pika qui est le blruit d'une étincelle, et "chu" le murmure de la souris)
-            Alors il l'a un peu caché dans la forêt de jade, le rendant difficile à trouver. Sauf que du coup quand les premiers
-            joueurs sont tombés dessus, il a été considéré comme le 1er pokémon rare, et tout le monde le farmait, ce qui a 
+            - Nishino, le game planner adorait pikachu (pika qui est le blruit d'une étincelle, et "chu" le murmure de
+            la souris)
+            Alors il l'a un peu caché dans la forêt de jade, le rendant difficile à trouver. Sauf que du coup quand les
+            premiers
+            joueurs sont tombés dessus, il a été considéré comme le 1er pokémon rare, et tout le monde le farmait, ce
+            qui a
             été un déclencheur de sa popularité planétaire d'aujourd'hui.
           </aside>
         </section>
@@ -1323,8 +1326,8 @@
             <div class="col">
               <img class="highlight" src="/partie-4/tirelire.png" height="300px" />
               <span class="fragment">
-              <img src="/partie-4/billet-100-francs.jpeg"/>
-              <p class="grey">à l'ancienne cousin</p>
+                <img src="/partie-4/billet-100-francs.jpeg" />
+                <p class="grey">à l'ancienne cousin</p>
               </span>
             </div>
             <div class="col">
@@ -1376,8 +1379,8 @@
           <img class="fragment" src="/partie-4/jeu-gamelle.jpeg" height="300px" />
           <img class="fragment" src="/partie-4/ballon-prisonnier.jpeg" height="300px" />
           <span class="fragment">
-            <img src="/partie-4/lait-menthe.jpeg" height="300px"/>
-            <img src="/partie-4/confused-kid.gif" height="350px"/>
+            <img src="/partie-4/lait-menthe.jpeg" height="300px" />
+            <img src="/partie-4/confused-kid.gif" height="350px" />
           </span>
           <aside class="notes">
             Cet été là, comme pendant beaucoup de vacances, je vais au centre-aéré.
@@ -1406,8 +1409,256 @@
         <section>
           <img src="/partie-5/missing-no.webp" />
           <aside class="notes">
-            Il existe énormément de glitch dans pokémon mais celui qui nous intéresse s'appelle le
-            "Long-range Trainer Glitch"
+            Il existe énormément de glitch dans pokémon (ici, le mystérieux pkmn "Missingno"),
+            mais celui qui nous intéresse s'appelle le "Long-range Trainer Glitch"
+          </aside>
+        </section>
+        <!-- Démo -->
+        <section>
+          <img src="/partie-5/demo-time.jpeg" height="600px" />
+          <aside class="notes">
+            Keep calm, it's demo time
+          </aside>
+        </section>
+        <!-- Explications -->
+        <section>
+          <div class="container">
+            <div class="col">
+              <img src="/partie-5/dmg-cpu.jpeg"/>
+              <p class="smaller muted">"DMG" pour Dot Matrix Game</p>
+            </div>
+            <div class="col fragment">
+              <img src="/partie-5/zilog-z80.jpeg" />
+            </div>
+          </div>
+          <aside class="notes">
+            Pour comprendre ce glitch, il faut comprendre l'architecture de la console, et surtout comment le 
+            jeu est codé. La Gameboy est équipé d'un processeur appelé DMG-CPU (pour "Dot Matrix Game", le nom 
+            de code de la console avant d'être renommée), qui est une version modifiée du Zilog-Z80,
+            un CPU très répandu dans le milieu des années 80, qu'on peut encore trouver aujourd'hui dans certaines
+            calculatrices scientifiques.
+            le DMG-CPU perd certaines fonctions du Zilog au profit de nouvelles, comme Picture Processing Unit PPU,
+            ou un générateur de son à 4 bandes.
+            Il tourne à environ 4.19Mhz, soit moins de 0.1% de la vitesse d'un processeur moderne.
+          </aside>
+        </section>
+        <section>
+          <img class="noshadow" src="/partie-5/gameboy-motherboard.png" height="600px"/>
+          <aside class="notes">
+            C'est un processeur 8bits, équipé d'un espace mémoire de un 16bits
+            Autrement dit, on peut y stocker 65536 (2^16) valeurs comprises en 0 et 255 (2^8)
+            On peut dire que la mémoire de la Gameboy est de 64KB.
+            Le CPU comporte 10 registres qui serviront à faire des opérations sur des valeurs, ce sont des cellules
+            mémoire situés à même le CPU.
+            La carte-mère est également équippée de 8KB de RAM (dite Work RAM) pouvant contenir 8192 valeurs entre 0 et 255,
+            qui servira à stocker les variables du jeu, soit 4x plus que dans la NES.
+            Elle est aussi équippée de 8KB de VRAM (dite Video RAM), qui servira elle à stocker des données relatives à 
+            l'affichage du jeu.
+          </aside>
+        </section>
+        <section>
+          <img src="/partie-5/gameboy-asm.png" />
+          <aside class="notes">
+            Les jeux sont écrits en assembleur, et sont stockés (pour la plupart) sur une cartouche, contenant
+            une chip de 32KB.
+          </aside>
+        </section>
+        <!-- Cours d'ASM -->
+        <section>
+          <img src="/partie-5/mario-coins.webp" />
+          <aside class="notes">
+            Admettons qu'on veuille coder un simple compteur qui, lorsqu'il atteint 100, incrémente un autre compteur
+            et notre 1er compteur revient à 0 (comme dans Mario, lorsqu'on ramasse 100 pièces, on gagne une vie)
+          </aside>
+        </section>
+        <section>
+          <h4>En Javascript</h4>
+          <pre class="js thin">
+            <code data-trim data-noescape data-line-numbers>
+              var coins = 0
+              var life = 3
+              // ...
+              coins++
+              if (coins >= 100) {
+                life++
+                coins = 0
+              }
+            </code>
+          </pre>
+          <aside class="notes">
+            En Javascript
+          </aside>
+        </section>
+        <section>
+          <h4>En Assembleur</h4>
+          <pre class="armasm long">
+            <code data-trim data-noescape data-line-numbers>
+              LD A, 0 ; on met 0 dans le registre A 
+              LD (8000H), A ; on copie la valeur de A (donc 0)
+                            ; à l'adresse mémoire 8000 (hexadecimale)
+
+              ; ... Mario ramasse une pièce ...
+
+              LD A, (8000H) ; on charge la valeur de 8000 (le score) dans A
+              INC A ; on l'incrémente
+              LD (8000H), A ; on enregistre la nouvelle valeur dans 8000
+              SUB 101 ; on soustrait 101 à la valeur présente dans A 
+              JP C, AFTER ; on jump à la position 'AFTER:' si l'opération
+                          ; précédente à settée le "carry flag" C à 1
+              LD A, 0 
+              LD (8000H), A ; on remet le nombre de pièces à 0
+              LD A, (8001H) ; on charge la valeur portée par l'adresse 8001
+                            ; (les vies) dans A
+              INC A ; on l'incrémente
+              LD (8001H), A ; on écrit la nouvelle valeur à l'adresse 8001
+              AFTER: ; on arrive ici si la condition n'est pas remplie :
+                     ; on a pas encore atteint 100 pièces
+            </code>
+          </pre>
+          <img class="fade-in noshadow fragment" src="/partie-5/crying-cat.png"/>
+          <aside class="notes">
+            Une des limitations du processeur de la Gameboy est qu'il est impossible de setter une valeur
+            directement en mémoire, on doit obligatoirement passer par le registre A.
+            Il n'y a pas de variables en ASM, on décide arbitrairement de l'emplacement de nos données
+            (ici, l'adresse 8000 pour le score, et l'adresse 8001 pour les vies)
+          </aside>
+        </section>
+        <!-- Mew Glitch -->
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-0
+              <pre class="armasm"><code data-trim data-noescape>
+                MOV AL, 1h ; Load AL w/ value 1
+                MOV CL, 2h ; Load CL w/ value 2
+                MOV DL, 3h ; Load DL w/ value 3
+                </code></pre>
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-0.png" />
+            </div>
+          </div>
+          <aside class="notes">
+            Etat initial (route 4)
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-1
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-1.png" />
+            </div>
+          </div>
+          <aside class="notes">
+            Le dresseur nous voit
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-2
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-2.png" />
+            </div>
+          </div>
+          <aside class="notes">
+            On s'envole
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-3
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-3.png" />
+            </div>
+          </div>
+          <aside class="notes">
+            On arrive à Azuria, et on ne peut ni ouvrir le menu, ni parler aux PNJ
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-4b
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-4b.gif" />
+            </div>
+          </div>
+          <aside class="notes">
+            Si on ne fait pas marcher le dresseur, le jeu est soft-lock
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-4c
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-4c.gif" />
+            </div>
+          </div>
+          <aside class="notes">
+            là du coup c'est ok
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-6
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-6.png" />
+            </div>
+          </div>
+          <aside class="notes">
+            Dans la mémoire du jeu, les stats du Ramoloss viennent s'écrire à un emplacement
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-7
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-7.png" height="300px" />
+              <img src="/partie-5/mew-glitch/mew-glitch-7b.png" height="300px" />
+            </div>
+          </div>
+          <aside class="notes">
+            Là je l'ai éclaté, et je le rackette dans la foulée ce fou
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-8 (à refaire)
+              mettre un screen de la route 4 ?
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-8.gif" />
+            </div>
+          </div>
+          <aside class="notes">
+            Je retourne à Lavanville, et je vais à gauche (c'est la route 4)
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              mew-glitch-9 (gif à faire)
+            </div>
+            <div class="col">
+              <img src="/partie-5/mew-glitch/mew-glitch-9.gif" />
+            </div>
+          </div>
+          <aside class="notes">
+            Du coup Mew pop
           </aside>
         </section>
       </section>
