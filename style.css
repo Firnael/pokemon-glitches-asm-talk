@@ -55,6 +55,12 @@ pre.thin {
 pre.long {
   height: 550px;
 }
+pre.small {
+  font-size: 16px !important;
+}
+pre.wide {
+  width: 120% !important;
+}
 
 /* Text */
 
@@ -86,6 +92,9 @@ p {
 }
 .col {
   flex: 1;
+}
+.col-wide {
+  flex: 2;
 }
 
 /* Lists */
