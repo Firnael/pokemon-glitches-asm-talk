@@ -46,6 +46,21 @@ img {
   filter: drop-shadow(0rem 0rem .2rem #fff);
   box-shadow: none;
 }
+.ramoloss {
+  opacity: 1;
+  position: absolute;
+  height: 260px;
+  top: 400px;
+  left: 100px;
+}
+.ramoloss-cache {
+  opacity: 0;
+  z-index: 1000;
+  position: absolute;
+  height: 140px;
+  top: 50px;
+  right: 50px;
+}
 
 /* Code */
 
@@ -63,26 +78,50 @@ pre.wide {
 }
 
 /* Text */
-
 p {
   color: rgb(218, 218, 218);
   font-size: 80%;
 }
-
 .grey {
   color:rgb(100, 100, 100);
 }
-
 .bright {
   color: rgb(255, 196, 0) !important;
 }
-
 .smaller {
   font-size: 60%;
 }
-
 .vertical-middle {
   vertical-align: middle;
+}
+.pink {
+  color: pink;
+}
+
+/* Tables */
+table {
+  font-size: 24px;
+}
+tr.lvl {
+  background-color: rgba(200, 200, 20, 0.3);
+}
+tr.hp {
+  background-color: rgba(20, 200, 20, 0.3);
+}
+tr.atk {
+  background-color: rgba(200, 20, 20, 0.3);
+}
+tr.def {
+  background-color: rgba(20, 20, 200, 0.3);
+}
+tr.spd {
+  background-color: rgba(20, 200, 200, 0.3);
+}
+tr.spc {
+  background-color: rgba(200, 20, 200, 0.3);
+}
+td.center {
+  text-align: center !important;
 }
 
 /* Columns */
