@@ -73,6 +73,9 @@ pre.long {
 pre.small {
   font-size: 18px !important;
 }
+pre.smaller {
+  font-size: 16px !important;
+}
 pre.wide {
   width: 120% !important;
 }
@@ -128,6 +131,13 @@ td.center {
 
 .container {
   display: flex;
+}
+.container.wide {
+  width: 120% !important;
+}
+.container.wide > col > pre {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .col {
   flex: 1;

@@ -1793,9 +1793,28 @@
           <img class="ramoloss-cache noshadow" src="/partie-5/mew-glitch/ramoloss.png" />
           <div class="container">
             <div class="col">
-              Explications...
-              <br />
-              Ramoloss
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; core.asm
+
+                  LoadEnemyMonFromParty::
+                    ; ... 
+                    ld de, wEnemyMonUnmodifiedLevel
+                </code>
+              </pre>
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; wram.asm 
+
+                  ; 11 bytes, de cd23 à cd2d
+                  wEnemyMonUnmodifiedLevel:: db
+                  wEnemyMonUnmodifiedMaxHP:: dw
+                  wEnemyMonUnmodifiedAttack:: dw
+                  wEnemyMonUnmodifiedDefense:: dw
+                  wEnemyMonUnmodifiedSpeed:: dw
+                  wEnemyMonUnmodifiedSpecial:: dw
+                </code>
+              </pre>
             </div>
             <div class="col">
               <img src="/partie-5/mew-glitch/mew-glitch-6.png" />
@@ -1811,8 +1830,6 @@
             - 2 pour la DEF : 00 1D => 29
             - 2 pour la SPEED : 00 0C => 12
             - 2 pour le SPECIAL : 00 15 => 21
-            Sauf que l'adresse $CD2D (le 2nd byte de la stat SPECIAL) est également utilisée pour autre chose
-            en dehors des combats : elle sert à stocker 'wEngagedTrainerClass'
           </aside>
         </section>
         <section data-auto-animate>
@@ -1930,7 +1947,36 @@
             </div>
           </div>
         </section>
+        <section>
+          <table>
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Meaning</th>
+                <th>Value (HEX)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="spc">
+                <td>CD2D</td>
+                <td>SPECIAL (1)</td>
+                <td class="center">15</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="fragment thin armasm">
+            <code data-trim data-noescape>
+              ; wram.asm
 
+              ; partage le byte $CD2D
+              wEngagedTrainerClass:: db
+            </code>
+          </pre>
+          <aside class="notes">
+            Sauf que l'adresse $CD2D (le 2nd byte de la stat SPECIAL) est également utilisée pour autre chose
+            en dehors des combats : elle sert à stocker 'wEngagedTrainerClass'
+          </aside>
+        </section>
         <section>
           <div class="container">
             <div class="col">
@@ -2020,7 +2066,7 @@
           <aside class="notes">
             Quand je vais à gauche, du coup je quitte Lavanville, et je rentre dans la route 8.
             Le pointeur de script de la route 8 'wRoute8CurScript' vaut 1, la routine
-            DisplayEnemyTrainerTextAndStartBattle est appelée.
+            "DisplayEnemyTrainerTextAndStartBattle" est appelée.
             Elle appelle DisplayTextID, qui appelle DisplayTextIDInit, qui prend la valeur qu'il trouve dans
             'hSpriteIndexOrTextID', c'est à dire 0. En effet, le menu START est géré comme une textbox par le jeu,
             et c'est la dernière textbox que j'ai ouvert (lorsque je me suis envolé pour Lavanville).
@@ -2033,16 +2079,134 @@
         <section data-auto-animate>
           <div class="container">
             <div class="col-wide">
-              <h5>Pourquoi un combat se déclenche contre Mew ?</h5>
-              <p>Explications...</p>
+              <h4>Pourquoi un combat se déclenche contre Mew ?</h4>
+              <video data-autoplay src="/partie-5/mew-glitch/tres-simple.mp4"></video>
             </div>
             <div class="col">
               <img src="/partie-5/mew-glitch/mew-glitch-9.gif" />
             </div>
           </div>
           <aside class="notes">
-            Du coup Mew pop niveau 7 et c'est ga-gné
+            Pourquoi Mew pop ?
           </aside>
+        </section>
+        <section>
+          <h5>Et bien c'est très simple 😈</h5>
+          <div class="container wide">
+            <div class="col">
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  ; trainers.asm
+
+                  StartTrainerBattle::
+                    ; ... 
+                    call InitBattleEnemyParameters
+                </code>
+              </pre>
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  InitBattleEnemyParameters::
+                    ld a, [wEngagedTrainerClass] ; 15
+	                   ld [wCurOpponent], a
+                    jr c, .noTrainer ; jump si c flag
+                    ld [wTrainerNo], a
+                    ret
+                  .noTrainer
+                    ld [wCurEnemyLVL], a
+                    ret
+                </code>
+              </pre>
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  ; wram.asm
+
+                  ; in a wild battle, this is :
+                  ; the species of pokemon
+                  ; in a trainer battle, this is :
+                  ; the trainer class + OPP_ID_OFFSET
+                  wCurOpponent:: db
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                InitOpponent:
+                  ld a, [wCurOpponent]
+                  ; ...
+                  ld [wEnemyMonSpecies2], a
+                  jr InitBattleCommon
+                </code>
+              </pre>
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  InitBattleCommon:
+                    ld a, [wEnemyMonSpecies2]
+                    sub OPP_ID_OFFSET
+                    jp c, InitWildBattle
+                    ; on ne va pas plus loin
+                </code>
+              </pre>
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  InitWildBattle:
+                    ld a, $1
+                    ; ... 
+                    call LoadEnemyMonData
+                    ; ...
+                </code>
+              </pre>
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  ; core.asm
+
+                  LoadEnemyMonData:
+                    ; ... 
+                    ld a, [wEnemyMonSpecies2]
+                    ; ...
+                    ld [wd0b5], a
+                    call GetMonHeader
+                    ; ... 
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  ; pokemon.asm
+
+                  GetMonHeader::
+                    ; ... 
+                    ld a, [wd0b5]
+                    ld [wd11e], a
+                    ; ... 
+                    cp MEW
+                    jr z, .mew
+                    ; ...
+                    .mew
+                      ld hl, MewBaseStats
+                      ld de, wMonHeader
+                      ld bc, BASE_DATA_SIZE
+                      ld a, BANK(MewBaseStats)
+                      call FarCopyData
+                </code>
+              </pre>
+              <pre class="fragment smaller armasm">
+                <code data-trim data-noescape>
+                  ; pokemon_constants.asm 
+                  const MEW ; $15
+                </code>
+              </pre>
+            </div>
+          </div>
+          <aside class="notes">
+            En fermant le menu START, on poursuit l'execution de "DisplayEnemyTrainerTextAndStartBattle"
+            Comme son nom l'indique, une fois que le texte a été affiché et que le joueur a fermé le dialog,
+            le jeu doit lancer un combat.
+          </aside>
+        </section>
+        <section>
+          <img class="noshadow" src="/partie-5/mew-glitch/mew-index.png"/>
         </section>
         <section>
           <iframe data-src="https://puu.sh/257S" data-preload width="1080px" height="700px"></iframe>
@@ -2052,6 +2216,10 @@
             quel pokémon en fonction de quel dresseur on a combattu
             Il existe même une map avec toutes les infos
           </aside>
+        </section>
+        <section>
+          <h3 class="highlight-gold">EH VOILÀ !</h3>
+          <img class="noshadow" src="/partie-5/mew-glitch/pikachu-boner.jpeg"/>
         </section>
         <section>
           <h5>Mais, ni a-t-il pas un moyen de contrôler les stats d'un pokémon que l'on combat ?</h5>
