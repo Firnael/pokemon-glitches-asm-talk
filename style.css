@@ -65,6 +65,9 @@ img {
 /* Code */
 
 pre.thin {
+  width: 60% !important;
+}
+pre.thiner {
   width: 40% !important;
 }
 pre.long {
@@ -86,7 +89,13 @@ p {
   font-size: 80%;
 }
 .grey {
-  color:rgb(100, 100, 100);
+  color:rgb(150, 150, 150) !important;
+}
+.green {
+  color:rgb(55, 151, 90) !important;
+}
+.red {
+  color:rgb(206, 56, 2) !important;
 }
 .bright {
   color: rgb(255, 196, 0) !important;
@@ -184,6 +193,20 @@ ol.summary {
   height: 200px;
   transform: translatey(0px);
 	animation: float 3s ease-in-out infinite;
+}
+
+.einstein {
+  position: absolute;
+  bottom: -50px;
+  right: 160px;
+  height: 300px;
+}
+
+.ash {
+  position: absolute;
+  top: 50px;
+  right: 220px;
+  height: 400px;
 }
 
 @keyframes float {

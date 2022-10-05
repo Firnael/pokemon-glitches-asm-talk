@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Retourner le cerveau 🧠 de sa Gameboy pour attraper Mew dans Pokémon (sans tricher)</title>
 </head>
@@ -1964,7 +1963,7 @@
               </tr>
             </tbody>
           </table>
-          <pre class="fragment thin armasm">
+          <pre class="fragment thiner armasm">
             <code data-trim data-noescape>
               ; wram.asm
 
@@ -2091,7 +2090,7 @@
           </aside>
         </section>
         <section>
-          <h5>Et bien c'est très simple 😈</h5>
+          <h5>En effet, c'est très simple 😈</h5>
           <div class="container wide">
             <div class="col">
               <pre class="fragment smaller armasm">
@@ -2107,12 +2106,15 @@
                 <code data-trim data-noescape>
                   InitBattleEnemyParameters::
                     ld a, [wEngagedTrainerClass] ; 15
-	                   ld [wCurOpponent], a
-                    jr c, .noTrainer ; jump si c flag
+                    ld [wCurOpponent], a
+                    ld [wEnemyMonOrTrainerClass], a
+                    cp OPP_ID_OFFSET
+                    ld a, [wEngagedTrainerSet]
+                    jr c, .noTrainer
                     ld [wTrainerNo], a
                     ret
                   .noTrainer
-                    ld [wCurEnemyLVL], a
+                    ld [wCurEnemyLVL], a ; wEngagedTrainerSet
                     ret
                 </code>
               </pre>
@@ -2142,7 +2144,7 @@
                 <code data-trim data-noescape>
                   InitBattleCommon:
                     ld a, [wEnemyMonSpecies2]
-                    sub OPP_ID_OFFSET
+                    sub OPP_ID_OFFSET ; = 200
                     jp c, InitWildBattle
                     ; on ne va pas plus loin
                 </code>
@@ -2209,7 +2211,34 @@
           <img class="noshadow" src="/partie-5/mew-glitch/mew-index.png"/>
         </section>
         <section>
-          <iframe data-src="https://puu.sh/257S" data-preload width="1080px" height="700px"></iframe>
+          <h3 class="highlight-gold">EH VOILÀ !</h3>
+          <img src="/partie-5/mew-glitch/pikachu-boner.jpeg"/>
+        </section>
+        <section>
+          <h4>WebArchive des forums de GameFAQ 🌐</h4>
+          <iframe data-src="http://web.archive.org/web/20111125011704/http://gamefaqsarchive.com/index.php?pg=463"
+            data-preload width="1080px" height="600px">
+          </iframe>
+          <aside class="notes">
+            Le mec se fait insulter dans les commentaires (c'était en 2003)
+          </aside>
+        </section>
+        <section>
+          <blockquote>
+            "This needs to stop <strong>NOW</strong>.
+            <br/>
+            You <strong>CAN NOT</strong>, I repeat <strong>CAN NOT</strong>,
+            <br/>
+            get Mew without either gameshark or going to a Nintendo promotional event.
+            <br/>
+            So let's just <strong>STOP</strong> with the rumurs already.
+            <span class="bright">Especially unbelievable ones like this.</span>"
+          </blockquote>
+          <i class="fragment">- RPGBrandon</i>
+        </section>
+        <section>
+          <h4>La map créée par des mecs déterminés 🗺️</h4>
+          <iframe data-src="https://puu.sh/257S" data-preload width="1080px" height="600px"></iframe>
           <aside class="notes">
             Ce glitch s'appelle le "Long range trainer glitch" et pas juste le "Mew glitch" car comme vous l'avez
             certainement compris, cette technique peut être utilisée pour rencontrer et capturer à peu près n'importe
@@ -2218,12 +2247,274 @@
           </aside>
         </section>
         <section>
-          <h3 class="highlight-gold">EH VOILÀ !</h3>
-          <img class="noshadow" src="/partie-5/mew-glitch/pikachu-boner.jpeg"/>
+          <h5 class="grey">Question bonus</h5>
+          <h4>Pourquoi Mew est-il niveau <span class="bright">7</span> ?</h4>
+          <div class="container">
+            <div class="col fragment">
+              <br/>
+              <img src="/partie-5/mew-glitch/mew-lvl-7.png" />
+            </div>
+            <div class="col">
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; trainers.asm 
+
+                  InitBattleEnemyParameters::
+                    ; ... 
+                    ld a, [wEngagedTrainerSet]
+	                   jr c, .noTrainer
+                    ; ...
+                  .noTrainer
+                    ld [wCurEnemyLVL], a ; ici
+                    ret
+                </code>
+              </pre>
+            </div>
+          </div>
+          <aside class="notes">
+            Comme on l'a vu précedement, il existe un fail-safe dans la fonction "InitBattleEnemyParameters"
+            qui, lorsque la condition "noTrainer" est remplie, va charger dans "wCurEnemyLVL" la valeur de 
+            "wEngagedTrainerSet"
+          </aside>
         </section>
         <section>
-          <h5>Mais, ni a-t-il pas un moyen de contrôler les stats d'un pokémon que l'on combat ?</h5>
+          <p><strong><code class="green">&nbsp;wEngagedTrainerSet&nbsp;</code> sort d'où ?</strong></p>
+          <div class="container">
+            <div class="col">
+              <pre class="fragment armasm">
+                <code data-trim data-noescape>
+                  ; wram.asm
+    
+                  wPlayerMonStatMods::
+                  ; partage le byte $CD2E
+                  wPlayerMonAttackMod:: db
+                  wPlayerMonDefenseMod:: db
+                  wPlayerMonSpeedMod:: db
+                  wPlayerMonSpecialMod:: db
+                  wPlayerMonAccuracyMod:: db
+                  wPlayerMonEvasionMod:: db
+                    ds 2
+                  wPlayerMonStatModsEnd::
+                </code>
+              </pre>
+              <pre class="fragment armasm">
+                <code data-trim data-noescape>
+                  ; partage le byte $CD2E
+                  wEngagedTrainerSet:: db
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <img class="fragment" src="/partie-5/mew-glitch/chrysacier-armure.gif" />
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; core.asm
+
+                  LoadEnemyMonFromParty::
+                    ; ... 
+                    .copyBaseStatsLoop
+                      ; ... 
+                      ld a, $7 ; default stat modifier
+                      ld b, NUM_STAT_MODS
+                      ld hl, wEnemyMonStatMods
+                </code>
+              </pre>
+            </div>
+          </div>
+          <aside class="notes">
+            wEngagedTrainerSet partage le byte $CD2E avec le byte en charge de stocket le modifier d'ATK du PKMN adverse. 
+            Dans Pokémon, les 6 stats (ATK, DEF, SPEED, SPECIAL, ACCURACY et EVASION) commencent avec une stat de 0. 
+            Elle peut monter (grâce à des moves comme "Armure" de Chrysacier), ou descendre (grâce à des moves comme "Gros yeux"
+            ou "Rugissement"). Ainsi, ces modifiers peuvent aller de - 7 à +7.
+            En mémoire, ils sont représentés de $0 (1) à $D (13), le niveau zéro étant donc à $7
+          </aside>
+        </section>
+        <section>
+          <h5 class="grey">Un side-effect amusant</h5>
+          <h4>L'XP Underflow Glitch ✨</h4>
+          <img src=/partie-5/mew-glitch/unsigned-int.png height="500px" />
+          <p style="display: none;">
+            The experience for level 1 is calculated to be -54, and the game dutifully attempts to store -54 there
+            which gets stored as 16,777,216 - 54 = 16,777,162, since the value is 24-bit unsigned.
+            If the Pokémon gains 54 experience points or more, it will go all the way up to the positive values,
+            correcting the overflow and disengaging the glitch.
+            Only if the experience gain is below 54 will the glitch be triggered
+            gaining between 54 and 62 experience points will let you keep your level 1 Mew 
+            (with between 0 and 8 experience total, needing an accumulated total of 9 to level up).
+          </p>
+          <aside class="notes">
+            Dans le jeu, il est impossible de rencontrer naturellement un PKMN sauvage de niveau 1 (minimum 2)
+            Il existe un bug dans le jeu, qui dit qu'il faut '-54' points d'XP pour passer du lvl 1 au lvl 2
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <h5>Le calcul de l'EXP dans Pokémon</h5>
+          <pre class="fragment thin small armasm">
+            <code data-trim data-noescape>
+              GrowthRateTable:
+                table_width 4, GrowthRateTable
+                growth_rate 1, 1,   0,   0,   0 ; Medium Fast
+                growth_rate 3, 4,  10,   0,  30 ; Slightly Fast
+                growth_rate 3, 4,  20,   0,  70 ; Slightly Slow
+                growth_rate 6, 5, -15, 100, 140 ; Medium Slow ⬅️
+                growth_rate 4, 5,   0,   0,   0 ; Fast
+                growth_rate 5, 4,   0,   0,   0 ; Slow
+                assert_table_length NUM_GROWTH_RATES
+            </code>
+          </pre>
+          <br/>
+          <h5 class="fragment">
+            Pour un Pokémon du <strong class="grey">medium-slow group</strong>
+            <br/>
+            avec <strong class="bright">n</strong> le niveau :
+          </h5>
+          <div class="fragment">
+            \[\begin{aligned}
+            \exp = {6 \above{1pt} 5}n^3 - 15n^2 + 100n - 140
+            \end{aligned} \]
+          </div>
+        </section>
+        <section>
+          <h5>Cas particulier d'un Pokémon niveau <strong class="bright">1</strong></h5>
+          <div class="fragment">
+            \[\begin{align*}
+            \exp& = 6/5*1^3 - 15*1^2 + 100*1 - 140 \\
+            \exp& = 6/5 - 15 + 100 - 140 \\
+            \exp& = 1,2 - 55 \\
+            \exp& = -53.8 \\
+            \exp& \approx -54
+            \end{align*} \]
+          </div>
+          <img class="fragment einstein" src="/partie-5/mew-glitch/einstein.jpg"/>
+        </section>
+        <section>
+          <h5>On ne <span class="red"> peut pas</span> stocker un nombre <span class="bright">négatif</span><br/>dans un <strong class="bright">UNIT</strong></h5>
+          <ul class="fragment">
+            <li><strong>FFFFFF</strong> : valeur max d'XP en HEXA </li>
+            <li><strong>16777215</strong> : équivalent en DECIMAL</li>
+          </ul>
+          <br/>
+          <br/>
+          <div class="fragment">
+            Si par exemple on gagne <strong>20 XP</strong> au prochain combat :
+            <br/>
+            <strong>20 - 54 = -34</strong>
+            <br/>
+            <div class="fragment">
+              Le jeu essayera de stocker <strong>-34</strong> mais stockera en réalité
+              <br/>
+              <strong class="bright">16777215 - 34</strong>
+              <br/>
+              <span class="fragment">soit <strong>beaucoup, beaucoup d'XP d'un coup</strong></span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <img src="/partie-5/mew-glitch/mew-lvl-100.jpg" height="400px"/>
+          <img class="right" src="/partie-5/mew-glitch/hackerman.jpg" height="400px"/>
+        </section>
+        <section>
+          <h5>Mais du coup, que se passe-t-il avec un ID > 200 ?</h5>
           <img class="fragment" src="/partie-5/chen-glitch/ditto.jpg" height="500px" />
+          <aside class="notes">
+            On a dit que les PKMN sont stockés de 0 à 200, (avec des trous au milieu)
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              <pre class="small armasm">
+                <code data-trim data-noescape>
+                  ; trainer_constants.asm
+    
+                  DEF OPP_ID_OFFSET EQU 200
+    
+                  MACRO trainer_const
+                    const \1
+                    DEF OPP_\1 EQU OPP_ID_OFFSET + \1
+                  ENDM
+    
+                    const_def
+                    trainer_const NOBODY         ; $00
+                    trainer_const YOUNGSTER      ; $01
+                    trainer_const BUG_CATCHER    ; $02
+                    trainer_const LASS           ; $03
+                    trainer_const SAILOR         ; $04
+                    trainer_const JR_TRAINER_M   ; $05
+                    trainer_const JR_TRAINER_F   ; $06
+                    ; ...
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <img src="/partie-5/chen-glitch/youngster.png"/>
+              <p>YOUNGSTER ID : <strong>201</strong></p>
+            </div>
+          </div>
+          <aside class="notes">
+            En fait ce sont les dresseurs qui sont après 200, chaque dresseur a un index, comme les PKMN, 
+            et la valeur de cet index est ajoutée à 200 pour donner son index in-game. 
+            Le problème, c'est que c'est impossible de rencontrer un PKMN dans le jeu qui a une stat SPECIAL > à 200
+          </aside>
+        </section>
+        <section>
+          <img src="/partie-5/chen-glitch/chen-glitch-1.png" height="600px"/>
+          <aside class="notes">
+            Mais admettons que quelqu'un soit assez déterminé pour monter à un niveau élevé un PKMN avec une
+            très grosse stat SPECIAL de base comme Spectrum, qu'il utilise d'autres glitchs de derrière les fagots 
+            pour par exemple dupliquer les objets, afin d'obtenir une stat de, par exemple, 226 ?
+          </aside>
+        </section>
+        <section>
+          <img src="/partie-5/chen-glitch/chen-glitch-2.png" height="600px"/>
+          <aside class="notes">
+            Et admettons que cette personne aille refasse le Long Range Trainer glitch, puis s'envole à l'est de Parmanie,
+            chercher un Métamorph dans les hautes herbes
+          </aside>
+        </section>
+        <section>
+          <img src="/partie-5/chen-glitch/chen-glitch-3.png" height="600px"/>
+          <aside class="notes">
+            Admettons qu'il laisse le Métamorph se transformer en son Spectrum, et par la même, copier ses statistiques,
+            y compris sa stat SPECIAL de 226, copiant ainsi la valeur 226 dans le byte $CD2D
+          </aside>
+        </section>
+        <section>
+          <img src="/partie-5/chen-glitch/chen-glitch-4.png" height="600px"/>
+          <aside class="notes">
+            Admettons que ce Métamorph se fasse ensuite exploser
+          </aside>
+        </section>
+        <section>
+          <h5>Mais y'a quoi à <span class="bright">l'index 226</span> d'ailleurs ? 🤔</h5>
+          <h4 class="fragment">DEC : 26 => HEXA : <strong>1A</strong></h4>
+          <div class="container">
+            <div class="col">
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; trainer_constants.asm
+                  trainer_const PROF_OAK ; $1A
+                </code>
+              </pre>
+              <img class="fragment noshadow" src="/partie-5/chen-glitch/prof-oak.webp" height="400px" />
+            </div>
+            <div class="col fragment">
+              <br/>
+              <img class="noshadow" src="/partie-5/chen-glitch/sweating-nervous.gif" />
+            </div>
+          </div>
+          <aside class="notes">
+            Admettons que cette personne retourne à Lavanville et s'aventure de nouveau sur la route 8. 
+            Attendez, mais y'a quoi sur l'ID 226 anyway ?
+            (load-state 7)
+          </aside>
+        </section>
+        <section>
+          <img src="/partie-5/chen-glitch/oak-and-ash-mom.webp" />
+          <img class="fragment ash" src="/partie-5/chen-glitch/ash-sad.webp" />
+          <aside class="notes">
+            ça vous donnera une occasion de venger Sasha (parce qu'il s'est tapé sa daronne) et de l'éclater 
+          </aside>
         </section>
       </section>
 
