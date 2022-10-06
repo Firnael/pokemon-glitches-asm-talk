@@ -170,11 +170,10 @@ ol.summary {
 
 /* Specifics */
 
-.fade-in {
+.sad-cat {
   position: absolute;
   bottom: 0px;
   right: 0px;
-  animation: fadeIn 10s ease-in;
 }
 
 .mew {
