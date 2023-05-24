@@ -1,5 +1,7 @@
 # Le plan du talk
 
+EDIT: En vrai, ça s'est pas du tout passé comme ça :sweat:
+
 ## 0. Intro & Sommaire (2min)
 
 ## 1. L'histoire de Nintendo (5 min)
