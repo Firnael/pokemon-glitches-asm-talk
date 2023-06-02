@@ -12,6 +12,13 @@ L'application est bundlée avec **Vite**
 
 ## Production des slides
 
+### Détourer les images
+
+```bash
+pip install rembg
+curl -s http://input.png | rembg i > output.png
+```
+
 ### Utiliser FFMPEG
 
 ```bash
@@ -34,3 +41,8 @@ ffmpeg -i input.mov -vf "fps=24,scale=480:-1:flags=lanczos,split[s0][s1];[s0]pal
 - Appearance (meilleurs animation) : https://martinomagnifico.github.io/reveal.js-appearance/
 
 Voir [cette liste](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware) si on en veut encore plus.
+
+## Sources des assets
+
+- https://www.artstation.com/artwork/4JAvL
+- 

@@ -1,4 +1,4 @@
-# Le plan du talk
+# Le plan du talk (version ludique)
 
 EDIT: En vrai, ça s'est pas du tout passé comme ça :sweat:
 
