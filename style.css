@@ -97,6 +97,9 @@ p {
 .red {
   color:rgb(206, 56, 2) !important;
 }
+.blue {
+  color:rgb(61, 61, 233) !important;
+}
 .bright {
   color: rgb(255, 196, 0) !important;
 }
@@ -147,6 +150,9 @@ td.center {
 .container.wide > col > pre {
   padding-left: 5px;
   padding-right: 5px;
+}
+.container.vertical {
+  flex-direction: column;
 }
 .col {
   flex: 1;
