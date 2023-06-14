@@ -139,6 +139,12 @@ td.center {
   text-align: center !important;
 }
 
+/* Link */
+a {
+  color: rgb(255, 196, 0) !important;
+  text-decoration: none;
+}
+
 /* Columns */
 
 .container {
