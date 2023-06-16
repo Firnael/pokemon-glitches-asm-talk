@@ -103,14 +103,17 @@ p {
 .bright {
   color: rgb(255, 196, 0) !important;
 }
+.pink {
+  color: pink;
+}
 .smaller {
   font-size: 60%;
 }
 .vertical-middle {
   vertical-align: middle;
 }
-.pink {
-  color: pink;
+.left {
+  text-align: left;
 }
 
 /* Tables */

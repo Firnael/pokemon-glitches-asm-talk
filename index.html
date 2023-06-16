@@ -67,13 +67,13 @@
               <br />
               <img class="avatar noshadow" src="/maxds-logo.png" />
               <li class="smaller no-dot">📅 Depuis ~3 ans et demi</li>
-              <li class="smaller no-dot">👔 Développeur multi-fonction</li>
+              <li class="smaller no-dot">👔 Développeur mais-pas-que</li>
               <li class="smaller no-dot">😊 Passez sur le stand, on recrute !</li>
             </div>
             <div class="col fragment">
               <img class="highlight noshadow" src="/hellowork-logo.png" />
               <li class="smaller no-dot">📅 Depuis ~1 ans et demi</li>
-              <li class="smaller no-dot">👔 Développeur Node-Python-Go-??? <br />dans la team DataIngé</li>
+              <li class="smaller no-dot">👔 Développeur Node-Python-C#-Go-??? <br />dans la team DataIngé</li>
               <li class="smaller no-dot">🙏 Merci pour le laptop</li>
             </div>
           </div>
@@ -113,7 +113,6 @@
         <h2 class="highlight-gold">Pocket Monsters</h2>
         <h4 class="highlight">ポケットモンスタ</h4>
       </section>
-      
       <section data-background-image="/3/gameboy-pokemon.jpeg" class="blurred">
         <section>
           <img src="/4/libellule.jpeg" />
@@ -283,6 +282,7 @@
         </section>
         <section>
           <img src="/3/gameboy-cable.png" />
+          <p class="grey">Source: youtube.com/@lachainedepaul<br/><i>Le cerveau derrière la folie Pokémon</i></p>
           <aside class="notes">
             ...et son cable link.
             Une idée commence à germer dans sa tête. Il repense à son histoire de chapeau, et imagine un jeu,
@@ -465,23 +465,18 @@
           </aside>
         </section>
         <section>
-          <div class="container">
-            <div class="col">
-              <img src="/4/ps1-games.webp" height="300px" />
-              <img class="fragment" src="/4/super-mario-64.jpeg" height="300px" />
-            </div>
-            <div class="col">
-              <br/>
-              <br/>
-              <img class="fragment" src="/1/really-no-stonks.png" />
-            </div>
-          </div>
+          <img src="/4/ps1-games.webp" height="300px" />
+          <img class="fragment" src="/4/super-mario-64.jpeg" height="300px" />
           <aside class="notes">
             En 96 la Gameboy se fait vieille, elle qui était déjà en retard technologiquement à sa sortie
             et en parallèle, les bons jeux commencent à affluer sur PS1.
             ---
             Il y a aussi la sortie de Super Mario 64 qui frappe un grand coup, et laisse PKMN sur le second plan.
-            ---
+          </aside>
+        </section>
+        <section>
+          <img class="fragment" src="/1/really-no-stonks.png" />
+          <aside class="notes">
             Pour Game Freak, c'est terrible.
           </aside>
         </section>
@@ -598,7 +593,7 @@
         </section>
         <section>
           <img src="/4/ventes-gameboy.png" />
-          <p class="grey">Source: youtube.com/@SakharuJV</p>
+          <p class="grey">Source: youtube.com/@SakharuJV<br/><i>L'énigme derrière la création de Mew</i></p>
           <aside class="notes">
             Le coup de chance, ou de génie de Satoshi, a propulsé le jeu au sommet des ventes de la Gameboy,
             et la Gameboy au sommet des ventes de console, pour atteindre un niveau bien supérieur à tout ce qu'on
@@ -674,10 +669,19 @@
           </aside>
         </section>
         <section>
-          <img src="/5/red-eyes-anakin.jpg" height="600px" />
+          <div class="container">
+            <div class="col">
+              <img class="noshadow" src="/sasha-content.png" />
+            </div>
+            <div class="col fragment">
+              <img class="noshadow" src="/prof-chen.webp" />
+              <p>"Prends ce Pokédex et tire-toi"<br/>- Prof Chen</p>
+            </div>
+          </div>
           <aside class="notes">
-            J'ai SAI-GNE LE JEU COMME JAMAIS
-            Bon j'ai du mettre 6 mois à le terminer parce que bon j'avais 9 ans je comprenais pas grand chose.
+            Je lance direct une partie en rentrant chez moi, mon personnage s'appelle SASHA
+            car parce que c'est le nom par défaut et parce que je regarde l'animé depuis sa sortie
+            (d'ailleurs fait intéressant, dans la version japonaise le protagoniste s'appelle SATOSHI).
           </aside>
         </section>
         <section>
@@ -862,19 +866,43 @@
             de code de la console avant d'être renommée), qui est une version modifiée du Zilog-Z80,
             un CPU très répandu dans le milieu des années 80, qu'on peut encore trouver aujourd'hui dans certaines
             calculatrices scientifiques.
-            le DMG-CPU perd certaines fonctions du Zilog au profit de nouvelles, comme Picture Processing Unit PPU,
+            le DMG-CPU perd certaines fonctions du Zilog au profit de nouvelles, comme un Picture Processing Unit PPU,
             ou un générateur de son à 4 bandes.
             Il tourne à environ 4.19Mhz, soit moins de 0.1% de la vitesse d'un processeur moderne.
           </aside>
         </section>
         <section>
-          <img class="noshadow" src="/6/gameboy-motherboard.png" height="600px" />
+          <div class="container">
+            <div class="col">
+              <h4>Processeur <br/><span class="bright">8 bits</span></h4>
+              <h4 class="fragment">Espace d'adressage <br/><span class="bright">16 bits</span></h4>
+              <h4 class="fragment">soit <span class="bright">64KB</span> de mémoire</h4>
+            </div>
+            <div class="col fragment">
+              <h4>En d'autres termes:</h4>
+              <h4 class="fragment"><span class="bright">65535</span> valeurs</h4>
+              <div class="fragment">
+                <h4>Pouvant chacune contenir un nombre compris entre<br/><span class="bright">0 et 255</span></h4>
+              </div>
+            </div>
+          </div>
           <aside class="notes">
-            C'est un processeur 8bits, équipé d'un espace mémoire de un 16bits
+            C'est un processeur 8bits, équipé d'un espace mémoire de 16bits
             Autrement dit, on peut y stocker 65536 (2^16) valeurs comprises en 0 et 255 (2^8)
             On peut dire que la mémoire de la Gameboy est de 64KB.
+          </aside>
+        </section>
+        <section>
+          <img src="/gameboy-cpu-registres.png" />
+          <p class="grey">Source: youtube.com/@jacktech5101<br/><i>The Game Boy, a hardware autopsy</i></p>
+          <aside class="notes">
             Le CPU comporte 10 registres qui serviront à faire des opérations sur des valeurs, ce sont des cellules
             mémoire situés à même le CPU.
+          </aside>
+        </section>
+        <section>
+          <img class="noshadow" src="/6/gameboy-motherboard.png" height="600px" />
+          <aside class="notes">
             La carte-mère est également équippée de 8KB de RAM (dite Work RAM) pouvant contenir 8192 valeurs entre 0 et
             255, qui servira à stocker les variables du jeu, soit 4x plus que dans la NES.
             Elle est aussi équippée de 8KB de VRAM (dite Video RAM), qui servira elle à stocker des données relatives à
@@ -988,10 +1016,15 @@
             le repo Github "pokered", qui est un projet de désassemblage du jeu pokémon rouge et bleu
           </aside>
         </section>
-        <section>
-          <h1>C'est parti mon kiki</h1>
+
+         <!-- état initial -->
+        <section data-auto-animate>
+          <img src="/6/mew-glitch/mew-glitch-0.png" height="600px"/>
+          <aside class="notes">
+            Etat initial (route 8)
+          </aside>
         </section>
-        <section>
+        <section data-auto-animate>
           <div class="container">
             <div class="col-wide">
               <pre class="armasm">
@@ -1012,28 +1045,36 @@
             </div>
           </div>
           <aside class="notes">
-            Etat initial (route 8), le pointeur "wRoute8CurScript" vaut 0
+            Le pointeur "wRoute8CurScript" vaut 0
             Le script à l'index 0 est "CheckFightingMapTrainers", ce script est appelé à chaque frame.
-            Ce script check tous les dresseur de la route 8 et vérifie si le joueur est dans la ligne de mire
+            Il check tous les dresseur de la route 8 et vérifie si le joueur est dans la ligne de mire
             de l'un d'entre-eux
           </aside>
         </section>
-        <section>
+        <!-- move + start -->
+        <section data-auto-animate>
+          <img src="/6/mew-glitch/mew-glitch-1.png" height="600px"/>
+          <aside class="notes">
+            On se déplace vers le dresseur, et on maintient le bouton "START"
+          </aside>
+        </section>
+        <section data-auto-animate>
           <div class="container">
             <div class="col-wide">
               <pre class="small armasm">
                 <code data-trim data-noescape>
+                  ; Cette fonction :
+
                   ; overworld.asm
-                  ; cette fonction :
                   OverworldLoopLessDelay.checkIfStartIsPressed
+                </code>
+              </pre>
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; est toujours appelée avant celle-ci :
 
                   ; Route8.asm
-                  ; est toujours appelée avant celle-ci :
                   CheckFightingMapTrainers
-
-                  ; sauf que cette fois, un dresseur est
-                  ; effectivement 'in-sight'
-                  ; ce qui va entrainer des effets intéressants
                 </code>
               </pre>
             </div>
@@ -1042,10 +1083,18 @@
             </div>
           </div>
           <aside class="notes">
-            Le dresseur nous voit, ce qui a plusieurs effets secondaires
+            Sauf que cette fois, un dresseur est effectivement "in-sight", il nous voit,
+            ce qui a plusieurs effets secondaires intéressants
           </aside>
         </section>
-        <section>
+        <!-- on s'envole -->
+        <section data-auto-animate>
+          <img src="/6/mew-glitch/mew-glitch-2.png" height="600px"/>
+          <aside class="notes">
+            Je décide de m'envoler sur mon Roucool (il a du mérite)
+          </aside>
+        </section>
+        <section data-auto-animate>
           <div class="container">
             <div class="col">
               <pre class="small armasm">
@@ -1063,7 +1112,7 @@
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
                   TrainerWalkUpToPlayer:
-                  ; SET bit 0 de $D730
+                  ; SET bit 0 de $D730 à 1
                   ; => "Un PNJ se déplace == true"
                 </code>
               </pre>
@@ -1089,13 +1138,23 @@
           </aside>
         </section>
         <section>
+          <img src="/flying-pidgeo.jpeg" height="500px"/> 
+          <aside class="notes">
+            D'ailleur mon Roucool qui s'après son entrée du pokémon pèse 1.8 kg a du mérite de m'emmener aussi loin
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/6/mew-glitch/mew-glitch-3.png" height="500px"/> 
+        </section>
+        <!-- Azuria, START marche plus -->
+        <section data-auto-animate>
           <div class="container">
             <div class="col">
               <h5 class="fragment">Pourquoi le bouton START ne marche plus ?</h5>
               <p class="fragment">
-                Le bit 0 de <strong>$CD60</strong> est à <strong>1</strong> :
+                Le bit <strong>0</strong> de <strong>$CD60</strong> est à <strong>1</strong> :
                 <br />
-                le jeu considère qu'on se fait engage
+                le jeu considère qu'on se fait <span class="bright">engager</span>
               </p>
               <h5 class="fragment">Pourquoi on ne peut plus parler aux PNJ ?</h5>
               <p class="fragment">
@@ -1186,6 +1245,10 @@
             et au combat de se lancer
           </aside>
         </section>
+        <!-- le gars envoi un Ramoloss -->
+        <section data-auto-animate>
+          <img src="/6/mew-glitch/mew-glitch-6.png" height="600px" />
+        </section>
         <section data-auto-animate>
           <img class="ramoloss-cache noshadow" src="/6/mew-glitch/ramoloss.png" />
           <div class="container">
@@ -1229,6 +1292,7 @@
             - 2 pour le SPECIAL : 00 15 => 21
           </aside>
         </section>
+        <!-- le Ramoloss en question -->
         <section data-auto-animate>
           <h5>Le <span class="pink">Ramoloss</span> en question</h5>
           <img class="highlight" src="/6/mew-glitch/ramoloss.png" />
@@ -1374,6 +1438,7 @@
             en dehors des combats : elle sert à stocker 'wEngagedTrainerClass'
           </aside>
         </section>
+        <!-- on termine le combat -->
         <section>
           <div class="container">
             <div class="col">
@@ -1404,6 +1469,7 @@
             donc le jeu ne considère plus qu'on est engagé par un dresseur, on récupère l'usage du bouton START
           </aside>
         </section>
+        <!-- on retourne à Lavanville -->
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-8.png" height="500px" />
           <aside class="notes">
@@ -1418,6 +1484,7 @@
             Je suis juste à droite de l'entrée est de la Route 8
           </aside>
         </section>
+        <!-- Le menu START s'ouvre tout seul -->
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-8.gif" height="600px" />
         </section>
@@ -1461,25 +1528,30 @@
             </div>
           </div>
           <aside class="notes">
-            Quand je vais à gauche, du coup je quitte Lavanville, et je rentre dans la route 8.
-            Le pointeur de script de la route 8 'wRoute8CurScript' vaut 1, la routine
+            Quand je vais à gauche, je quitte Lavanville, et je rentre dans la route 8.
+            Souvenez vous, le pointeur de script 'wRoute8CurScript' de la route 8 vaut 1, la routine
             "DisplayEnemyTrainerTextAndStartBattle" est appelée.
             Elle appelle DisplayTextID, qui appelle DisplayTextIDInit, qui prend la valeur qu'il trouve dans
-            'hSpriteIndexOrTextID', c'est à dire 0. En effet, le menu START est géré comme une textbox par le jeu,
+            'hSpriteIndexOrTextID', c'est à dire 0.
+            En effet, le menu START est géré comme une textbox par le jeu,
             et c'est la dernière textbox que j'ai ouvert (lorsque je me suis envolé pour Lavanville).
             La routine s'execute alors avec la valeur 0, et mon menu START s'ouvre
           </aside>
         </section>
+        <!-- Un combat contre Mew se lance -->
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-9.gif" height="500px" />
         </section>
         <section data-auto-animate>
           <div class="container">
             <div class="col-wide">
-              <h4>Pourquoi un combat se déclenche contre Mew ?</h4>
-              <video data-autoplay src="/6/mew-glitch/tres-simple.mp4"></video>
+              <h4>Mais pourquoi un combat se déclenche contre Mew ?</h4>
+              <img src="/wtf.gif"/>
             </div>
             <div class="col">
+              <br/>
+              <br/>
+              <br/>
               <img src="/6/mew-glitch/mew-glitch-9.gif" />
             </div>
           </div>
@@ -1488,7 +1560,7 @@
           </aside>
         </section>
         <section>
-          <h5>En effet, c'est très simple 😈</h5>
+          <h5>En fait, c'est très simple 😈</h5>
           <div class="container wide">
             <div class="col">
               <pre class="fragment smaller armasm">
@@ -1635,7 +1707,7 @@
           <i class="fragment">- RPGBrandon</i>
         </section>
         <section>
-          <h4>La map créée par des mecs déterminés 🗺️</h4>
+          <h4>La map créée par des personnes déterminés 🗺️</h4>
           <iframe data-src="https://puu.sh/257S" data-preload width="1080px" height="600px"></iframe>
           <aside class="notes">
             Ce glitch s'appelle le "Long range trainer glitch" et pas juste le "Mew glitch" car comme vous l'avez
@@ -1644,8 +1716,9 @@
             Il existe même une map avec toutes les infos
           </aside>
         </section>
+        <!-- Question bonus - Le lvl 7 -->
         <section>
-          <h5 class="grey">Question bonus</h5>
+          <h5 class="">Question bonus</h5>
           <h4>Pourquoi Mew est-il niveau <span class="bright">7</span> ?</h4>
           <div class="container">
             <div class="col fragment">
@@ -1764,7 +1837,7 @@
           </pre>
           <br />
           <h5 class="fragment">
-            Pour un Pokémon du <strong class="grey">medium-slow group</strong>
+            Pour un Pokémon du <strong class="bright">medium-slow group</strong>
             <br />
             avec <strong class="bright">n</strong> le niveau :
           </h5>
@@ -1789,7 +1862,7 @@
         </section>
         <section>
           <h5>On ne <span class="red"> peut pas</span> stocker un nombre <span class="bright">négatif</span><br />dans
-            un <strong class="bright">UNIT</strong></h5>
+            un <strong class="bright">UINT</strong></h5>
           <ul class="fragment">
             <li><strong>FFFFFF</strong> : valeur max d'XP en HEXA </li>
             <li><strong>16777215</strong> : équivalent en DECIMAL</li>
@@ -1869,9 +1942,24 @@
         <section>
           <img src="/6/chen-glitch/chen-glitch-2.png" height="600px" />
           <aside class="notes">
-            Et admettons que cette personne aille refasse le Long Range Trainer glitch, puis s'envole à l'est de
-            Parmanie,
-            chercher un Métamorph dans les hautes herbes
+            Et admettons que cette personne retourne faire le Long Range Trainer glitch, puis s'envole à l'est de
+            Parmanie, chercher un Métamorph dans les hautes herbes
+          </aside>
+        </section>
+        <section>
+          <div class="container">
+            <div class="col">
+              <img class="highlight-gold" src="/metamorph.png" height="400px"/>
+            </div>
+            <div class="col fragment">
+              <img src="/morphing.gif" height="400px"/>
+            </div>
+          </div>
+          <aside class="notes">
+            Métamorph est un pokémon très spécial en ça qu'il ne peut apprendre qu'une seul et unique attaque
+            : Morphing
+            Cette attaque copie non seulement l'apparence, le type, et les attaques du pokémon adverse,
+            mais aussi ses statistiques (excepté les HP)
           </aside>
         </section>
         <section>
