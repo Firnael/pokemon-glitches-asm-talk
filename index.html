@@ -1454,14 +1454,9 @@
                     ; => "Engagé par un dresseur == false"
                 </code>
               </pre>
-              <br />
-              <br />
-              <br />
-              <p class="fragment">Et je le rackette dans la foulée <br />ce fou 💰</p>
             </div>
             <div class="col">
-              <img src="/6/mew-glitch/mew-glitch-7.png" height="300px" />
-              <img class="fragment" src="/6/mew-glitch/mew-glitch-7b.png" height="300px" />
+              <img src="/6/mew-glitch/mew-glitch-7.png" height="400px" />
             </div>
           </div>
           <aside class="notes">
@@ -1469,10 +1464,19 @@
             donc le jeu ne considère plus qu'on est engagé par un dresseur, on récupère l'usage du bouton START
           </aside>
         </section>
-        <!-- on retourne à Lavanville -->
+        <!-- je rackette un enfant et on retourne à Lavanville -->
         <section data-auto-animate>
-          <img src="/6/mew-glitch/mew-glitch-8.png" height="500px" />
+          <div class="container">
+            <div class="col">
+              <img src="/6/mew-glitch/mew-glitch-7b.png" height="400px" />
+            </div>
+            <div class="col fragment">
+              <img src="/6/mew-glitch/mew-glitch-8.png" height="400px" />
+            </div>
+          </div>
           <aside class="notes">
+            Après avoir racketté cet enfant
+            ---
             Je retourne à Lavanville
           </aside>
         </section>
@@ -1685,11 +1689,14 @@
           <img src="/6/mew-glitch/pikachu-boner.jpeg" />
         </section>
         <section>
-          <h4>WebArchive des forums de GameFAQ 🌐</h4>
-          <iframe data-src="http://web.archive.org/web/20111125011704/http://gamefaqsarchive.com/index.php?pg=463"
-            data-preload width="1080px" height="600px">
-          </iframe>
+          <img src="/gamefaq-archives.png" height="500px" />
+          <p>
+            http://web.archive.org/web/20111125011704
+            <br/>
+            http://gamefaqsarchive.com/index.php?pg=463
+          </p>
           <aside class="notes">
+            Alors c'est très drôle de retrouver les WebArchive des forums de GameFAQ 🌐
             Le mec se fait insulter dans les commentaires (c'était en 2003)
           </aside>
         </section>
@@ -1707,81 +1714,133 @@
           <i class="fragment">- RPGBrandon</i>
         </section>
         <section>
-          <h4>La map créée par des personnes déterminés 🗺️</h4>
-          <iframe data-src="https://puu.sh/257S" data-preload width="1080px" height="600px"></iframe>
+          <img src="/map-long-range.png"/>
+          <p><strong>https://puu.sh/257S</strong></p>
           <aside class="notes">
             Ce glitch s'appelle le "Long range trainer glitch" et pas juste le "Mew glitch" car comme vous l'avez
             certainement compris, cette technique peut être utilisée pour rencontrer et capturer à peu près n'importe
-            quel pokémon en fonction de quel dresseur on a combattu
+            quel pokémon en fonction du dresseur et du pokémon combattu.
             Il existe même une map avec toutes les infos
           </aside>
         </section>
         <!-- Question bonus - Le lvl 7 -->
         <section>
-          <h5 class="">Question bonus</h5>
-          <h4>Pourquoi Mew est-il niveau <span class="bright">7</span> ?</h4>
+          <h5>✨ Question bonus ✨</h5>
+          <div class="fragment">
+            <h4>Pourquoi Mew est-il <span class="bright">niveau 7</span> ?</h4>
+            <br/>
+            <div class="container">
+              <div class="col">
+                <br/>
+                <img src="/6/mew-glitch/mew-lvl-7.png" />
+              </div>
+              <div class="col">
+                <img src="/but-why.gif" />
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            Pourquoi Mew est-il lvl 7 ?
+          </aside>
+        </section>
+        <section>
           <div class="container">
             <div class="col fragment">
-              <br />
-              <img src="/6/mew-glitch/mew-lvl-7.png" />
-            </div>
-            <div class="col">
-              <pre class="fragment small armasm">
+              <h4>le fail-safe</h4>
+              <pre class="normal armasm">
                 <code data-trim data-noescape>
                   ; trainers.asm 
-
-                  InitBattleEnemyParameters::
-                    ; ... 
+    
+                  InitBattleEnemyParameters:
+                    ld a, [wEngagedTrainerClass]
+                    ld [wCurOpponent], a
+                    ld [wEnemyMonOrTrainerClass], a
+                    cp OPP_ID_OFFSET
                     ld a, [wEngagedTrainerSet]
-	                   jr c, .noTrainer
-                    ; ...
-                  .noTrainer
-                    ld [wCurEnemyLVL], a ; ici
+                    jr c, .noTrainer
+                    ld [wTrainerNo], a
                     ret
+                  .noTrainer
+                    ld [wCurEnemyLVL], a
+                    ret
+                </code>
+              </pre>
+            </div>
+            <div class="col fragment">
+              <h4>qui tourne mal</h4>
+              <pre class="normal armasm">
+                <code data-trim data-noescape>
+                  ; wram.asm
+
+                  wEngagedTrainerClass: ; cd2d
+                    ds 1
+                  wEngagedTrainerSet: ; cd2e
+                  ;	ds 1
+
+                  ; stat modifiers for the enemy's pkmn
+                  ; can range from 1 - 13 ($1 to $D)
+                  ; 7 is normal
+
+                  wEnemyMonStatMods:
+                  wEnemyMonAttackMod: ; cd2e encore !
+                    ds 1
+                  ; ...
                 </code>
               </pre>
             </div>
           </div>
           <aside class="notes">
             Comme on l'a vu précedement, il existe un fail-safe dans la fonction "InitBattleEnemyParameters"
-            qui, lorsque la condition "noTrainer" est remplie, va charger dans "wCurEnemyLVL" la valeur de
-            "wEngagedTrainerSet"
+            qui, lorsque la condition "noTrainer" est remplie (c'est à dire quand la valeur présente dans le 
+            registre a, soit "wEngagedTrainerClass" - OPP_ID_OFFSET est inférieur à 0),
+            va charger dans "wCurEnemyLVL" la valeur de "wEngagedTrainerSet".
           </aside>
         </section>
         <section>
-          <p><strong><code class="green">&nbsp;wEngagedTrainerSet&nbsp;</code> sort d'où ?</strong></p>
+          <p><strong><code class="purple">&nbsp;wEnemyMonAttackMod&nbsp;</code> c'est quoi ?</strong></p>
+          <br/>
+          <div class="container">
+            <div class="col fragment">
+              <img class="noshadow" src="/chrysacier.png" />
+              <p class="smaller">
+                <strong><code><span class="purple">&nbsp;wEnemyMonDefenseMod:</span> 0&nbsp;</code></strong>
+              </p>
+            </div>
+            <div class="col fragment">
+              <img src="/6/mew-glitch/chrysacier-armure.gif" height="250px"/>
+              <blockquote>Chrysacier ! Lance ARMURE !</blockquote>
+            </div>
+            <div class="col fragment">
+              <img class="noshadow" src="/chrysacier-armure.png" height="340px"/>
+              <p class="smaller">
+                <strong><code><span class="purple">&nbsp;wEnemyMonDefenseMod:</span> 1&nbsp;</code></strong>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
           <div class="container">
             <div class="col">
               <pre class="fragment armasm">
                 <code data-trim data-noescape>
                   ; wram.asm
     
-                  wPlayerMonStatMods::
-                  ; partage le byte $CD2E
-                  wPlayerMonAttackMod:: db
-                  wPlayerMonDefenseMod:: db
-                  wPlayerMonSpeedMod:: db
-                  wPlayerMonSpecialMod:: db
-                  wPlayerMonAccuracyMod:: db
-                  wPlayerMonEvasionMod:: db
+                  wEnemyMonStatMods:
+                  wEnemyMonAttackMod: db    ; atk
+                  wEnemyMonDefenseMod: db   ; def
+                  wEnemyMonSpeedMod: db     ; spd
+                  wEnemyMonSpecialMod: db   ; spc
+                  wEnemyMonAccuracyMod: db  ; acc
+                  wEnemyMonEvasionMod: db   ; eva
                     ds 2
-                  wPlayerMonStatModsEnd::
+                  wEnemyMonStatModsEnd:
                 </code>
               </pre>
-              <pre class="fragment armasm">
-                <code data-trim data-noescape>
-                  ; partage le byte $CD2E
-                  wEngagedTrainerSet:: db
-                </code>
-              </pre>
-            </div>
-            <div class="col">
-              <img class="fragment" src="/6/mew-glitch/chrysacier-armure.gif" />
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
                   ; core.asm
 
-                  LoadEnemyMonFromParty::
+                  LoadEnemyMonFromParty:
                     ; ... 
                     .copyBaseStatsLoop
                       ; ... 
@@ -1790,6 +1849,33 @@
                       ld hl, wEnemyMonStatMods
                 </code>
               </pre>
+            </div>
+            <div class="col fragment">
+              <br/>
+              <div class="fragment">
+                <h5>Le modifier ne commence pas à 0 mais à 7</h5>
+                <h4>-6 => 6 ❌</h4>
+                <h4>1 => 13 ✅</h4>
+              </div>
+              <br/>
+              <div class="fragment">
+                <pre class="small armasm">
+                  <code data-trim data-noescape>
+                    ; donc quand on fait :
+                    ld a, [wEngagedTrainerSet]
+                    ld [wCurEnemyLVL], a
+                  </code>
+                </pre>
+              </div>
+              <div class="fragment">
+                <pre class="small armasm">
+                  <code data-trim data-noescape>
+                    ; on fait en fait :
+                    ld a, ["le mod ATK du Ramoloss"] ; $7
+                    ld [wCurEnemyLVL], a
+                  </code>
+                </pre>
+              </div>
             </div>
           </div>
           <aside class="notes">
@@ -1802,6 +1888,8 @@
             En mémoire, ils sont représentés de $0 (1) à $D (13), le niveau zéro étant donc à $7
           </aside>
         </section>
+
+        <!-- XP Underflow Glitch -->
         <section>
           <h5 class="grey">Un side-effect amusant</h5>
           <h4>L'XP Underflow Glitch ✨</h4>
@@ -1820,16 +1908,38 @@
             Il existe un bug dans le jeu, qui dit qu'il faut '-54' points d'XP pour passer du lvl 1 au lvl 2
           </aside>
         </section>
-        <section data-auto-animate>
-          <h5>Le calcul de l'EXP dans Pokémon</h5>
-          <pre class="fragment thin small armasm">
+        <section>
+          <h4>Le calcul de <span class="bright">l'EXPERIENCE</span> dans Pokémon</h4>
+          <h5>Une répartition par groupes</h5>
+          <div class="container">
+            <div class="col fragment">
+              <p><strong>Slow</strong></p>
+              <img class="noshadow" src="/experience-groups/ronflex.png" />
+            </div>
+            <div class="col fragment">
+              <p><strong>Medium Slow</strong></p>
+              <img class="noshadow" src="/experience-groups/mew.png" />
+            </div>
+            <div class="col fragment">
+              <p><strong>Medium Fast</strong></p>
+              <img class="noshadow" src="/experience-groups/ramoloss.png" />
+            </div>
+            <div class="col fragment">
+              <p><strong>Fast</strong></p>
+              <img class="noshadow" src="/experience-groups/rondoudou.png" />
+            </div>
+          </div>
+          <p class="grey smaller">https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_experience_type</p>
+        </section>
+        <section>
+          <pre class="armasm">
             <code data-trim data-noescape>
               GrowthRateTable:
                 table_width 4, GrowthRateTable
                 growth_rate 1, 1,   0,   0,   0 ; Medium Fast
                 growth_rate 3, 4,  10,   0,  30 ; Slightly Fast
                 growth_rate 3, 4,  20,   0,  70 ; Slightly Slow
-                growth_rate 6, 5, -15, 100, 140 ; Medium Slow ⬅️
+                growth_rate 6, 5, -15, 100, 140 ; Medium Slow      ⬅️ ici
                 growth_rate 4, 5,   0,   0,   0 ; Fast
                 growth_rate 5, 4,   0,   0,   0 ; Slow
                 assert_table_length NUM_GROWTH_RATES
@@ -1848,7 +1958,8 @@
           </div>
         </section>
         <section>
-          <h5>Cas particulier d'un Pokémon niveau <strong class="bright">1</strong></h5>
+          <h5>Cas particulier d'un Pokémon de niveau <span class="bright">1</span></h5>
+          <h6 class="grey">(normalement impossible dans le jeu)</h6>
           <div class="fragment">
             \[\begin{align*}
             \exp& = 6/5*1^3 - 15*1^2 + 100*1 - 140 \\
@@ -1887,6 +1998,8 @@
           <img src="/6/mew-glitch/mew-lvl-100.jpg" height="400px" />
           <img class="right" src="/6/mew-glitch/hackerman.jpg" height="400px" />
         </section>
+
+        <!-- Ditto Trick -->
         <section>
           <h5>Mais du coup, que se passe-t-il avec un ID > 200 ?</h5>
           <img class="fragment" src="/6/chen-glitch/ditto.jpg" height="500px" />
@@ -1928,7 +2041,13 @@
           <aside class="notes">
             En fait ce sont les dresseurs qui sont après 200, chaque dresseur a un index, comme les PKMN,
             et la valeur de cet index est ajoutée à 200 pour donner son index in-game.
-            Le problème, c'est que c'est impossible de rencontrer un PKMN dans le jeu qui a une stat SPECIAL > à 200
+          </aside>
+        </section>
+        <section>
+          <img src="/mewtwo-dark.jpeg" height="500px" />
+          <aside class="notes">
+            Le problème, c'est que pour provoquer des combats contre des dresseurs avec ce glitch, il faut d'abord 
+            vaincre un pokémon avec une stat SPE > 200, il n'y en a qu'un seul dans le jeu, c'est Mewtwo.
           </aside>
         </section>
         <section>

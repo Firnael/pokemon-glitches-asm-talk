@@ -73,6 +73,9 @@ pre.thiner {
 pre.long {
   height: 550px;
 }
+pre.normal {
+  font-size: 19px !important;
+}
 pre.small {
   font-size: 18px !important;
 }
@@ -105,6 +108,9 @@ p {
 }
 .pink {
   color: pink;
+}
+.purple {
+  color: #BF79DB;
 }
 .smaller {
   font-size: 60%;
