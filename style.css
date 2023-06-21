@@ -61,6 +61,13 @@ img {
   top: 50px;
   right: 50px;
 }
+.youngster {
+  opacity: 1;
+  position: absolute;
+  height: 190px;
+  top: 55px;
+  right: 238px;
+}
 
 /* Code */
 

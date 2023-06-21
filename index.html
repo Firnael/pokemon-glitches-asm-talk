@@ -41,7 +41,7 @@
         <section>
           <div class="container">
             <div class="col">
-              <img class="avatar" src="/public/moi.jpg" height="600px"/>
+              <img class="avatar" src="/moi.jpg" height="600px"/>
             </div>
             <div class="col">
               <h3>Bonjour !</h3>
@@ -1021,7 +1021,8 @@
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-0.png" height="600px"/>
           <aside class="notes">
-            Etat initial (route 8)
+            Etat initial (Lavanville, centre pokémon)
+            C120 (l'index du croupier), le 3ème byte vaut 'FF' car il est hors champ
           </aside>
         </section>
         <section data-auto-animate>
@@ -1053,7 +1054,8 @@
         </section>
         <!-- move + start -->
         <section data-auto-animate>
-          <img src="/6/mew-glitch/mew-glitch-1.png" height="600px"/>
+          <!-- <img src="/6/mew-glitch/mew-glitch-1.png" height="600px"/> -->
+          <img src="/menu-start-loop.png" height="600px"/>
           <aside class="notes">
             On se déplace vers le dresseur, et on maintient le bouton "START"
           </aside>
@@ -1061,9 +1063,19 @@
         <section data-auto-animate>
           <div class="container">
             <div class="col-wide">
-              <pre class="small armasm">
+              <h5 class="fragment">Pourquoi le <span class="bright">menu</span> s'ouvre alors que le dresseur me voit ?</h5>
+              <pre class="fragment small armasm">
                 <code data-trim data-noescape>
-                  ; Cette fonction :
+                  ; le bit 2 de $C120, l'index du sprite du croupier
+                  ; est toujours à $ff (hors champ)
+
+                  ; Route8.asm
+                  CheckFightingMapTrainers ; retourne null
+                </code>
+              </pre>
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; cette fonction est appelée entre temps :
 
                   ; overworld.asm
                   OverworldLoopLessDelay.checkIfStartIsPressed
@@ -1071,15 +1083,18 @@
               </pre>
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
-                  ; est toujours appelée avant celle-ci :
+                  ; le bit 2 de $C120 passe à 54
+                  ; le croupier est visible
 
                   ; Route8.asm
-                  CheckFightingMapTrainers
+                  CheckFightingMapTrainers ; va faire des trucs
                 </code>
               </pre>
             </div>
             <div class="col">
-              <img src="/6/mew-glitch/mew-glitch-1.png" />
+              <br/>
+              <br/>
+              <img src="/menu-start-loop.png"/>
             </div>
           </div>
           <aside class="notes">
@@ -1091,13 +1106,14 @@
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-2.png" height="600px"/>
           <aside class="notes">
-            Je décide de m'envoler sur mon Roucool (il a du mérite)
+            Je décide de m'envoler sur le dos de Jean-Vol, mon Roucool
           </aside>
         </section>
         <section data-auto-animate>
           <div class="container">
             <div class="col">
-              <pre class="small armasm">
+              <h5 class="fragment">Les trucs en question</h5>
+              <pre class="fragment small armasm">
                 <code data-trim data-noescape>
                   ; trainer_sight.asm
                 </code>
@@ -1130,23 +1146,26 @@
               </pre>
             </div>
             <div class="col">
+              <br/>
               <img src="/6/mew-glitch/mew-glitch-2.png" />
             </div>
           </div>
           <aside class="notes">
-            Sauf que nous, on s'envole, tchao boloss
+            Allé, tchao boloss
           </aside>
         </section>
         <section>
           <img src="/flying-pidgeo.jpeg" height="500px"/> 
           <aside class="notes">
-            D'ailleur mon Roucool qui s'après son entrée du pokémon pèse 1.8 kg a du mérite de m'emmener aussi loin
+            Une prouesse en vérité car si un enfant de 10 ans en bonne santé tel que le protagoniste
+            de ce jeu pèse entre 30 et 40 kilos, mon roucool lui ne pèse que 1.8 kg
+            d'après son entrée du Pokédex. On lui souhaite bon courage.
           </aside>
         </section>
+        <!-- Azuria, START marche plus -->
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-3.png" height="500px"/> 
         </section>
-        <!-- Azuria, START marche plus -->
         <section data-auto-animate>
           <div class="container">
             <div class="col">
@@ -1154,7 +1173,7 @@
               <p class="fragment">
                 Le bit <strong>0</strong> de <strong>$CD60</strong> est à <strong>1</strong> :
                 <br />
-                le jeu considère qu'on se fait <span class="bright">engager</span>
+                le jeu considère qu'on se fait <strong class="bright">engager</strong> par un dresseur
               </p>
               <h5 class="fragment">Pourquoi on ne peut plus parler aux PNJ ?</h5>
               <p class="fragment">
@@ -1167,8 +1186,10 @@
           </div>
           <aside class="notes">
             On arrive à Azuria, et on ne peut ni ouvrir le menu, ni parler aux PNJ
+            En fait, ce qu'il se passe, c'est que le jeu ne check plus s'il y a une fenêtre de dialogue à afficher
           </aside>
         </section>
+        <!-- Pourquoi le jeu est bloqué ? -->
         <section data-auto-animate>
           <img src="/6/mew-glitch/mew-glitch-4b.gif" />
         </section>
@@ -1192,9 +1213,16 @@
                     and $1
                     ret nz
                     ; on ne va pas plus loin
-                    ; car le bit 0 de $D730 est à 1
+                    
                 </code>
               </pre>
+              <p class="fragment">
+                car le bit <strong>0</strong> de <strong>$D730</strong>
+                <br/>
+                <strong class="bright">"un PNJ se déplace"</strong>
+                <br/>
+                 est à <strong>1</strong> souvenez vous
+              </p>
             </div>
             <div class="col">
               <br />
@@ -1208,10 +1236,12 @@
             Si on ne fait pas marcher le dresseur, le jeu est soft-lock.
           </aside>
         </section>
+        <!-- On se débloque comme ça -->
         <section>
           <div class="container">
             <div class="col">
-              <pre class="small armasm">
+              <h5>On se débloque comme ça</h5>
+              <pre class=" fragment small armasm">
                 <code data-trim data-noescape>
                   ; trainer_sight.asm
 
@@ -1231,11 +1261,12 @@
                     .loop 
                       ld hl, wd730
                       set 0, [hl]
-                      ; ici, $D730 est remis à 0
                 </code>
               </pre>
+              <p class="fragment">ici, <strong>$D730</strong> est remis à <strong>0</strong></p>
             </div>
             <div class="col">
+              <br/>
               <img src="/6/mew-glitch/mew-glitch-4c.gif" />
             </div>
           </div>
@@ -1243,6 +1274,75 @@
             La routine MoveSprite_ va finir par setter le bit 0 de $D730 à 0
             ce qui va permettre à DisplayEnemyTrainerTextAndStartBattle de s'executer
             et au combat de se lancer
+          </aside>
+        </section>
+        <!-- YOUNGSTER wants to fight -->
+        <section data-auto-animate>
+          <img class="noshadow" src="/youngster-wants-to-fight.png" height="600px"/>
+          <img class="youngster noshadow" src="/youngster.webp" />
+        </section>
+        <!-- Comment le jeu choisi le sprite et l'équipe du dresseur -->
+        <section data-auto-animate>
+          <div class="container">
+            <div class="col">
+              <h5>Comment c'est dans le code</h5>
+              <pre class=" fragment small armasm">
+                <code data-trim data-noescape>
+                  ; trainers.asm
+
+                  InitBattleEnemyParameters:
+                    ld a, [wEngagedTrainerClass]
+                    ld [wCurOpponent], a
+                    ld [wEnemyMonOrTrainerClass], a
+                    cp OPP_ID_OFFSET
+                    ld a, [wEngagedTrainerSet]
+                    ; ...
+                    ld [wTrainerNo], a
+                    ret
+                </code>
+              </pre>
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  ; trainer_constants.asm
+
+                  DEF OPP_ID_OFFSET EQU 200
+
+                  MACRO trainer_const
+                    const \1
+                    DEF OPP_\1 EQU OPP_ID_OFFSET + \1
+                  ENDM
+
+                    const_def
+                    trainer_const NOBODY         ; $00
+                    trainer_const YOUNGSTER      ; $01
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <img class="noshadow" src="/youngster.webp" />
+              <br/>
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  wEngagedTrainerClass EQU $C9
+                  wEngagedTrainerSet   EQU $06
+                </code>
+              </pre>
+              <p class="fragment smaller">soit :</p>
+              <pre class="fragment small armasm">
+                <code data-trim data-noescape>
+                  wEngagedTrainerClass ≈ "YOUNGSTER"
+                  wEngagedTrainerSet ≈ "6ème roster"
+                </code>
+              </pre>
+            </div>
+          </div>
+          <aside class="notes">
+            L'adresse $CD2D et $CD2E sont mises à jour avec ce qu'on appelle la "classe" et le "roster" (l'équipe)
+            du dresseur qui nous défie.
+            Elles servent à stocker 'wEngagedTrainerClass' et 'wEngagedTrainerSet'.  
+            Typiquement lorsque j'ai provoquer le combat contre ce YOUNGSTER, le jeu a stocké la valeur C9 dans $CD2D,
+            et 06 dans $CD2E ce qui signifie "charge moi un YOUNGSTER" avec l'équipe #6.
+            (montrer avec des points d'arrêts sur le Gambler, avec la table de correspondance)
           </aside>
         </section>
         <!-- le gars envoi un Ramoloss -->
@@ -1283,7 +1383,7 @@
           <aside class="notes">
             Dans la mémoire du jeu, les stats du Ramoloss viennent s'écrire à un emplacement précis : $CD23
             (donc de $CD23 à $CD2D)
-            Ces stats sont stockées sur 11 bytes :
+            Ces stats sont stockées sur 11 bytes (db: define bit, dw: define word, 2 bits) :
             - 1 pour le LVL : 11 => 17
             - 2 pour le MAX HP : 00 3C => 60
             - 2 pour l'ATK : 00 1E => 30
@@ -1407,7 +1507,14 @@
               </table>
             </div>
           </div>
+          <aside class="notes">
+            Elles sont réparties de la sorte :
+            A gauche vous avez la représentation en décimal, à droite, en hexadécimal.
+            Elles sont codée sur 2 bytes sauf le lvl car on ne peut monter que jusqu'au lvl 100.
+            mais on peut très bien dépasser 255 en force, en HP, etc...
+          </aside>
         </section>
+        <!-- le byte $CD2D partagé -->
         <section>
           <table>
             <thead>
@@ -1434,14 +1541,22 @@
             </code>
           </pre>
           <aside class="notes">
-            Sauf que l'adresse $CD2D (le 2nd byte de la stat SPECIAL) est également utilisée pour autre chose
-            en dehors des combats : elle sert à stocker 'wEngagedTrainerClass'
+            Ce qui nous intéresse ici, c'est le 2ème bit de la stat SPECIAL.
+            Si vous avez l'oeil vif, vous avez remarqué que l'adresse $CD2D a déjà été utilisée juste avant,
+            lorsque je me suis fait attaquer pour ce YOUNGSTER.
+            Donc on comprend que cette adresse CD2D est utilisée pour stocker différentes informations selon le contexte.
+            - Hors combat pour déterminer les données de combat à charger
+            - En combat, pour stocker les stats non-modifiées du Pokémon ennemi
           </aside>
         </section>
         <!-- on termine le combat -->
-        <section>
+        <section data-auto-animate>
+          <img class="noshadow" src="/6/mew-glitch/mew-glitch-7.png" height="600px"/>
+        </section>
+        <section data-auto-animate>
           <div class="container">
             <div class="col">
+              <h5 class="fragment">Lorsque le combat se termine</h5>
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
                   ; trainers.asm
@@ -1450,13 +1565,19 @@
                     ; ... 
                     ld hl, wFlags_0xcd60
 	                   res 0, [hl] 
-                    ; SET bit 0 de $CD60 à 0
-                    ; => "Engagé par un dresseur == false"
                 </code>
               </pre>
+              <p class="fragment">
+                Le bit <strong>0</strong> de <strong>$CD60</strong> retourne à <strong>0</strong>.
+                <br />
+                le jeu <strong>ne considère plus</strong> qu'on se fait engager par un dresseur
+                <br/>
+                (à raison)
+              </p>
             </div>
             <div class="col">
-              <img src="/6/mew-glitch/mew-glitch-7.png" height="400px" />
+              <img class="noshadow" src="/6/mew-glitch/mew-glitch-7.png" height="400px" />
+              <p class="fragment smaller grey">en vrai il est deg</p>
             </div>
           </div>
           <aside class="notes">
