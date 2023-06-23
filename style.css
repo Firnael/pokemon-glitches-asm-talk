@@ -61,12 +61,26 @@ img {
   top: 50px;
   right: 50px;
 }
+.ramoloss-cache-2 {
+  opacity: 1;
+  position: absolute;
+  height: 160px;
+  top: 96px;
+  right: 245px;
+}
 .youngster {
   opacity: 1;
   position: absolute;
   height: 190px;
   top: 55px;
   right: 238px;
+}
+.dmg-cpu {
+  opacity: 1;
+  position: absolute;
+  height: 90px;
+  top: 158px;
+  left: 388px;
 }
 
 /* Code */
@@ -88,6 +102,9 @@ pre.small {
 }
 pre.smaller {
   font-size: 16px !important;
+}
+pre.smallest {
+  font-size: 14px !important;
 }
 pre.wide {
   width: 120% !important;
@@ -128,6 +145,15 @@ p {
 .left {
   text-align: left;
 }
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.line-through {
+  text-decoration: line-through;
+}
 
 /* Tables */
 table {
@@ -148,8 +174,14 @@ tr.def {
 tr.spd {
   background-color: rgba(20, 200, 200, 0.3);
 }
-tr.spc {
+tr.spe {
   background-color: rgba(200, 20, 200, 0.3);
+}
+tr.acc {
+  background-color: rgba(255, 128, 0, 0.3);
+}
+tr.eva {
+  background-color: rgba(192, 192, 192, 0.3);
 }
 td.center {
   text-align: center !important;
@@ -212,6 +244,13 @@ ol.summary {
   position: absolute;
   bottom: 0px;
   left: 0px;
+}
+.absolute-top-right {
+  position: fixed;
+  top: -25px;
+  right: -100px;
+  line-height: 24px !important;
+  z-index: 10;
 }
 
 .mew {

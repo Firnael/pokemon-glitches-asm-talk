@@ -9,4 +9,4 @@
 - 7  : Route 21, pendant le Mew Glitch, juste avant de taper le petit avec son Ramoloss
 - 8  : Lavanville, setup ready pour combattre MEW
 - 9  : Lavanville, aucun setup (début de la démo)
-- 10 : Déjà en combat contre le croupier, INUTILE 
+- 10 : Lavanville, reste plus qu'à ferme le menu
