@@ -152,7 +152,7 @@ p {
   display: block;
 }
 .line-through {
-  text-decoration: line-through;
+  text-decoration: rgb(255, 196, 0) line-through;
 }
 
 /* Tables */
