@@ -596,8 +596,8 @@
       <section data-background-image="/5/1990-nostalgia.webp" class="blurred">
         <section>
           <p><strong>Octobre 1999</strong></p>
-          <img class="fragment" src="/5/moi-photo.jpg" height="600px" />
-          <img class="right fragment" src="/5/moi-miskine.png" height="600px" />
+          <img class="fragment" src="/5/moi-photo.jpg" height="550px" />
+          <img class="right fragment" src="/5/moi-miskine.png" height="550px" />
           <aside class="notes">
             Donc, on est le 8 octobre 1999, Pokémon rRouge & Bleu sortent en Europe
             ---
@@ -820,13 +820,13 @@
       </section>
       <section data-background-image="/6/mew-asm.jpeg" class="blurred">
         <section>
-          <div class="container">
+          <h3>ça va glitcher</h3>
+          <div class="container fragment">
             <div class="col"><img src="/glitch-city.jpeg" height="300px" /></div>
             <div class="col"><img src="/glitch-battle.png" height="300px" /></div>
             <div class="col"><img src="/glitch-battle-2.webp" height="300px" /></div>
-            
           </div>
-          <h5 class="fragment">Comprendre : il se passe des trucs <span class="bright">bizarres</span>, et c'était <span class="bright">pas prévu</span></h5>
+          <h5 class="fragment">"il se passe des trucs <span class="bright">bizarres</span>, et c'était <span class="bright">pas prévu</span>"</h5>
           <aside class="notes">
             - La première génération de jeux Pokémon est connu pour être truffée de glitchs.
             Mais qu'est ce qu'un glitch ?
@@ -1106,7 +1106,16 @@
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>0</strong>
           </p>
-          <img src="/menu-start-loop.png" height="600px"/>
+          <div class="container">
+            <div class="col">
+              <img class="noshadow" src="/walking-down-no-gambler.png"/>
+              <p>On descend en <strong>maintenant</strong><br/> ⬇️ + START</p>
+            </div>
+            <div class="col fragment">
+              <img src="/menu-start-loop.png" height="400px"/>
+              <p>Au moment où le dresseur <strong>apparait</strong>, le MENU <strong>s'ouvre</strong></p>
+            </div>
+          </div>
           <aside class="notes">
             On se déplace vers le dresseur, et on maintient le bouton "START"
           </aside>
@@ -1118,33 +1127,26 @@
           <div class="container">
             <div class="col-wide">
               <h5 class="fragment">Pourquoi le <span class="bright">menu</span> s'ouvre alors que le dresseur peut me voir ?</h5>
-              <p class="fragment smaller">
-                <strong>premier appel de <span class="purple">CheckFightingMapTrainers</span> :</strong>
-              </p>
-              <pre class="fragment small armasm">
+              <p class="fragment">Sont appelés en boucle, l'un après l'autre :</p>
+              <pre class="fragment armasm">
                 <code data-trim data-noescape>
                   ; Route8.asm
-                  CheckFightingMapTrainers ; retourne null
+                  CheckFightingMapTrainers
                 </code>
               </pre>
-              <p class="fragment smaller">
-                <strong>puis <span class="purple">checkIfStartIsPressed</span> est appelée :</strong>
-              </p>
-              <pre class="fragment small armasm">
+              <pre class="fragment armasm">
                 <code data-trim data-noescape>
                   ; overworld.asm
-                  OverworldLoopLessDelay.checkIfStartIsPressed
+                  checkIfStartIsPressed
                 </code>
               </pre>
-              <p class="fragment smaller">
-                <strong>second appel de <span class="purple">CheckFightingMapTrainers</span> :</strong>
+              <p class="fragment">
+                Le dresseur n'a pas encore été <strong>chargé</strong>
+                <br/>
+                par le jeu tant que je n'ai pas <strong>terminé</strong>
+                <br/>
+                mon mouvement vers le bas
               </p>
-              <pre class="fragment small armasm">
-                <code data-trim data-noescape>
-                  ; Route8.asm
-                  CheckFightingMapTrainers ; va faire des trucs
-                </code>
-              </pre>
             </div>
             <div class="col">
               <br/>
@@ -1160,14 +1162,38 @@
           </aside>
         </section>
 
+        <!-- C'est pour ça qu'il faut un "long range" -->
+        <section data-auto-animate>
+          <p class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>0</strong>
+          </p>
+          <br/>
+          <h4>C'est pour cette raison qu'il me faut un <span class="bright">"Long Range Trainer"</span></h4>
+          <div class="container">
+            <div class="col fragment">
+              <img class="noshadow" src="/not-on-screen.png" />
+              <p class="smaller nomargin">Condition 1:<br/>ne doit pas être dans l'écran avant mon mouvement</p>
+            </div>
+            <div class="col fragment">
+              <img class="noshadow" src="/max-distance.png" />
+              <p class="smaller nomargin">Condition 2:<br/>doit m'attaquer peu importe la distance</p>
+            </div>
+          </div>
+          <aside class="notes">
+            D'où le nom du glitch.
+            Vous remarquerez que le dresseur n'est pas tourné vers moi sur l'image,
+            on a assez longtemps pensé que c'était parce que le dresseur était chargé vers le bas,
+            alors qu'en fait le jeu s'en fout.
+          </aside>
+        </section>
+
         <!-- le dresseur me voit -->
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>0</strong>
           </p>
           <img class="noshadow" src="/dresseur-me-voit.png" height="600px"/>
-          <br/>
-          <p class="fragment"><strong>Là, il se passe <span class="bright">des trucs</span></strong></p>
+          <p>Quand je <strong>ferme</strong> le MENU, là ça y est <strong>il me voit</strong></p>
           <aside class="notes">
             Quand je ferme mon menu START, le dresseur me voit (on voit la petite bulle au dessus de sa tête)
           </aside>
@@ -1178,7 +1204,7 @@
           </p>
           <div class="container">
             <div class="col">
-              <h5 class="fragment">Les trucs en question</h5>
+              <h5 class="fragment">Lorsque je <span class="bright">ferme</span> le <span class="bright">MENU</span></h5>
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
                   ; trainer_sight.asm
@@ -1223,6 +1249,7 @@
           </p>
           <div class="container">
             <div class="col">
+              <br/>
               <pre id="pre-trainer-engage" class="small armasm">
                 <code data-trim data-noescape>
                   TrainerEngage: 
@@ -1231,7 +1258,7 @@
               </pre>
             </div>
             <div class="col">
-              <p class="fragment smaller">
+              <p class="fragment">
                 SET bit <strong>0</strong> de <strong>$CD60</strong> à <strong>1</strong>
                 <br/>
                 <code class="bright">Engagé par un dresseur == true</code>
@@ -1240,6 +1267,7 @@
           </div>
           <div class="container">
             <div class="col">
+              <br/>
               <pre id="pre-trainer-walk-up" class="small armasm">
                 <code data-trim data-noescape>
                   TrainerWalkUpToPlayer:
@@ -1248,15 +1276,16 @@
               </pre>
             </div>
             <div class="col">
-              <p class="fragment smaller">
+              <p class="fragment">
                 SET bit <strong>0</strong> de <strong>$D730</strong> à <strong>1</strong>
                 <br/>
-                <code class="bright">Un sprite se déplace == true</code>
+                <code class="bright">&nbsp;Un sprite se déplace&nbsp;<br/> == true</code>
               </p>
             </div>
           </div>
           <div class="container">
             <div class="col">
+              <br/>
               <pre id="pre-trainer-engaging" class="small armasm">
                 <code data-trim data-noescape>
                   .trainerEngaging
@@ -1268,29 +1297,29 @@
               </pre>
             </div>
             <div class="col">
-              <p class="fragment smaller">
-                <code class="purple">wRoute8CurScript</code> passe de <strong>0 à 1</strong>
+              <p class="fragment">
+                <code class="purple">&nbsp;wRoute8CurScript&nbsp;</code><br/> passe de <strong>0 à 1</strong>,
                 <br/>
-                pointe désormais sur :
+                pointe désormais sur
                 <br/>
                 <code class="purple">DisplayEnemyTrainerText<br/>AndStartBattle</code>
               </p>
             </div>
           </div>
-          <p class="fragment smaller absolute-top-right bright">
-            <span class="bright line-through"><strong>wRoute8CurScript</strong> : <strong>0</strong></span>
+          <p data-id="match" class="fragment smaller absolute-top-right">
+            <span class="line-through"><strong>wRoute8CurScript</strong> : <strong>0</strong></span>
             <br/>
-            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <span class="bright"><strong>wRoute8CurScript</strong> : <strong>1</strong></span>
             <br/>
-            <strong>$CD60</strong> : <strong>1</strong>
+            <span class="bright"><strong>$CD60</strong> : <strong>1</strong></span>
             <br/>
-            <strong>$D730</strong> : <strong>1</strong>
+            <span class="bright"><strong>$D730</strong> : <strong>1</strong></span>
           </p>
         </section>
 
         <!-- je décide de m'envoler -->
         <section data-auto-animate>
-          <p class="smaller absolute-top-right">
+          <p data-id="match" class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
             <strong>$CD60</strong> : <strong>1</strong>
@@ -1312,6 +1341,7 @@
             <br/>
             <strong>$D730</strong> : <strong>1</strong>
           </p>
+          <img src="/6/mew-glitch/mew-glitch-2.png" height="200px"/>
           <div class="container">
             <div class="col">
               <img src="/piafabec.png"/>
@@ -1343,7 +1373,7 @@
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
-            <strong>$CD60</strong> : <strong>1</strong>
+            <span class="bright"><strong>$CD60</strong> : <strong>1</strong></span>
             <br/>
             <strong>$D730</strong> : <strong>1</strong>
           </p>
@@ -1414,7 +1444,7 @@
                 <br/>
                 <strong class="bright">"un PNJ se déplace"</strong>
                 <br/>
-                 est à <strong>1</strong> souvenez vous
+                 est à <strong>1</strong>
               </p>
             </div>
             <div class="col">
@@ -1471,7 +1501,7 @@
               <img src="/6/mew-glitch/mew-glitch-4c.gif" />
             </div>
           </div>
-          <p class="fragment smaller absolute-top-right">
+          <p data-id="match" class="fragment smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
             <strong>$CD60</strong> : <strong>1</strong>
@@ -1489,7 +1519,7 @@
 
         <!-- YOUNGSTER wants to fight -->
         <section data-auto-animate>
-          <p class="smaller absolute-top-right">
+          <p data-id="match" class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
             <strong>$CD60</strong> : <strong>1</strong>
@@ -1527,9 +1557,13 @@
                     ret
                 </code>
               </pre>
-              <pre class="fragment small armasm">
+              <pre data-id="match-1" class="fragment small armasm">
                 <code data-trim data-noescape>
                   wEngagedTrainerClass EQU $C9
+                </code>
+              </pre>
+              <pre data-id="match-2" class="fragment small armasm">
+                <code data-trim data-noescape>
                   wEngagedTrainerSet   EQU $06
                 </code>
               </pre>
@@ -1560,15 +1594,15 @@
           <div class="container">
             <div class="col">
               <br/>
-              <pre id="pre-trainer-engage" class="small armasm">
+              <pre data-id="match-1" class="small armasm">
                 <code data-trim data-noescape>
-                  wEngagedTrainerClass: 
+                  wEngagedTrainerClass: ; $C9
                   "la classe du dresseur qui nous engage"
                 </code>
               </pre>
             </div>
             <div class="col">
-              <p class="fragment smaller">
+              <p class="fragment">
                 SET address <strong>$CD2D</strong> à <strong>$C9</strong>
                 <br/>
                 <code><span class="purple">&nbsp;wEngagedTrainerClass&nbsp;</span><br/>== "YOUNGSTER"</code>
@@ -1578,15 +1612,15 @@
           <div class="container">
             <div class="col">
               <br/>
-              <pre id="pre-trainer-walk-up" class="small armasm">
+              <pre data-id="match-2" class="small armasm">
                 <code data-trim data-noescape>
-                  wEngagedTrainerSet:
+                  wEngagedTrainerSet: ; $06
                   "l'équipe du dresseur qui nous engage"
                 </code>
               </pre>
             </div>
             <div class="col">
-              <p class="fragment smaller">
+              <p class="fragment">
                 SET address <strong>$CD2E</strong> à <strong>$06</strong>
                 <br/>
                 <code><span class="purple">&nbsp;wEngagedTrainerSet&nbsp;</span><br/>== un Ramoloss tout seul</code>
@@ -1866,7 +1900,7 @@
             </code>
           </pre>
           <p class="fragment">La valeur de l'adresse <strong>$CD2D</strong> <strong class="bright">est écrasée</strong> par cette <strong>stat SPE</strong></p>
-          <p class="fragment smaller absolute-top-right">
+          <p data-id="match" class="fragment smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
             <strong>$CD60</strong> : <strong>1</strong>
@@ -1891,7 +1925,7 @@
 
         <!-- les stats mods -->
         <section data-auto-animate>
-          <p class="smaller absolute-top-right">
+          <p data-id="match" class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
             <strong>$CD60</strong> : <strong>1</strong>
@@ -1904,7 +1938,7 @@
           </p>
           <div class="container">
             <div class="col">
-              <h5>On charge aussi<br/><span class="bright">les stats mods</span></h5>
+              <h5>Le jeu charge aussi<br/><span class="bright">les stats mods</span></h5>
               <img class="noshadow" src="/6/mew-glitch/ramoloss.png" height="200px" />
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
@@ -1924,7 +1958,9 @@
               <br/>
               <br/>
               <p class="fragment">
-                On vient initialiser la listes des <code class="purple">&nbsp;wEnemyMonStatMods&nbsp;</code>
+                On vient initialiser
+                <br/>
+                une suite de bytes à <code data-id="match-1" class="purple"><strong>&nbsp;wEnemyMonStatMods&nbsp;</strong></code>
               </p>
               <p class="fragment">
                 Ils sont compris entre <br/><strong>$CD2F</strong> et <strong>$CD33</strong>
@@ -1942,6 +1978,42 @@
             Ces modifiers sont utilisés pour calculer les stats du Ramoloss en combat.
           </aside>
         </section>
+
+        <!-- exemple de Chrysacier -->
+        <section data-auto-animate>
+          <p class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>1</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$15</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$06</strong>
+          </p>
+          <p><strong><code data-id="match-1" class="purple">&nbsp;wEnemyMonStatMods&nbsp;</code> c'est quoi ?</strong></p>
+          <br/>
+          <div class="container">
+            <div class="col fragment">
+              <img class="noshadow" src="/chrysacier.png" />
+              <p class="smaller">
+                <strong><code><span class="purple">&nbsp;wEnemyMonDefenseMod:</span> 7&nbsp;</code></strong>
+              </p>
+            </div>
+            <div class="col fragment">
+              <img src="/6/mew-glitch/chrysacier-armure.gif" height="250px"/>
+              <blockquote>Chrysacier ! Lance ARMURE !</blockquote>
+            </div>
+            <div class="col fragment">
+              <img class="noshadow" src="/chrysacier-armure.png" height="340px"/>
+              <p class="smaller">
+                <strong><code><span class="purple">&nbsp;wEnemyMonDefenseMod:</span> 8&nbsp;</code></strong>
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
@@ -2093,11 +2165,11 @@
         </section>
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
             <strong>$CD60</strong> : <strong>1</strong>
             <br/>
             <strong>$D730</strong> : <strong>0</strong>
-            <br/>
-            <strong>wRoute8CurScript</strong> : <strong>1</strong>
             <br/>
             <strong>$CD2D</strong> : <strong>$15</strong>
             <br/>
@@ -2107,11 +2179,16 @@
             <div class="col">
               <h5>Pourquoi je lance <br/><span class="bright">6 rugissements</span> d'affilé ?</h5>
               <br/>
-              <p class="fragment">
-                Pour faire <strong class="bright">baisser l'attaque</strong> du Ramoloss adverse.
-              </p>
+              <div class="fragment">
+                <img src="/growl.gif">
+                <p>
+                  Pour faire <strong class="bright">baisser l'attaque</strong> du Ramoloss adverse bien-sûr !
+                </p>
+              </div>
             </div>
             <div class="col">
+              <br/>
+              <br/> 
               <img class="noshadow" src="/rugissement.png"/>
             </div>
           </div>
@@ -2119,41 +2196,6 @@
             Dans Pokémon, il est possible d'influer surs ses propres stats, 
             ainsi que sur les stats de l'adversaire avec des attaques.
           </aside>
-        </section>
-
-        <!-- exemple de Chrysacier -->
-        <section data-auto-animate>
-          <p class="smaller absolute-top-right">
-            <strong>wRoute8CurScript</strong> : <strong>1</strong>
-            <br/>
-            <strong>$CD60</strong> : <strong>1</strong>
-            <br/>
-            <strong>$D730</strong> : <strong>0</strong>
-            <br/>
-            <strong>$CD2D</strong> : <strong>$15</strong>
-            <br/>
-            <strong>$CD2E</strong> : <strong>$07</strong>
-          </p>
-          <p><strong><code class="purple">&nbsp;wEnemyMonAttackMod&nbsp;</code> c'est quoi ?</strong></p>
-          <br/>
-          <div class="container">
-            <div class="col fragment">
-              <img class="noshadow" src="/chrysacier.png" />
-              <p class="smaller">
-                <strong><code><span class="purple">&nbsp;wEnemyMonDefenseMod:</span> 7&nbsp;</code></strong>
-              </p>
-            </div>
-            <div class="col fragment">
-              <img src="/6/mew-glitch/chrysacier-armure.gif" height="250px"/>
-              <blockquote>Chrysacier ! Lance ARMURE !</blockquote>
-            </div>
-            <div class="col fragment">
-              <img class="noshadow" src="/chrysacier-armure.png" height="340px"/>
-              <p class="smaller">
-                <strong><code><span class="purple">&nbsp;wEnemyMonDefenseMod:</span> 8&nbsp;</code></strong>
-              </p>
-            </div>
-          </div>
         </section>
 
         <!-- atk fell -->
@@ -2367,7 +2409,8 @@
               <p class="fragment">
                 Le bit <strong>0</strong> de <strong>$CD60</strong> retourne à <strong>0</strong>.
                 <br />
-                le jeu <strong>ne considère plus</strong> qu'on se fait engager par un dresseur
+                <br/>
+                le jeu <strong class="bright">ne considère plus</strong> qu'on se fait <strong class="bright">engager</strong> par un dresseur
                 <br/>
                 (à raison)
               </p>
@@ -2392,7 +2435,7 @@
           </div>
           <aside class="notes">
             A la fin du combat, la routine EndTrainerBattle va remettre le bit 0 de $CD60 à 0,
-            donc le jeu ne considère plus qu'on est engagé par un dresseur, on récupère l'usage du bouton START
+            donc le jeu ne considère plus qu'on est engagé par un dresseur
           </aside>
         </section>
 
@@ -2763,11 +2806,17 @@
           <img class="noshadow" src="/6/mew-glitch/mew-index.png" />
         </section>
         <section>
-          MEW CAPTURÉ, + DANS LE POKEDEX
+          <h3>Et bim !</h3>
+          <img class="noshadow" src="/mew-was-caught.png" height="450px"/>
+          <img class="noshadow right" src="/mew-dans-le-pokedex.png" height="450px"/>
         </section>
-        <section>
-          <h3 class="highlight-gold">ENFANCE : SAUVÉE</h3>
+        <section data-auto-animate>
+          <h3 data-id="match" class="highlight-gold">ENFANCE : SAUVÉE</h3>
           <img src="/6/mew-glitch/pikachu-boner.jpeg" />
+        </section>
+        <section data-auto-animate>
+          <h3 data-id="match" class="highlight-gold">ENFANCE : SAUVÉE</h3>
+          <img src="/enfance-sauvee.webp" />
         </section>
         <section>
           <img src="/gamefaq-archives.png" height="500px" />

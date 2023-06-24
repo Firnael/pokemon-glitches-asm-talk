@@ -154,6 +154,9 @@ p {
 .line-through {
   text-decoration: rgb(255, 196, 0) line-through;
 }
+p.nomargin {
+  margin: 0px;
+}
 
 /* Tables */
 table {
