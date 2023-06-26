@@ -2401,7 +2401,7 @@
                 <code data-trim data-noescape>
                   ; trainers.asm
 
-                  EndTrainerBattle::
+                  EndTrainerBattle:
                     ; ... 
                     ld hl, wFlags_0xcd60
 	                   res 0, [hl] 
@@ -2645,7 +2645,7 @@
           <br/>
           <div class="container">
             <div class="col">
-              <h4>Pourquoi un combat se lance ?</h4>
+              <h4>1. Pourquoi un combat se lance ?</h4>
               <p class="fragment">
                 Lorsqu'on <strong class="bright">ferme le MENU</strong>, la 2ème partie de 
                 <br/>
@@ -2685,38 +2685,11 @@
             <br/>
             <strong>$CD2E</strong> : <strong>$01</strong>
           </p>
-          <br/>
-          <h4>Mais pourquoi un combat<br/>contre Mew ?</h4>
-          <div class="container vertical fragment">
-            <pre class="thin armasm">
-              <code data-trim data-noescape>
-                ; trainers.asm 
-  
-                InitBattleEnemyParameters:
-                  ld a, [wEngagedTrainerClass]
-                  ld [wCurOpponent], a
-                  ld [wEnemyMonOrTrainerClass], a
-                  cp OPP_ID_OFFSET
-                  ld a, [wEngagedTrainerSet]
-                  jr c, .noTrainer
-                  ld [wTrainerNo], a
-                  ret
-                .noTrainer
-                  ld [wCurEnemyLVL], a
-                  ret
-              </code>
-            </pre>
-            <h5>un <span class="bright">fail-safe</span> qui tourne <span class="bright">mal</span></h5>
-          </div>
-          <aside class="notes">
-            On a vu la fonction ""InitBattleEnemyParameters" tout à l'heure, il existe un fail-safe qui,
-            lorsque la condition "noTrainer" est remplie (c'est à dire quand la valeur présente dans le 
-            registre a, soit "wEngagedTrainerClass" - OPP_ID_OFFSET est inférieur à 0),
-            va charger dans "wCurEnemyLVL" la valeur de "wEngagedTrainerSet".
-          </aside>
+          <h4>2. Pourquoi <br/>contre un <span class="bright">Mew niveau 1</span> ?</h4>
+          <img src="/but-why.gif" />
         </section>
 
-        <!-- Du coup il se passe 2-3 trucs -->
+        <!-- En fait il se passe 2-3 trucs -->
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
@@ -2847,6 +2820,8 @@
             le jeu doit lancer un combat.
           </aside>
         </section>
+
+        <!-- Un fail-safe qui tourne mal -->
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
@@ -2859,7 +2834,180 @@
             <br/>
             <strong>$CD2E</strong> : <strong>$01</strong>
           </p>
-          <img class="noshadow" src="/6/mew-glitch/mew-index.png" />
+          <h4>Pour la faire courte</h4>
+          <div class="container vertical fragment">
+            <pre data-id="match-1" class="thin armasm">
+              <code data-trim data-noescape>
+                ; trainers.asm 
+  
+                InitBattleEnemyParameters:
+                  ld a, [wEngagedTrainerClass]
+                  ld [wCurOpponent], a
+                  ld [wEnemyMonOrTrainerClass], a
+              </code>
+            </pre>
+            <pre data-id="match-2" class="thin armasm">
+              <code data-trim data-noescape>
+                  cp OPP_ID_OFFSET
+                  ld a, [wEngagedTrainerSet]
+                  jr c, .noTrainer
+                  ld [wTrainerNo], a
+                  ret
+                .noTrainer
+                  ld [wCurEnemyLVL], a
+                  ret
+              </code>
+            </pre>
+            <h5>un <span class="bright">fail-safe</span> qui tourne <span class="bright">mal</span></h5>
+          </div>
+          <aside class="notes">
+            On a vu la fonction ""InitBattleEnemyParameters" tout à l'heure, il existe un fail-safe qui,
+            lorsque la condition "noTrainer" est remplie (c'est à dire quand la valeur présente dans le 
+            registre a, soit "wEngagedTrainerClass" - OPP_ID_OFFSET est inférieur à 0),
+            va charger dans "wCurEnemyLVL" la valeur de "wEngagedTrainerSet".
+          </aside>
+        </section>
+
+        <!-- explication de la condition .noTrainer -->
+        <section data-auto-animate>
+          <p class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$15</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$01</strong>
+          </p>
+          <div class="container">
+            <div class="col">
+              <br/>
+              <br/>
+              <pre data-id="match-1" class="small armasm">
+                <code data-trim data-noescape>
+                  InitBattleEnemyParameters:
+                    ld a, [wEngagedTrainerClass]
+                    ld [wCurOpponent], a
+                </code>
+              </pre>
+            </div>
+            <div class="col fragment">
+              <br/>
+              <p>
+                <strong>Charge</strong> la valeur de <code class="purple">&nbsp;wEngagedTrainerClass&nbsp;</code>
+                <br/>
+                <span class="bright">donc <strong>$CD2D</strong></span>
+                <br/>
+                dans <code class="purple">&nbsp;wCurOpponent&nbsp;</code>
+              </p>
+            </div>
+          </div>
+          <div class="container">
+            <div class="col">
+              <pre data-id="match-2" class="armasm">
+                <code data-trim data-noescape>
+                    cp OPP_ID_OFFSET ; vaut 200
+                    ld a, [wEngagedTrainerSet]
+                    jr c, .noTrainer
+                    ld [wTrainerNo], a
+                    ret
+                  .noTrainer
+                    ld [wCurEnemyLVL], a
+                    ret
+                </code>
+              </pre>
+            </div>
+            <div class="col fragment">
+              <p>
+              <strong>Charge</strong> la valeur de <code class="purple">&nbsp;wEngagedTrainerSet&nbsp;</code>
+                <br/>
+                <span class="bright">donc <strong>$CD2E</strong></span>
+                <br/>
+                dans <code class="purple">&nbsp;wCurEnemyLVL&nbsp;</code>
+                <br/>
+                car on remplit la condition <code>&nbsp;jr c, .noTrainer&nbsp;</code>
+              </p>
+            </div>  
+          </div>
+          <p class="fragment smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$15</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$01</strong>
+            <br/>
+            <span data-id="match-1" class="bright"><strong>wCurOpponent</strong> : <strong>$15</strong></span>
+            <br/>
+            <span data-id="match-2" class="bright"><strong>wCurEnemyLVL</strong> : <strong>$01</strong></span>
+          </p>
+          <aside class="notes">
+            - Avant de sauter dans la condition ".noTrainer", le jeu va charger la valeur de wEngagedTrainerClass
+            (donc en fait $15) à deux autres endroits.
+            - Il va également charger wEngagedTrainerSet dans le registre a juste avant,
+            et le contenu du registre a
+          </aside>
+        </section>
+
+        <!-- Explications du chargement de Mew -->
+        <section data-auto-animate>
+          <p class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$15</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$01</strong>
+            <br/>
+            <strong>wCurOpponent</strong> : <strong>$15</strong>
+            <br/>
+            <strong>wCurEnemyLVL</strong> : <strong>$01</strong>
+          </p>
+          <div class="container">
+            <div class="col">
+              <br/>
+              <br/>
+              <p><code><strong class="purple">wCurOpponent</strong> == <strong>$15</strong></code></p>
+            </div>
+            <div class="col">
+              <br/>
+              <pre class="armasm">
+                <code data-trim data-noescape data-line-numbers="6">
+                  ; pokemon_constants.asm
+                  
+                  ; ...
+                  const LAPRAS     ; $13
+                  const ARCANINE   ; $14
+                  const MEW        ; $15 ⬅️
+                  const GYARADOS   ; $16
+                  const SHELLDER   ; $17
+                </code>
+              </pre>
+            </div>
+          </div>
+          <div class="container fragment">
+            <div class="col">
+              <br/>
+              <p><code><strong class="purple">wCurEnemyLVL</strong> == <strong>$01</strong></code></p>
+            </div>
+            <div class="col">
+              <img src="/mew-lvl-1.png">
+            </div>
+          </div>
+          <aside class="notes">
+            - Avant de sauter dans la condition ".noTrainer", le jeu va charger la valeur de wEngagedTrainerClass
+            (donc en fait $15) à deux autres endroits.
+            - Il va également charger wEngagedTrainerSet dans le registre a juste avant,
+            et le contenu du registre a
+          </aside>
         </section>
 
         <!-- Mew was caught / tout rentre dans l'ordre -->
@@ -2901,9 +3049,6 @@
               <h4>Et tout rentre dans l'ordre</h4>
               <pre class="fragment armasm">
                 <code data-trim data-noescape>
-                  ; wram.asm
-                  wRoute8CurScript: db ; init à '0'
-
                   ; Route8.asm
                   Route8_ScriptPointers:
                     dw CheckFightingMapTrainers 
@@ -2946,26 +3091,20 @@
             <span class="bright"><strong >wRoute8CurScript</strong> : <strong>0</strong></span>
           </p>
         </section>
+
+        <!-- Nothing illegal happened -->
         <section data-auto-animate>
-          <div class="container">
-            <div class="col">
-              <img src="/nothing-happened.gif" />
-            </div>
+          <div class="container vertical">
             <div class="col">
               <p data-id="match">
-                <strong >wRoute8CurScript</strong> : <strong>0</strong>
+                <strong>wRoute8CurScript</strong>: <strong>0</strong>
                 <br/>
-                <strong>$CD60</strong> : <strong>0</strong>
+                <strong>$CD60</strong>: <strong>0</strong>
                 <br/>
-                <strong>$D730</strong> : <strong>0</strong>
-                <br/>
-                <strong>$CD2D</strong> : <strong>$15</strong>
-                <br/>
-                <strong>$CD2E</strong> : <strong>$01</strong>
+                <strong>$D730</strong>: <strong>0</strong>
               </p>
-            </div>
-            <div class="col">
-              <img src="/nothing-illegal-happened.gif" />
+              <br/>
+              <img src="/nothing-happened.gif" height="400px"/>
             </div>
           </div>  
         </section>
@@ -2983,7 +3122,7 @@
         </section>
         <section data-auto-animate>
           <h3 data-id="match" class="highlight-gold">ENFANCE : SAUVÉE</h3>
-          <img src="/enfance-sauvee.webp" />
+          <img src="/pikachu-sleeping.jpg" height="400px" />
         </section>
         <section>
           <img src="/gamefaq-archives.png" height="500px" />
@@ -3018,6 +3157,26 @@
             certainement compris, cette technique peut être utilisée pour rencontrer et capturer à peu près n'importe
             quel pokémon en fonction du dresseur et du pokémon combattu.
             Il existe même une map avec toutes les infos
+          </aside>
+        </section>
+
+        <!-- Pourquoi avoir baissé le niveau de Mew ? -->
+        <section>
+          <h4>Pourquoi je me suis donné du mal à <span class="bright">baisser le niveau de Mew</span> avec des rugissements ?</h4>
+          <div class="container">
+            <div class="col">
+              <br/>
+              <br/>
+              <img src="/mew-lvl-1.png"/>
+            </div>
+            <div class="col">
+              <img src="/dracaufeu-pense.gif" height="400px"/>
+            </div>
+          </div>
+          <aside class="notes">
+            Bon, après avoir fait tout ça on peut se demander :
+            pourquoi avoir volontairement fait baisser le niveau de Mew à 1,
+            est-ce qu'on pouvait pas le laisser à 7 et se passer des 6 rugissements ?
           </aside>
         </section>
 
