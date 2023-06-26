@@ -279,6 +279,12 @@ ol.summary {
   right: 160px;
   height: 300px;
 }
+.einstein-calm {
+  position: absolute;
+  bottom: -50px;
+  right: 0px;
+  height: 300px;
+}
 
 .ash {
   position: absolute;

@@ -809,7 +809,7 @@
           <img src="/5/avenger-red.jpeg" />
           <aside class="notes">
             C'est pourquoi mesdames, messieurs, aujourd'hui, après cette intro de 45 minutes,
-            il est temps de venger mon moi d'il y a 20 ans, en recapturant Mew, et cette fois, avec la manière.
+            il est temps de venger mon moi d'il y a 20 ans, en recapturant Mew, et cette fois, avec panache.
           </aside>
         </section>
       </section>
@@ -841,7 +841,7 @@
           <aside class="notes">
             - Celui que vous voyez là, cet espèce d'amas de pixels informe,
             que vous avez également pu voir dans la vidéo d'intro est certainement le glitch le plus connu
-            de cette génération de jeux : le mystérieux PKMN "Missingno"
+            de cette génération de jeux : le mystérieux PKMN "Missingno", on en reparlera un peu si on a le temps.
           </aside>
         </section>
         <section>
@@ -944,19 +944,37 @@
             mémoire situés à même le CPU.
           </aside>
         </section>
+
+        <!-- Cartridges -->
+        <section>
+          <div class="container">
+            <div class="col">
+              <img class="noshadow" src="/tetris-cartridge.png">
+              <h4>32KB</h4>
+            </div>
+            <div class="col fragment">
+              <img class="noshadow" src="/crystal-cartridge.png">
+              <h4>4MB</h4>
+            </div>
+          </div>
+          <aside class="notes">
+            Les jeux sont écrits en assembleur (pour l'écrasante majorité), et sont stockés sur une cartouche 
+            de capacité allant de 32KB (pour les plus petits) jusqu'à 4MB pour les plus gros.
+          </aside>
+        </section>
         <section>
           <img src="/6/gameboy-asm.png" />
           <aside class="notes">
-            Les jeux sont écrits en assembleur, et sont stockés sur une cartouche, contenant
-            une chip de 32KB (pour les plus petits, on est monté jusqu'à 4MB pour les plus gros).
+            Voici d'ailleurs la liste des instructions disponibles sur le DMG-CPU, alors...
           </aside>
         </section>
+
         <!-- Cours d'ASM -->
         <section>
           <img src="/6/assembly-meme-1.webp" />
           <img class="right" src="/6/assembly-meme-2.jpeg" height="600px" />
           <aside class="notes">
-            Pour se rendre compte du bordel que c'est de développer un jeu comme Pokémon en assembleur,
+            ... pour se rendre compte du bordel que c'est de développer un jeu comme Pokémon en assembleur,
             je vous propose un petit exemple.
           </aside>
         </section>
@@ -989,25 +1007,31 @@
               <h4>En ASM 8088</h4>
               <pre class="small armasm">
                 <code data-trim data-noescape data-line-numbers>
-                  LD A, 0
-                  LD (8000H), A
+                  wCoins: db $0 ; $8000
+                  wLife: db $3  ; $8001
+
+                  ld a, 0
+                  ld [wCoins], a
                   ; ...
-                  LD A, (8000H)
-                  INC A
-                  LD (8000H), A
-                  SUB 101
-                  JP C, AFTER
-                  LD A, 0 
-                  LD (8000H), A
-                  LD A, (8001H)
-                  INC A
-                  LD (8001H), A
-                  AFTER:
+                  ld a, [wCoins]
+                  inc a
+                  ld [wCoins], a
+                  sub 101
+                  jp c, .KeepGoing
+                  ld a, 0 
+                  ld [wCoins], a
+                  ld a, [wLife]
+                  inc a
+                  ld [wLife], a
+                  .KeepGoing:
+                  ; ...
                 </code>
               </pre>
+              <img class="absolute-bottom-right noshadow fragment" src="/6/crying-cat.png" />
             </div>
           </div>
         </section>
+        <!--
         <section data-auto-animate>
           <h4>En Assembleur</h4>
           <pre class="armasm long">
@@ -1033,7 +1057,7 @@
               ;...           ; des 100 pièces n'était pas remplie
             </code>
           </pre>
-          <img class="absolute-bottom-right noshadow fragment" src="/6/crying-cat.png" />
+          
           <aside class="notes">
             - Comme on l'a dit just avant, une des limitations du processeur de la Gameboy est qu'on est forcé
             de passer par le registre A pour effectuer des opérations mathématiques.
@@ -1041,6 +1065,7 @@
             (ici, l'adresse $8000 pour le score, et l'adresse $8001 pour les vies)
           </aside>
         </section>
+        -->
 
         <!-- Mew Glitch -->
         <section>
@@ -2614,7 +2639,7 @@
           </p>
           <div class="container">
             <div class="col-wide">
-              <h4>Mais pourquoi un combat se déclenche contre Mew ?</h4>
+              <h4>Je <span class="bright">ferme</span> mon MENU, et un combat <span class="bright">se lance</span> contre Mew</h4>
               <img src="/wtf.gif"/>
             </div>
             <div class="col">
@@ -2975,7 +3000,11 @@
             <div class="col">
               <br/>
               <br/>
-              <p><code><strong class="purple">wCurOpponent</strong> == <strong>$15</strong></code></p>
+              <p>
+                <code>&nbsp;<strong class="purple">wCurOpponent</strong> == <strong>$15</strong>&nbsp;</code>
+                <br/>
+                <strong class="bright">L'ID de l'adversaire</strong>
+              </p>
             </div>
             <div class="col">
               <br/>
@@ -2995,8 +3024,11 @@
           </div>
           <div class="container fragment">
             <div class="col">
-              <br/>
-              <p><code><strong class="purple">wCurEnemyLVL</strong> == <strong>$01</strong></code></p>
+              <p>
+                <code>&nbsp;<strong class="purple">wCurEnemyLVL</strong> == <strong>$01</strong>&nbsp;</code>
+                <br/>
+                <strong class="bright">Le niveau de l'adversaire</strong>
+              </p>
             </div>
             <div class="col">
               <img src="/mew-lvl-1.png">
@@ -3250,7 +3282,22 @@
           </div>
         </section>
         <section>
+          <h4>Pour <span class="bright">n = 2</span></h4>
+          <h5>le plus petit niveau possible normalement</h5>
+          <div class="fragment">
+            \[\begin{align*}
+            \exp& = 6/5*2^3 - 15*2^2 + 100*2 - 140 \\
+            \exp& = 48/5 - 60 + 200 - 140 \\
+            \exp& = 48/5 \\
+            \exp& = 9.6 \\
+            \exp& \approx 10
+            \end{align*} \]
+          </div>
+          <img class="fragment einstein" src="/6/mew-glitch/einstein.jpg" />
+        </section>
+        <section>
           <h4>Cas particulier d'un Pokémon de niveau <span class="bright">1</span></h4>
+          <h5>niveau <span class="red">impossible</span> à obtenir en jouant normalement !</h5>
           <div class="fragment">
             \[\begin{align*}
             \exp& = 6/5*1^3 - 15*1^2 + 100*1 - 140 \\
@@ -3260,22 +3307,14 @@
             \exp& \approx -54
             \end{align*} \]
           </div>
-          <img class="fragment einstein" src="/6/mew-glitch/einstein.jpg" />
+          <img class="fragment einstein-calm" src="/calm-down-einstein.jpeg" />
         </section>
 
         <!-- C'est quoi un Underflow ? -->
         <section>
-          <h3>L'overflow</h3>
-          <img src="/overflow.png" height="500px"/>
-          <aside class="notes">
-            Un overflow survient lorsqu'on dépasse la valeur maximale d'un type de données.
-            Typiquement un affichage digital qui passe de 999999 à 000000.
-          </aside>
-        </section>
-        <section>
           <h3>L'underflow</h3>
-          <h4>c'est <span class="bright">pareil</span>, mais dans <span class="bright">l'autre sens</span></h4>
-          <img src="/overflow.png" height="500px"/>
+          <h4>c'est comme un <span class="bright">overflow</span>, mais dans <span class="bright">l'autre sens</span></h4>
+          <img src="/overflow.png" height="450px"/>
           <aside class="notes">
             Un underflow quant à lui survient lorsqu'on passe sous la valeur minimale d'un type de données.
             Typiquement un affichage digital qui passe de 000000 à 999999.
@@ -3306,7 +3345,7 @@
           </aside>
         </section>
         <section>
-          <h4 class="fragment">
+          <h4>
             Y stocker <span class="bright">un nombre négatif X</span>
             <br/>
             revient à essayer de stocker
@@ -3330,33 +3369,216 @@
           <img class="right" src="/6/mew-glitch/hackerman.jpg" height="400px" />
         </section>
         <section>
-          <img src="/muscu-pokemon.webp" height="600px" />
+          <h3>Les possibilités sont INFINIES</h3>
+          <img src="/muscu-pokemon.webp" height="500px" />
           <aside class="notes">
             On a plus qu'à faire ça avec tous les autres pour avoir une équipe bien cheatée
           </aside>
         </section>
 
-        <!-- Ditto Trick -->
-        <section>
-          <h4>Désavantages du Long Range Trainer Glitch :</h4>
-          <ul>
-            <li>il faut un dresseur "long range" encore non-combattu</li>
-            <li>il faut d'autres dresseurs encore non-combattus</li>
-            <li>on est dépendant du dernier Pokémon combattu (et de sa stat SPE)</li>
-          </ul>
+        <!-- Dépendance à la stat SPE -->
+        <section data-auto-animate>
+          <h3>Oui, mais...</h3>
+          <div class="fragment">
+            <h4><span class="red">Désavantages</span> du Long Range Trainer Glitch :</h4>
+            <ul>
+              <li class="fragment">
+                <p>
+                  il faut un dresseur <strong>"long range"</strong> encore non-combattu
+                  <br />
+                  (pour placer l'index sur <strong>DisplayEnemyTrainerTextAndStartBattle</strong>)
+                </p>
+              </li>
+              <li class="fragment">
+                <p>
+                  il faut d'autres dresseurs encore non-combattus
+                  <br />
+                  (pour reset <strong>$CD60</strong> et <strong>$D730</strong>)
+                </p>
+              </li>
+              <li class="fragment">
+                <p data-id="match">
+                  on est <strong>dépendant</strong> du dernier Pokémon combattu<br/>(et de sa stat <strong>SPE</strong>)
+                </p>
+              </li>
+            </ul>
+          </div>
           <aside class="notes">
             Ce glitch est puissant mais présentes plusieurs désavantages.
           </aside>
         </section>
 
-        <section>
-          <h5>Mais du coup, que se passe-t-il avec un ID > 200 ?</h5>
+        <!-- Ditto Trick -->
+        <section data-auto-animate>
+          <p data-id="match">
+            on est <strong>dépendant</strong> du dernier Pokémon combattu<br/>(et de sa stat <strong>SPE</strong>)
+          </p>
           <img class="fragment" src="/6/chen-glitch/ditto.jpg" height="500px" />
           <aside class="notes">
-            On a dit que les PKMN sont stockés de 0 à 200, (avec des trous au milieu)
+            Quoi que, pour le dernier, on a encore un peu de mou, sans mauvais jeu de mot
           </aside>
         </section>
+
+        <!-- Qu'est ce qu'un métamorph ? -->
         <section>
+          <div class="container">
+            <div class="col">
+              <img class="highlight-gold" src="/metamorph.png" height="400px"/>
+            </div>
+            <div class="col fragment">
+              <img src="/morphing.gif" height="400px"/>
+            </div>
+          </div>
+          <aside class="notes">
+            Métamorph est un pokémon très spécial en ça qu'il ne peut apprendre qu'une seul et unique attaque
+            : Morphing
+            Cette attaque copie non seulement l'apparence, le type, et les attaques du pokémon adverse,
+            mais aussi ses statistiques (excepté les HP)
+          </aside>
+        </section>
+
+        <!-- Re-prépare le glitch -->
+        <section data-auto-animate>
+          
+          <h4>Si je re-prépare le<br/>glitch...</h4>
+          <div class="container">
+            <div class="col fragment">
+              <img class="noshadow" src="/dresseur-me-voit.png"/>
+              <p class="smaller absolute-top-right">
+                <strong>wRoute8CurScript</strong> : <strong>1</strong>
+                <br/>
+                <strong>$CD60</strong> : <strong>1</strong>
+                <br/>
+                <strong>$D730</strong> : <strong>1</strong>
+                <br/>
+                <strong>$CD2D</strong> : <strong>$??</strong>
+                <br/>
+                <strong>$CD2E</strong> : <strong>$??</strong>
+              </p>
+            </div>
+            <div class="col fragment">
+              <img class="noshadow" src="/re-setup-2.png"/>
+              <p data-id="match" class="smaller absolute-top-right">
+                <strong>wRoute8CurScript</strong> : <strong>1</strong>
+                <br/>
+                <span class="line-through"><strong>$CD60</strong> : <strong>0</strong></span>
+                <br/>
+                <span class="line-through"><strong>$D730</strong> : <strong>0</strong></span>
+                <br/>
+                <span class="line-through"><strong>$CD2D</strong> : <strong>$15</strong></span>
+                <br/>
+                <span class="line-through"><strong>$CD2E</strong> : <strong>$01</strong></span>
+                <br/>
+                <span class="bright"><strong>$CD60</strong> : <strong>0</strong></span>
+                <br/>
+                <span class="bright"><strong>$D730</strong> : <strong>0</strong></span>
+                <br/>
+                <span class="bright"><strong>$CD2D</strong> : <strong>$15</strong></span>
+                <br/>
+                <span class="bright"><strong>$CD2E</strong> : <strong>$01</strong></span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mon Spectrum se fait copier les stats -->
+        <section data-auto-animate>
+          <p data-id="match" class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$15</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$01</strong>
+          </p>
+          <img src="/spectrum-226.png" height="600px" />
+          <aside class="notes">
+            Mais admettons que quelqu'un soit assez déterminé pour monter à un niveau élevé un PKMN avec une
+            très grosse stat SPECIAL de base comme Spectrum, qu'il utilise d'autres glitchs de derrière les fagots
+            pour par exemple dupliquer les objets, afin d'obtenir une stat de, par exemple, 226 ?
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <p class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$15</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$01</strong>
+          </p>
+          <img src="/6/chen-glitch/chen-glitch-2.png" height="600px" />
+          <p data-id="match" class="fragment smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <span class="line-through"><strong>$CD2D</strong> : <strong>$15</strong></span>
+            <br/>
+            <span class="line-through"><strong>$CD2E</strong> : <strong>$01</strong></span>
+            <br/>
+            <span class="bright"><strong>$CD2D</strong> : <strong>$??</strong></span>
+            <br/>
+            <span class="bright"><strong>$CD2E</strong> : <strong>$07</strong></span>
+          </p>
+          <aside class="notes">
+            Et admettons que cette personne retourne faire le Long Range Trainer glitch, puis s'envole à l'est de
+            Parmanie, chercher un Métamorph dans les hautes herbes
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <p data-id="match" class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$??</strong>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$07</strong>
+          </p>
+          <img src="/6/chen-glitch/chen-glitch-3.png" height="600px" />
+          <p data-id="match-next" class="fragment smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <span class="line-through"><strong>$CD2D</strong> : <strong>$??</strong></span>
+            <br/>
+            <strong>$CD2E</strong> : <strong>$07</strong>
+            <br/>
+            <span class="bright"><strong>$CD2D</strong> : <strong>$E2</strong> (226)</span>
+          </p>
+          <aside class="notes">
+            Admettons qu'il laisse le Métamorph se transformer en son Spectrum, et par la même, copier ses statistiques,
+            y compris sa stat SPECIAL de 226, copiant ainsi la valeur 226 dans le byte $CD2D
+          </aside>
+        </section>
+        
+        <section data-auto-animate>
+          <p data-id="match-next" class="smaller absolute-top-right">
+            <strong>wRoute8CurScript</strong> : <strong>1</strong>
+            <br/>
+            <strong>$CD60</strong> : <strong>0</strong>
+            <br/>
+            <strong>$D730</strong> : <strong>0</strong>
+            <br/>
+            <strong>$CD2D</strong> : <strong>$E2</strong> (226)
+            <br/>
+            <strong>$CD2E</strong> : <strong>$07</strong>
+          </p>
+          <br/>
           <div class="container">
             <div class="col">
               <pre class="small armasm">
@@ -3388,64 +3610,15 @@
             </div>
           </div>
           <aside class="notes">
-            En fait ce sont les dresseurs qui sont après 200, chaque dresseur a un index, comme les PKMN,
-            et la valeur de cet index est ajoutée à 200 pour donner son index in-game.
+            On l'a dit plusieurs fois, ce sont les dresseurs qui sont après 200, chaque dresseur a un index,
+            comme les PKMN, et la valeur de cet index est ajoutée à 200 pour donner son index in-game.
           </aside>
         </section>
+        
         <section>
-          <img src="/mewtwo-dark.jpeg" height="500px" />
-          <aside class="notes">
-            Le problème, c'est que pour provoquer des combats contre des dresseurs avec ce glitch, il faut d'abord 
-            vaincre un pokémon avec une stat SPE > 200, il n'y en a qu'un seul dans le jeu, c'est Mewtwo.
-          </aside>
-        </section>
-        <section>
-          <img src="/6/chen-glitch/chen-glitch-1.png" height="600px" />
-          <aside class="notes">
-            Mais admettons que quelqu'un soit assez déterminé pour monter à un niveau élevé un PKMN avec une
-            très grosse stat SPECIAL de base comme Spectrum, qu'il utilise d'autres glitchs de derrière les fagots
-            pour par exemple dupliquer les objets, afin d'obtenir une stat de, par exemple, 226 ?
-          </aside>
-        </section>
-        <section>
-          <img src="/6/chen-glitch/chen-glitch-2.png" height="600px" />
-          <aside class="notes">
-            Et admettons que cette personne retourne faire le Long Range Trainer glitch, puis s'envole à l'est de
-            Parmanie, chercher un Métamorph dans les hautes herbes
-          </aside>
-        </section>
-        <section>
-          <div class="container">
-            <div class="col">
-              <img class="highlight-gold" src="/metamorph.png" height="400px"/>
-            </div>
-            <div class="col fragment">
-              <img src="/morphing.gif" height="400px"/>
-            </div>
-          </div>
-          <aside class="notes">
-            Métamorph est un pokémon très spécial en ça qu'il ne peut apprendre qu'une seul et unique attaque
-            : Morphing
-            Cette attaque copie non seulement l'apparence, le type, et les attaques du pokémon adverse,
-            mais aussi ses statistiques (excepté les HP)
-          </aside>
-        </section>
-        <section>
-          <img src="/6/chen-glitch/chen-glitch-3.png" height="600px" />
-          <aside class="notes">
-            Admettons qu'il laisse le Métamorph se transformer en son Spectrum, et par la même, copier ses statistiques,
-            y compris sa stat SPECIAL de 226, copiant ainsi la valeur 226 dans le byte $CD2D
-          </aside>
-        </section>
-        <section>
-          <img src="/6/chen-glitch/chen-glitch-4.png" height="600px" />
-          <aside class="notes">
-            Admettons que ce Métamorph se fasse ensuite exploser
-          </aside>
-        </section>
-        <section>
-          <h5>Mais y'a quoi à <span class="bright">l'index 226</span> d'ailleurs ? 🤔</h5>
-          <h4 class="fragment">DEC : 26 => HEXA : <strong>1A</strong></h4>
+          <h4>Quel dresseur se trouve à <span class="bright">l'index 226</span> 🤔 ?</h4>
+          <h4 class="fragment"><code>226 - OPP_ID_OFFSET = <span class="bright">26</span></code></h4>
+          <h4 class="fragment"><code>"26" en héxadécimal = <span class="bright">$1A</span></code></h4>
           <div class="container">
             <div class="col">
               <pre class="fragment small armasm">
@@ -3464,14 +3637,14 @@
           <aside class="notes">
             Admettons que cette personne retourne à Lavanville et s'aventure de nouveau sur la route 8.
             Attendez, mais y'a quoi sur l'ID 226 anyway ?
-            (load-state 7)
+            (load-state 2)
           </aside>
         </section>
         <section>
           <img src="/6/chen-glitch/oak-and-ash-mom.webp" />
           <img class="fragment ash" src="/6/chen-glitch/ash-sad.webp" />
           <aside class="notes">
-            ça vous donnera une occasion de venger Sasha (parce qu'il s'est tapé sa daronne) et de l'éclater
+            Professeur CHEN qu'est-ce que vous faites ici ?!
           </aside>
         </section>
       </section>
