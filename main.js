@@ -21,3 +21,21 @@ deck.initialize({
         RevealMath.KaTeX
     ]
 })
+
+// automatically load the initial fragment on a slide if the fragment
+// has been defined with the 'preload' class
+deck.addEventListener('slidechanged', function (event) {
+    if (event.currentSlide.querySelectorAll('.preload[data-fragment-index="0"]').length > 0) {
+        deck.nextFragment();
+    }
+});
+
+// if the initial fragment on a slide has been defined with a 'preload' class
+// then transition to the previous slide if the fragment is hidden
+deck.addEventListener('fragmenthidden', function (event) {
+    if (event.fragment.hasAttribute('data-fragment-index') && event.fragment.classList.contains('preload')) {
+        if (event.fragment.attributes['data-fragment-index'].value == '0') {
+            deck.prev();
+        }
+    }
+});
