@@ -18,7 +18,10 @@ deck.initialize({
     plugins: [
         RevealNotes,
         RevealHighlight,
-        RevealMath.KaTeX
+        RevealMath.KaTeX,
+    ],
+    dependencies: [
+        { src: 'plugins/gamepad/gamepad.js', async: true, callback: () => initGamepad(deck)}
     ]
 })
 

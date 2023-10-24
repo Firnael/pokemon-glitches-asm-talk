@@ -31,10 +31,13 @@
           </div>
         </div>
         <aside class="notes">
-          Ce talk est une lettre d’amour à un jeu qui a bercé ma jeunesse et qui encore aujourd’hui me fascine :
-          le premier jeu Pokémon sur Game Boy. Un jeu contenant un nombre infini de glitchs.
+          Bonjour, merci à tous d'être venus assister à ce talk qui s'intitule 
+          "Retourner le cerveau de sa Gameboy pour les attraper vraiment tous" 
         </aside>
       </section>
+
+      <!-- Vidéo d'intro -->
+      <section data-transition="fade" data-background-video="/codeurs-en-seine-intro.mp4"></section>
 
       <!-- 2. Speaker & phrase d'accroche -->
       <section data-background-image="/0/gameboy-wallpaper.webp" class="blurred">
@@ -66,9 +69,9 @@
             <div class="col">
               <br />
               <img class="avatar noshadow" src="/maxds-logo.png" />
-              <li class="smaller no-dot">📅 Depuis ~3 ans et demi</li>
+              <li class="smaller no-dot">📅 Depuis bientôt 4 ans</li>
               <li class="smaller no-dot">👔 Développeur mais-pas-que</li>
-              <li class="smaller no-dot">😊 Passez sur le stand, on recrute !</li>
+              <li class="smaller no-dot">😊 On recrute sur Rennes et Lyon !</li>
             </div>
             <div class="col fragment">
               <img class="highlight noshadow" src="/hellowork-logo.png" />
@@ -92,20 +95,18 @@
           </div>
         </section>
         <aside class="notes">
-          ... et aujourd'hui je voudrais :
+          Aujourd'hui, je voudrais vous parler de mon enfance, d'assembleur, et surtout, de la première génération du jeu Pokémon sur Gameboy.
+          On va faire une petite expérience, levez tous la main si vous voulez bien.
           - vous raconter un peu ma vie => qui est né dans les années 90 ?
           - vous parler de la Gameboy => qui a eu une Gameboy ?
           - d'assembleur => qui a déjà écrit de l'assembleur ?
-          - et de Pokémon => qui n'a jamais joué à Pokémon ?
+          - et de Pokémon => qui n'a jamais joué à Pokémon Rouge / Bleu Jaune ?
           ---
-          - est-ce qu'il y a des personnes qui n'ont levé la main à aucune des questions ?
+          - est-ce qu'il y a des personnes qui ont les bras levé ?
           - bon alors vous, vous pouvez vous considérer dans ce qu'on appelle communement un traquenard
-          merci d'être venu quand même, je vais faire le max pour rendre ça intéressant
+          merci d'être quand même d'être venus, je vais faire mon max pour rendre ça intéressant.
+          Pour les autres, peut-être reconnaitrez-vous des choses dans cette petite intro :
         </aside>
-      </section>
-
-      <!-- Vidéo d'intro -->
-      <section data-transition="fade" data-background-video="/codeurs-en-seine-intro.mp4">
       </section>
 
       <!-- Partie 1 : Pocket Monsters -->
@@ -114,6 +115,7 @@
         <h2 class="highlight-gold">Pocket Monsters</h2>
         <h4 class="highlight">ポケットモンスタ</h4>
         <aside class="notes">
+          Donc on va parler de Pokémon, et notamment de la conception du jeu.
           Avant de retourner le cerveau de votre Gameboy, on va parler du cerveau derrière Pocket Monster.
         </aside>
       </section>
@@ -121,6 +123,7 @@
         <section>
           <img src="/4/libellule.jpeg" />
           <aside class="notes">
+            Cette histoire commence au Japon.
             Le Japon a un rapport particulier avec la nature,
             le respect pour celle-ci est au coeur de la religion shinto,
             pratiquée par la majorité des Japonais et de la culture japonaises...
@@ -469,7 +472,7 @@
           </aside>
         </section>
         <section>
-          <img src="/4/ps1-games.webp" height="300px" />
+          <img src="/4/ps1-games.jpeg" height="300px" />
           <img class="fragment" src="/4/super-mario-64.jpeg" height="300px" />
           <aside class="notes">
             En 96 la Gameboy se fait vieille, elle qui était déjà en retard technologiquement à sa sortie
@@ -776,7 +779,7 @@
             après il faut aller à Carmin sur Mer et utiliser la CS force avec un Pokémon lvl 100
             sur le camion (du coup pourquoi on a besoin des clés ???)
             ---
-            bref, on y croit plus au moins (un peu quand même).
+            bref, on y croit plus au moins (un peu quand même). Satoshi a réussi son coup.
           </aside>
         </section>
         <section>
@@ -1015,13 +1018,13 @@
               <h4>En Javascript</h4>
               <pre class="js">
                 <code data-trim data-noescape data-line-numbers>
-                  var coins = 0
-                  var life = 3
+                  let coins = 0;
+                  let life = 3;
                   // ...
-                  coins++
+                  coins++;
                   if (coins >= 100) {
-                    life++
-                    coins = 0
+                    life++;
+                    coins = 0;
                   }
                 </code>
               </pre>
@@ -1485,7 +1488,7 @@
               </pre>
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
-                  DisplayEnemyTrainerTextAndStartBattle::
+                  DisplayEnemyTrainerTextAndStartBattle:
                     ld a, [wd730]
                     and $1
                     ret nz
@@ -1528,7 +1531,7 @@
                 <code data-trim data-noescape>
                   ; trainer_sight.asm
 
-                  TrainerWalkUpToPlayer:: 
+                  TrainerWalkUpToPlayer:
                     ; ... 
                     .writeWalkScript
                     ; ... 
@@ -1539,7 +1542,7 @@
                 <code data-trim data-noescape>
                   ; pathfinding.asm
 
-                  MoveSprite_::
+                  MoveSprite_:
                     ; ... 
                     .loop 
                       ld hl, wd730
@@ -1728,7 +1731,7 @@
           <img class="ramoloss-cache noshadow" src="/6/mew-glitch/ramoloss.png" />
           <div class="container">
             <div class="col">
-              <h5>Il envoit un <span class="pink">Ramoloss</span></h5>
+              <h5>Il envoie un <span class="pink">Ramoloss</span></h5>
               <pre class="fragment small armasm">
                 <code data-trim data-noescape>
                   ; core.asm
@@ -2019,7 +2022,7 @@
                   class="purple"><strong>&nbsp;wEnemyMonStatMods&nbsp;</strong></code>
               </p>
               <p class="fragment">
-                Ils sont compris entre <br /><strong>$CD2F</strong> et <strong>$CD33</strong>
+                Ils sont compris entre <br /><strong>$CD2E</strong> et <strong>$CD33</strong>
               </p>
               <p class="fragment">
                 Ils commencent tous à <strong>$7</strong>
@@ -2180,7 +2183,7 @@
               ; wram.asm
 
               ; partage le byte $CD2E
-              wEngagedTrainerSet:: db
+              wEngagedTrainerSet: db
             </code>
           </pre>
           <p class="fragment">La valeur de l'adresse <strong>$CD2E</strong> <strong class="bright">est écrasée</strong>
@@ -2216,7 +2219,6 @@
           <img class="noshadow ramoloss-cache-2" src="/6/mew-glitch/ramoloss.png" />
           <img class="noshadow" src="/rugissement.png" height="600px" />
           <br />
-          <span class="grey smaller">Comment ça rugit un Herbizarre ?</span>
           <aside class="notes">
             Ensuite, je lui rugis dessus 6 fois.
           </aside>
@@ -2526,6 +2528,7 @@
             Mon MENU refonctionne ! (suite au reset de CD60), je peux m'envoler pour retourner à Lavanville.
           </aside>
         </section>
+
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
@@ -2540,6 +2543,8 @@
           </p>
           <img src="/6/mew-glitch/mew-glitch-8.png" height="600px" />
         </section>
+
+        <!-- Juste à droite de la route 8 -->
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
@@ -2552,7 +2557,7 @@
             <br />
             <strong>$CD2E</strong> : <strong>$01</strong>
           </p>
-          <img src="/6/mew-glitch/mew-glitch-8.png" height="300px" />
+          <img data-id="match" src="/6/mew-glitch/mew-glitch-8.png" height="300px" />
           <br />
           <img src="/6/mew-glitch/route-8.jpeg" />
           <aside class="notes">
@@ -2573,7 +2578,7 @@
             <br />
             <strong>$CD2E</strong> : <strong>$01</strong>
           </p>
-          <img src="/6/mew-glitch/mew-glitch-8.gif" height="600px" />
+          <img data-id="match" src="/6/mew-glitch/mew-glitch-8.gif" height="600px" />
         </section>
         <section data-auto-animate>
           <p class="smaller absolute-top-right">
@@ -3099,6 +3104,8 @@
             </div>
           </div>
         </section>
+
+        <!-- Tout rentre dans l'ordre -->
         <section data-auto-animate>
           <p data-id="match" class="smaller absolute-top-right">
             <strong>wRoute8CurScript</strong> : <strong>1</strong>
@@ -3114,22 +3121,33 @@
           <div class="container">
             <div class="col-wide">
               <h4>Et tout rentre dans l'ordre</h4>
-              <pre class="fragment armasm">
-                <code data-trim data-noescape>
-                  ; Route8.asm
-                  Route8_ScriptPointers:
-                    dw CheckFightingMapTrainers 
-                    dw DisplayEnemyTrainerTextAndStartBattle
-                    dw EndTrainerBattle ⬅️
-                </code>
-              </pre>
+              <div class="r-stack">
+                <pre data-fragment-index="1" class="fragment armasm">
+                  <code data-trim data-noescape>
+                    ; Route8.asm
+                    Route8_ScriptPointers:
+                      dw CheckFightingMapTrainers 
+                      dw DisplayEnemyTrainerTextAndStartBattle
+                      dw EndTrainerBattle ⬅️
+                  </code>
+                </pre>
+                <pre data-fragment-index="3" class="fragment armasm">
+                  <code data-trim data-noescape>
+                    ; Route8.asm
+                    Route8_ScriptPointers:
+                      dw CheckFightingMapTrainers ⬅️
+                      dw DisplayEnemyTrainerTextAndStartBattle
+                      dw EndTrainerBattle
+                  </code>
+                </pre>
+              </div>
             </div>
             <div class="col">
               <br />
               <img class="noshadow" src="/back-to-normal.png" />
             </div>
           </div>
-          <p data-id="match" class="fragment smaller absolute-top-right">
+          <p data-id="match" data-fragment-index="2" class="fragment smaller absolute-top-right">
             <span class="line-through"><strong>wRoute8CurScript</strong> : <strong>1</strong></span>
             <br />
             <strong>$CD60</strong> : <strong>0</strong>
@@ -3142,7 +3160,7 @@
             <br />
             <span class="bright"><strong>wRoute8CurScript</strong> : <strong>2</strong></span>
           </p>
-          <p data-id="match" class="fragment smaller absolute-top-right">
+          <p data-id="match" data-fragment-index="4" class="fragment smaller absolute-top-right">
             <span class="line-through"><strong>wRoute8CurScript</strong> : <strong>1</strong></span>
             <br />
             <strong>$CD60</strong> : <strong>0</strong>
@@ -3159,7 +3177,7 @@
           </p>
         </section>
 
-        <!-- Nothing illegal happened -->
+        <!-- Like nothing happened -->
         <section data-auto-animate>
           <div class="container vertical">
             <div class="col">
@@ -3358,6 +3376,16 @@
             Typiquement un affichage digital qui passe de 000000 à 999999.
           </aside>
         </section>
+
+        <section>
+          <img src="/ariane-overflow.jpeg" height="350px"/>
+          <p>
+            <b>Ariane 5 - Vol 501</b>
+            <br/>
+            4 juin 1996
+          </p>
+        </section>
+
         <section>
           <h4>
             L'expérience est stockée sur <strong class="bright">24 bits</strong>
@@ -3456,6 +3484,11 @@
           <aside class="notes">
             Quoi que, pour le dernier, on a encore un peu de mou, sans mauvais jeu de mot
           </aside>
+        </section>
+
+        <section>
+          <h2 class="r-fit-text highlight-gold">The <br/>Ditto Trick</h2>
+          <p class="">ou "La filouterie du Métamorph"</p>
         </section>
 
         <!-- Qu'est ce qu'un métamorph ? -->
@@ -3696,7 +3729,26 @@
 
       <!-- Fin -->
       <section data-transition="fade" data-background-image="/fin.png">
-        <section></section>
+        <section>
+          <h3>On pourrait en parler des heures</h3>
+          <div class="container">
+            <div class="col">
+              <div class="r-stack">
+                <img class="fragment m-auto noshadow" src="/7/old-man.png" height="400px" />
+                <img class="fragment m-auto noshadow" src="/7/wild-m-appeared.png" height="400px"  />
+                <img class="fragment m-auto noshadow" src="/7/rare-candy-duplicate.png" height="400px"  />
+              </div>
+              <b>The Old Man Glitch</b>
+            </div>
+            <div class="col">
+
+            </div>
+          </div>
+        </section>
+        <section>
+          TODO<br/>
+          https://www.youtube.com/watch?v=8Z5puRiiT7w
+        </section>
         <section>
           <h3 class="highlight-gold">Merci pour votre attention !</h3>
           <div class="container">
