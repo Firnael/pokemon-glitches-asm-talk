@@ -55,6 +55,7 @@
                     var cooldownedButtons = [];
 
                     const COOLDOWN = 300; // in ms
+                    const POINTER_SPEED = 20;
 
                     // Comments : Joycon bindings
                     var BUTTON = {
@@ -211,14 +212,13 @@
                                     }
 
                                     if (Math.abs(_val) > 0.2 && pointing) {
-                                        var fastMultiplier = 8;
                                         var left = pointer.style.left.replace('px', '') * 1;
                                         var top = pointer.style.top.replace('px', '') * 1;
                                         var constrainValue = function constrainValue(newVal) {
                                             return Math.min(Math.max(newVal, 0), window.innerWidth);
                                         };
-                                        // handleXbox360Axis(i, fastMultiplier, left, top, constrainValue);
-                                        handleRightJoyConAxis(i, _val, fastMultiplier, left, top, constrainValue);
+                                        // handleXbox360Axis(i, left, top, constrainValue);
+                                        handleRightJoyConAxis(i, _val, left, top, constrainValue);
                                     }
                                 }
                             }
@@ -227,7 +227,7 @@
                         requestAnimationFrame(updateStatus);
                     }
 
-                    function handleXbox360Axis(i, _val, fastMultiplier, left, top, constrainValue) {
+                    function handleXbox360Axis(i, _val, left, top, constrainValue) {
                         switch (i) {
                             case AXIS.ROX: {
                                 var newVal = _val * 2 + left;
@@ -240,12 +240,12 @@
                                 break;
                             }
                             case AXIS.LOX: {
-                                var _newVal2 = _val * fastMultiplier + left;
+                                var _newVal2 = _val * POINTER_SPEED + left;
                                 pointer.style.left = constrainValue(_newVal2) + 'px';
                                 break;
                             }
                             case AXIS.LOY: {
-                                var _newVal3 = _val * fastMultiplier + top;
+                                var _newVal3 = _val * POINTER_SPEED + top;
                                 pointer.style.top = constrainValue(_newVal3) + 'px';
                                 break;
                             }
@@ -253,17 +253,17 @@
                         }
                     }
 
-                    function handleRightJoyConAxis(i, _val, fastMultiplier, left, top, constrainValue) {
+                    function handleRightJoyConAxis(i, _val, left, top, constrainValue) {
                         switch (i) {
                             case AXIS.LOX: {
                                 console.log(`i=${i}, axis=LOY`);
-                                var _newVal3 = -_val * fastMultiplier + top;
+                                var _newVal3 = -_val * POINTER_SPEED + top;
                                 pointer.style.top = constrainValue(_newVal3) + 'px';
                                 break;
                             }
                             case AXIS.LOY: {
                                 console.log(`i=${i}, axis=LOX`);
-                                var _newVal2 = _val * fastMultiplier + left;
+                                var _newVal2 = _val * POINTER_SPEED + left;
                                 pointer.style.left = constrainValue(_newVal2) + 'px';
                                 break;
                             }
