@@ -24,9 +24,6 @@ deck.initialize({
         cooldown: 200,
         pointerSpeed: 15
     }
-    // dependencies: [
-    //     { src: 'plugins/gamepad/gamepad.js', async: true, callback: () => initGamepad(deck)}
-    // ]
 })
 
 // automatically load the initial fragment on a slide if the fragment
