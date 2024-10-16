@@ -28,6 +28,10 @@ img.m-auto {
 .noshadow {
   box-shadow: none;
 }
+.highlight-shadow {
+  filter: drop-shadow(.1rem .1rem .5rem #000);
+  box-shadow: none;
+}
 .squared {
   border-radius: 0rem;
 }
@@ -48,6 +52,17 @@ img.m-auto {
 .highlight-title {
   filter: drop-shadow(0rem 0rem .2rem #fff);
   box-shadow: none;
+}
+img.m-t-0 {
+  margin-top: 0px;
+}
+
+img.m-b-0 {
+  margin-bottom: 0px;
+}
+
+img.avatar {
+  border-radius: 50%;
 }
 .ramoloss {
   opacity: 1;
@@ -261,8 +276,8 @@ ol.summary {
 
 .mew {
   position: absolute;
-  top: 0px;
-  right: -30px;
+  top: -100px;
+  right: -150px;
   height: 200px;
   transform: translatey(0px);
 	animation: float 3s ease-in-out infinite;

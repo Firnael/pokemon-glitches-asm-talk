@@ -13,6 +13,12 @@
   <div class="reveal">
     <div class="slides">
 
+      <!-- Splash d'attente avant la vidéo -->
+      <section data-transition="fade" data-background-image="/0/devfest-nantes-splash.jpeg"></section>
+
+      <!-- Vidéo d'intro -->
+      <section data-transition="fade" data-background-video="/0/devfest-nantes-intro.webm"></section>
+
       <!-- Splash -->
       <section data-transition="fade" data-background-image="/0/gameboy-wallpaper.webp">
         <div class="container">
@@ -35,36 +41,6 @@
           "Retourner le cerveau de sa Gameboy pour les attraper vraiment tous"
         </aside>
       </section>
-
-      <section data-transition="fade" data-background-image="/0/gameboy-wallpaper.webp" class="blurred">
-        <div class="container">
-          <div class="col">
-            <img class="avatar" src="/moi.webp" height="600px" />
-          </div>
-          <div class="col">
-            <h4>Audren Burlot</h4>
-            <hr />
-            <div>
-              <p>
-                <i class="fa-brands fa-square-twitter fa-2xl"></i>
-                <a href="https://twitter.com/AudrenBrlt"><strong>@AudrenBrlt</strong></a>
-                <br />
-                <br />
-                <i class="fa-brands fa-github fa-2xl"></i>
-                <a href="https://github.com/Firnael"><strong>github.com/Firnael</strong></a>
-              </p>
-            </div>
-            <img class="avatar noshadow" src="/maxds-logo.png" height="150px" />
-            <img class="highlight noshadow" src="/hellowork-logo.png" height="150px" />
-          </div>
-        </div>
-        <aside class="notes">
-          Maitre artisan glacier Sanchez à St Malo !
-        </aside>
-      </section>
-
-      <!-- Vidéo d'intro -->
-      <section data-transition="fade" data-background-video="/0/jug-nantes-intro.mp4"></section>
 
       <!-- 2. Speaker & phrase d'accroche -->
       <section data-transition="fade" data-background-image="/0/gameboy-wallpaper.webp" class="blurred">
@@ -3213,11 +3189,11 @@
         </section>
 
         <!-- Enfance sauvée -->
-        <section data-auto-animate>
+        <section data-transition="fade">
           <h3 data-id="match" class="highlight-gold">ENFANCE : SAUVÉE</h3>
           <img src="/6/mew-glitch/pikachu-boner.jpeg" />
         </section>
-        <section>
+        <section data-transition="fade">
           <h3 data-id="match" class="highlight-gold">ENFANCE : SAUVÉE !</h3>
           <img src="/pikachu-sleeping.jpg" height="400px" />
         </section>
@@ -3739,8 +3715,8 @@
 
       </section>
 
-      <!-- Fin -->
-      <section data-transition="fade" data-background-image="/fin.png">
+      <!-- Outro -->
+      <section data-transition="fade" data-background-image="/outro/splash.png">
         <section>
           <h3>Je pourrais vous en parler des heures</h3>
           <div class="container">
@@ -3757,16 +3733,43 @@
           </div>
         </section>
 
-        <section>
+        <!-- <section>
           <video data-autoplay src="/7/speedon-aetienne.mp4"></video>
           <h3>Speedon 2021</h3>
           <h4>par Aetienne</h4>
+        </section> -->
+
+         <!-- Les petits -->
+        <section data-transition="fade">
+          <div class="container">
+            <div class="col fragment">
+              <img src="/outro/marius-pkmn.png" height="500px" />
+            </div>
+            <div class="col fragment">
+              <img src="/outro/celia-pkmn.jpg" height="500px" />
+            </div>
+          </div>
         </section>
 
-        <section>
-          <h3 class="highlight-gold">Merci pour votre attention !</h3>
-          <img class="squared" src="/marius-pkmn.png" height="500px" />
-          <img src="mew.png" class="mew highlight-gold" />
+        <!-- Merci -->
+        <section data-transition="fade">
+          <h3>Merci !</h3>
+          <div class="container">
+            <div class="col">
+              <img class="highlight-shadow noshadow m-t-0 m-b-0" src="/outro/maxds-logo.png" height="150px" />
+              <img class="highlight noshadow m-t-0 m-b-0" src="/outro/hellowork-logo.png" height="120px" />
+            </div>
+            <div class="col">
+              <img class="avatar" src="/outro/moi-rond.png" height="300px" />
+              <br />
+              <strong class="highlight-shadow">Audren Burlot</strong>
+              <h6 class="highlight-shadow">github.com/Firnael</h6>
+            </div>
+            <div class="col">
+              <img style="padding-left: 50px;" class="noshadow" src="/outro/qr-code-devfest-nantes.png" height="300px" />
+            </div>
+            <img src="mew.png" class="mew highlight-gold" />
+          </div>
         </section>
       </section>
 
