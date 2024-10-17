@@ -227,6 +227,10 @@
         </section>
         <section>
           <img src="/4/game-freak-logo.jpeg" height="550px" />
+          <div class="fragment absolute-bottom-right">
+            <p><strong class="highlight-gold">Junichi Masuda</strong></p>
+            <img class="noshadow" src="/4/junichi-masuda.png" height="400px" />
+          </div>
           <p><strong>1989</strong></p>
           <aside class="notes">
             1989 : il arrête la publication de son magazine pour se tourner vers le développement de jeux vidéo,
@@ -839,8 +843,9 @@
             <div class="col"><img src="/glitch-battle.png" height="300px" /></div>
             <div class="col"><img src="/glitch-battle-2.webp" height="300px" /></div>
           </div>
-          <h5 class="fragment">"il se passe des trucs <span class="bright">bizarres</span>, et c'était <span
-              class="bright">pas prévu</span>"</h5>
+          <h5 class="fragment">"il se passe des trucs <span class="bright">bizarres</span>, <br/>c'était <span
+              class="bright">pas prévu par les devs</span>, <br/>mais à la fin <span
+              class="bright">ça se passe quand même bien</span>"<br/><span class="grey">(en général...)</span></h5>
           <aside class="notes">
             - La première génération de jeux Pokémon est connu pour être truffée de glitchs.
             Mais qu'est ce qu'un glitch ?
@@ -3407,13 +3412,13 @@
             <span class="bright">UINT24_MAX - X</span>
           </h4>
           <div class="fragment">
-            Si par exemple on gagne <strong>20 XP</strong> au prochain combat :
+            Si par exemple on gagne <strong>11 XP</strong> au prochain combat :
             <br />
-            <h3>20 - 54 = -34</h3>
+            <h3>11 - 54 = -43</h3>
             <div class="fragment">
-              Le jeu essayera de stocker <strong>-34</strong> mais stockera en réalité
+              Le jeu essayera de stocker <strong>-43</strong> mais stockera en réalité
               <br />
-              <h3 class="bright">16777215 - 34</h3>
+              <h3 class="bright">16777215 - 43</h3>
               <h3 class="fragment">soit <span class="red">vraiment beaucoup</span> d'XP d'un coup</h3>
             </div>
           </div>
@@ -3497,6 +3502,55 @@
           </aside>
         </section>
 
+        <section data-transition="fade">
+          <img src="/6/chen-glitch/lowest-spe-stat-list.png" height="600px" />
+          <aside class="notes">
+            Donc en théorie, en manipulant la stat spéciale de notre pokémon grâce à Métamorph, on pourrait
+            rencontrer et attraper via ce glitch à peu près n'importe quel pokémon du jeu.
+          </aside>
+        </section>
+
+        <section data-transition="fade">
+          <img src="/6/chen-glitch/pokemon-constants.png" height="600px" />
+        </section>
+
+        <section data-auto-animate>
+          <div class="container">
+            <div class="col">
+              <pre class="small armasm">
+                <code data-trim data-noescape>
+                  ; trainer_constants.asm
+    
+                  DEF OPP_ID_OFFSET EQU 200
+    
+                  MACRO trainer_const
+                    const \1
+                    DEF OPP_\1 EQU OPP_ID_OFFSET + \1
+                  ENDM
+    
+                    const_def
+                    trainer_const NOBODY         ; $00
+                    trainer_const YOUNGSTER      ; $01
+                    trainer_const BUG_CATCHER    ; $02
+                    trainer_const LASS           ; $03
+                    trainer_const SAILOR         ; $04
+                    trainer_const JR_TRAINER_M   ; $05
+                    trainer_const JR_TRAINER_F   ; $06
+                    ; ...
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <img src="/6/chen-glitch/youngster.png" />
+              <p>YOUNGSTER ID : <strong>201</strong></p>
+            </div>
+          </div>
+          <aside class="notes">
+            On l'a dit plusieurs fois, ce sont les dresseurs qui sont après 200, chaque dresseur a un index,
+            comme les PKMN, et la valeur de cet index est ajoutée à 200 pour donner son index in-game.
+          </aside>
+        </section>
+
         <!-- Re-prépare le glitch -->
         <section data-auto-animate>
           <h4>Si je re-prépare le<br />glitch...</h4>
@@ -3556,11 +3610,11 @@
             <br />
             <strong>$CD2E</strong> : <strong>$01</strong>
           </p>
-          <img src="/spectrum-226.png" height="600px" />
+          <img class="noshadow" src="/6/chen-glitch/spectrum-200-spe.png" height="600px" />
           <aside class="notes">
             Mais admettons que quelqu'un soit assez déterminé pour monter à un niveau élevé un PKMN avec une
             très grosse stat SPECIAL de base comme Spectrum, qu'il utilise d'autres glitchs de derrière les fagots
-            pour par exemple dupliquer les objets, afin d'obtenir une stat de, par exemple, 226 ?
+            pour par exemple dupliquer les objets, afin d'obtenir une stat de, par exemple, 200 ?
           </aside>
         </section>
         <section data-auto-animate>
@@ -3620,60 +3674,36 @@
             <br />
             <strong>$CD2E</strong> : <strong>$07</strong>
             <br />
-            <span class="bright"><strong>$CD2D</strong> : <strong>$E2</strong> (226)</span>
+            <span class="bright"><strong>$CD2D</strong> : <strong>$E2</strong> (200)</span>
           </p>
           <aside class="notes">
             Admettons qu'il laisse le Métamorph se transformer en son Spectrum, et par la même, copier ses statistiques,
-            y compris sa stat SPECIAL de 226, copiant ainsi la valeur 226 dans le byte $CD2D
+            y compris sa stat SPECIAL de 200, copiant ainsi la valeur 200 dans le byte $CD2D
           </aside>
         </section>
 
-        <section data-auto-animate>
-          <p data-id="match-next" class="smaller absolute-top-right">
-            <strong>wRoute8CurScript</strong> : <strong>1</strong>
-            <br />
-            <strong>$CD60</strong> : <strong>0</strong>
-            <br />
-            <strong>$D730</strong> : <strong>0</strong>
-            <br />
-            <strong>$CD2D</strong> : <strong>$E2</strong> (226)
-            <br />
-            <strong>$CD2E</strong> : <strong>$07</strong>
-          </p>
-          <br />
-          <div class="container">
-            <div class="col">
-              <pre class="small armasm">
-                <code data-trim data-noescape>
-                  ; trainer_constants.asm
-    
-                  DEF OPP_ID_OFFSET EQU 200
-    
-                  MACRO trainer_const
-                    const \1
-                    DEF OPP_\1 EQU OPP_ID_OFFSET + \1
-                  ENDM
-    
-                    const_def
-                    trainer_const NOBODY         ; $00
-                    trainer_const YOUNGSTER      ; $01
-                    trainer_const BUG_CATCHER    ; $02
-                    trainer_const LASS           ; $03
-                    trainer_const SAILOR         ; $04
-                    trainer_const JR_TRAINER_M   ; $05
-                    trainer_const JR_TRAINER_F   ; $06
-                    ; ...
-                </code>
-              </pre>
-            </div>
-            <div class="col">
-              <img src="/6/chen-glitch/youngster.png" />
-              <p>YOUNGSTER ID : <strong>201</strong></p>
-            </div>
-          </div>
+        <section data-transition="fade">
+          <img src="/6/demo-time.jpeg" height="600px" />
+          <br>
+          <strong class="grey">(c'est bientôt fini)</strong>
           <aside class="notes">
-            On l'a dit plusieurs fois, ce sont les dresseurs qui sont après 200, chaque dresseur a un index,
-            comme les PKMN, et la valeur de cet index est ajoutée à 200 pour donner son index in-game.
+            C'est presque la dernière démo :p
+          </aside>
+        </section>
+
+        <section>
+          <img src="/6/chen-glitch/ash-is-stone.jpg" height="600px"/>
+          <aside class="notes">
+            Bon quand je disais tout à l'heure que la Gameboy retombe presque toujours sur ses pattes,
+            c'était pas tout à fait vrai ^^
+          </aside>
+        </section>
+
+        <section>
+          <img src="/6/chen-glitch/spectrum-226.png" height="600px"/>
+          <aside class="notes">
+            Bon quand je disais tout à l'heure que la Gameboy retombe presque toujours sur ses pattes,
+            c'était pas tout à fait vrai ^^
           </aside>
         </section>
 
